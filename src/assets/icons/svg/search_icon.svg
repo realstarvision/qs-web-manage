@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>search icon</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="slicing-v1.1" transform="translate(-1015.000000, -115.000000)">
+            <g id="search-butten备份" transform="translate(1007.000000, 111.000000)">
+                <g id="search-icon" transform="translate(8.000000, 4.000000)">
+                    <rect id="矩形" fill-opacity="0" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="16" height="16"></rect>
+                    <path d="M7.53250349,13.2563037 C10.6621035,13.2563037 13.1991702,10.719237 13.1991702,7.58963705 C13.1991702,4.46003705 10.6621035,1.92297038 7.53250349,1.92297038 C4.40290349,1.92297038 1.86583683,4.46003705 1.86583683,7.58963705 C1.86583683,10.719237 4.40290349,13.2563037 7.53250349,13.2563037 Z" id="路径" stroke="#FFFFFF"></path>
+                    <line x1="11.6064368" y1="11.6635704" x2="14.4348702" y2="14.4920037" id="路径" stroke="#FFFFFF"></line>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

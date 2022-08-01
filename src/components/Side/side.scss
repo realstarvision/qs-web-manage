@@ -1,0 +1,61 @@
+
+@mixin itemText{
+  margin-left: 8px;
+  color: #fff
+}
+
+.menu{
+  overflow: auto;
+  .menuList{
+    .list-item{
+      display: flex;
+      padding: 8px 16px;
+    }
+    .item-text{
+       @include itemText;
+    }
+    // 一级路由使用
+    .active{
+      >div{
+          background: #2E3343;
+      }
+    }
+    // 二级路由使用
+    .item{
+      .item-text{
+        @include itemText;
+     }
+     .second-text{
+      margin-left: 8px; 
+      font-size: 16px
+     }
+    a{
+      font-size: 16px;
+      font-weight: 400;
+      text-decoration: none;
+      &:hover{
+        cursor: pointer;
+      }
+      width: 100%;
+    }
+    .btn{
+      margin-left: 15px;
+    }
+
+    >.active{
+      .btn{
+        color: #FFFFFF ;
+      }
+    }
+  }  
+
+    a{
+      color: $w-40;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+}
+
+
+

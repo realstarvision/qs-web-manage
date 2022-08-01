@@ -1,0 +1,19 @@
+
+.layout{
+  display: flex;
+  .main{
+    position: relative;
+    flex-grow: 1; 
+    // background: #313747;
+    min-height: 100%;
+  }
+
+  .visible{
+    opacity: 1;
+  }
+  
+  .hidden{
+    opacity: 0;
+  }
+  
+}

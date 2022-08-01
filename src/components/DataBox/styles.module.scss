@@ -1,0 +1,33 @@
+.container{
+  width: 224px;
+  height: 112px;
+  // border:1px solid #999;
+  padding: 5px 0 5px 15px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #AEBDD8;
+  font-weight: 400;
+  margin-right: 100px;
+  border-radius: 4px;
+  
+  .title{
+      font-size: 16px;
+      margin-right: 5px;
+  }
+  .memony{
+      font-weight: 500;
+      font-size: 53px;
+      line-height: 53px;
+      height: 53px;
+      text-shadow: 0px 4px 4px rgba(26,28,37,0.5000);
+      align-self: center;
+      letter-spacing: -3px;
+  }
+  .count{
+      font-size: 12px;
+      align-self: end;
+      margin-right: 4px;
+  }
+}

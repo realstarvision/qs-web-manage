@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>b to e icon</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="stardust&gt;-history-query-v2.1" transform="translate(-485.000000, -95.000000)">
+            <g id="date-dd/mm/yy" transform="translate(318.000000, 91.000000)">
+                <g id="b-to-e-icon" transform="translate(167.000000, 4.000000)">
+                    <rect id="矩形" fill="#D8D8D8" opacity="0" x="0" y="0" width="16" height="16"></rect>
+                    <polyline id="路径" stroke="#FFFFFF" stroke-width="0.5" opacity="0.600000024" transform="translate(12.656854, 8.000000) rotate(-45.000000) translate(-12.656854, -8.000000) " points="14.6568542 6 14.6568542 10 10.6568542 10"></polyline>
+                    <polyline id="路径备份-2" stroke="#FFFFFF" stroke-width="0.5" opacity="0.600000024" points="6.70710678 5.87867966 8.82842712 8 6.70710678 10.1213203"></polyline>
+                    <polyline id="路径备份-3" stroke="#FFFFFF" stroke-width="0.5" opacity="0.600000024" points="1.41421356 6.58578644 2.82842712 8 1.41421356 9.41421356"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

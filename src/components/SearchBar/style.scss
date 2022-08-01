@@ -1,0 +1,95 @@
+
+
+.icon{
+  width: 16px;
+  height: 16px;
+}
+
+
+.hidden-icon{
+  .MuiInputAdornment-root{
+    display: none;
+  }
+}
+.end{
+  input{
+    text-align: right;
+  }
+}
+  
+.from-item{
+  display: flex;
+  align-items: center;
+  .label{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    .icon{
+      width: 16px;
+      height: 16px;
+      margin-right: 10px;
+    }
+  }
+
+  .cloud{
+    min-width: 120px;
+    .value{
+      width: 39px;
+      height: 24px;
+      background: #232734;
+      border-radius: 2px;
+      opacity: 0.6;
+      margin-left: 10px;
+      text-align: center;
+      line-height: 24px;
+      font-size: 12px;
+      font-weight: 300,
+    }
+  }
+
+  .data-box{
+    border-radius: 2px;
+    background: #232734;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-bar{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 330px;
+    // min-width: 273px;
+    .upload{
+      display: flex;
+      align-items: center;
+      span{
+        font-size: 14px;
+        font-weight: 400;
+        color: #FFFFFF;
+        margin-right: 5px;
+        white-space: nowrap,
+      }
+      div{
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        background: #616C8C;
+        box-shadow: 0px 0px 4px 0px rgba(26,28,37,0.5000);
+        border-radius: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover{
+          opacity:0.8
+        }
+        &:active{
+          opacity:0.6
+        }
+      }
+    }
+  }
+}
+

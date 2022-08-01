@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="98px" height="24px" viewBox="0 0 98 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <linearGradient x1="48.8518778%" y1="48.0860113%" x2="51.5363093%" y2="52.1065116%" id="linearGradient-1">
+            <stop stop-color="#AEBDD8" offset="0%"></stop>
+            <stop stop-color="#DBE5FF" offset="19.4840356%"></stop>
+            <stop stop-color="#B3CDFD" offset="47.6627802%"></stop>
+            <stop stop-color="#5E69CB" offset="70.6232508%"></stop>
+            <stop stop-color="#232C3C" offset="100%"></stop>
+        </linearGradient>
+        <filter x="-3.3%" y="-16.7%" width="106.5%" height="133.3%" filterUnits="objectBoundingBox" id="filter-2">
+            <feGaussianBlur stdDeviation="1" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="stardust-search-result-v2.3" transform="translate(-1317.000000, -768.000000)" fill-rule="nonzero">
+            <g id="footer" transform="translate(0.000000, 760.000000)">
+                <g id="logo" transform="translate(1317.000000, 8.000000)">
+                    <path d="M95,12.4730943 C69.810822,13.0760068 50.799227,16.2628302 49.9079103,21 L48.0873486,21 C47.200773,16.2628302 28.1749549,13.0760068 3,12.4730943 L3,11.527064 C27.9372863,10.9305043 46.8199233,7.80282696 48.0553258,3.14171418 L48.0873486,3 L49.9079103,3 C50.7903138,7.69198947 69.4324021,10.8606211 94.2461899,11.5082127 L95,11.527064 L95,12.4730943 Z" id="路径" fill="url(#linearGradient-1)" filter="url(#filter-2)"></path>
+                    <g id="编组" transform="translate(3.000000, 3.000000)" fill="#1F222D">
+                        <path d="M46.9079103,0 L45.0873486,0 C44.200773,4.73938331 25.189178,7.92447845 0,8.52706401 L0,8.81879195 L92,8.81879195 L92,8.52706401 C66.810822,7.92447845 47.799227,4.73938331 46.9079103,0 Z" id="路径"></path>
+                        <path d="M46.9079103,18 L45.0873486,18 C44.200773,13.2628302 25.1749549,10.0760068 0,9.47309428 L0,9.18120805 L92,9.18120805 L92,9.47309428 C66.810822,10.0760068 47.799227,13.2628302 46.9079103,18 Z" id="路径"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
