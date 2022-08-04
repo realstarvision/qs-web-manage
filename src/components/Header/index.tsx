@@ -21,6 +21,16 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }))
 
+export const MyMenu = styled(Menu)({
+  '& .MuiPaper-root': {
+    background: 'linear-gradient(180deg, #AEBDD8 0%, #7E98C8 85%, #8499BF 100%)',
+    boxShadow: '0px 0px 8px 0px rgba(43,48,63,0.5000)',
+    '& .MuiMenu-list': {
+      padding: '3px 0',
+    },
+  },
+})
+
 export default function Header() {
   const settings = ['退出']
   const navigate = useNavigate()
@@ -84,8 +94,8 @@ export default function Header() {
               {getUserInfo().title + '-' + getUserInfo().depts[0].deptName}
             </Typography>
           </Box>
-          <Menu
-            sx={{ mt: '45px' }}
+          <MyMenu
+            sx={{ mt: '45px', ml: '20px' }}
             id="menu-appbar"
             anchorEl={anchorElUser}
             anchorOrigin={{
@@ -100,11 +110,23 @@ export default function Header() {
             open={Boolean(anchorElUser)}
           >
             {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handletLogout}>
-                <Typography textAlign="center">{setting}</Typography>
+              <MenuItem
+                key={setting}
+                onClick={handletLogout}
+                sx={{
+                  color: '#ffffff99',
+                  ':hover': {
+                    background: 'none',
+                    color: '#fff',
+                  },
+                }}
+              >
+                <Typography textAlign="center" sx={{ fontSize: '12px' }}>
+                  {setting}
+                </Typography>
               </MenuItem>
             ))}
-          </Menu>
+          </MyMenu>
         </Box>
       </Toolbar>
     </AppBar>

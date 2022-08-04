@@ -25,6 +25,15 @@ const CssTextField = styled(TextField)(() => ({
   },
 }))
 
+const MyDesktopDatePicker = styled(DesktopDatePicker)(() => ({
+  '& .MuiCalendarPicker-root': {
+    background: '#fff !important',
+  },
+  '& .css-mvmu1r': {
+    background: '#fff',
+  },
+}))
+
 export default function index({
   open,
   value,
@@ -57,7 +66,7 @@ export default function index({
   }
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DesktopDatePicker
+      <MyDesktopDatePicker
         open={open !== undefined ? open : undefined}
         value={value}
         inputFormat={!value ? placeholder : format}

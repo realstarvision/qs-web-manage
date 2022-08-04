@@ -26,14 +26,16 @@ export interface Column {
   align?: 'inherit' | 'left' | 'center' | 'right' | 'justify' | undefined
   title: string
   key: string
+  slot?: any
 }
 
 const MyTableCell = styled(TableCell)({
-  borderBottom: '1px solid rgba(174,189,216,0.2)',
+  borderBottom: '1px solid rgba(174,189,216,0.3)',
   fontSize: '12px',
   fontWeight: 400,
   color: '#AEBDD8',
   padding: '10px 10px',
+  boxShadow: 'inset 0px 0px 0px 0px rgba(174,189,216,0.2)',
 })
 
 const MyPagination = styled(Pagination)({
@@ -163,7 +165,7 @@ export default function CurTable({
             <Box className="table-footer-box">
               <span className="count">此次搜索共{pagination.total}条</span>
               <MyPagination
-                count={pagination.count}
+                count={Math.ceil(pagination.total / pagination.pageSize)}
                 shape={pagination.shape || 'rounded'}
                 page={Number(pagination.pageNumber)}
                 color={pagination.color}

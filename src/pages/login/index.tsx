@@ -20,7 +20,6 @@ function Home() {
     getUserInfo({ clientId: 0, uuid: uuid }).then((res: any) => {
       if (res.code === 0) {
         setUserInfo(res.data)
-        setToken(uuid)
         clearInterval(timer)
         navigate('/')
       }
@@ -31,6 +30,7 @@ function Home() {
     const uuid = uuidv4()
     getLoginUrl({ clientId: 0, uuid: uuid }).then((res) => {
       setQrUrl(res.data)
+      setToken(uuid)
       const timer = setInterval(() => {
         getUserInfoData(uuid, timer)
       }, 500)
@@ -62,7 +62,7 @@ function Home() {
               bgColor="#aebdd8"
               style={{ margin: 'auto' }}
               level="M"
-              includeMargin
+              // includeMargin
             ></QRCodeCanvas>
             <Typography className="hint" component="p">
               {t('login.prompt')}

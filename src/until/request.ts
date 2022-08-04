@@ -5,7 +5,7 @@ const instance = axios.create({
   baseURL: '/api',
   timeout: 10000,
   headers: {
-    tokent: ''
+    starToken: ''
   }
 });
 
@@ -15,7 +15,7 @@ instance.interceptors.request.use(
   (config: any) => {
     // 是否需要设置 token
     if (getToken()) {
-      config.headers['token'] = getToken()  // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['starToken'] = getToken()  // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     return config
   },

@@ -73,19 +73,19 @@ export const menuRouter: Router[] = [
     path: '/algorithm',
     element: <Layout />,
     name: '算法管理',
-    icon: <SvgIcon svgName="dashboard_icon" />,
+    icon: <SvgIcon svgName="algorithm_icon" />,
     children: [
       {
         path: 'original-countSet',
         element: lazyload(<OriginalCountSet />),
         name: '原始数据集',
-        icon: <Mood />,
+        icon: <SvgIcon svgName="original_data" />,
       },
       {
         path: 'label-countSet',
         element: lazyload(<LabelCountSet />),
         name: '标注数据集',
-        icon: <Mood />,
+        icon: <SvgIcon svgName="label_data" />,
       },
     ],
   },

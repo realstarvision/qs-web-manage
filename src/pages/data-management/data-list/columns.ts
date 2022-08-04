@@ -8,7 +8,7 @@ const columns: Column[] = [
   {
     align: 'center',
     title: '卫星',
-    key: 'sentinel',
+    key: 'satelliteName',
   },
   {
     align: 'center',

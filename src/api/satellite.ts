@@ -10,7 +10,7 @@ const api = {
 */
 export function getSatelliteList() {
   return request({
-    baseURL: '/geo',
+    // baseURL: '/geo',
     url: api.getSatelliteList,
     method: 'get'
   })

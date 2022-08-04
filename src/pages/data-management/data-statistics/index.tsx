@@ -35,7 +35,7 @@ export default function index() {
       label: '按卫星统计',
     },
     {
-      icon: 'satellite',
+      icon: 'tab2_icon',
       label: '按数据类型统计',
     },
   ]

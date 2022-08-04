@@ -17,7 +17,7 @@ export function removeToken() {
 
 export function getUserInfo() {
   const info = Cookies.get(userInfo)
-  return JSON.parse(info as string)
+  return info ? JSON.parse(info as string) : ''
 }
 
 export function setUserInfo(info: { avatarUrl: string, nick: string }) {

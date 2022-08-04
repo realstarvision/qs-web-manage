@@ -16,6 +16,11 @@ const Input = styled(TextField)({
       opacity: '0.6',
     },
   },
+  '& .MuiPopover-root': {
+    '& .MuiPaper-root': {
+      background: '#353B4D',
+    },
+  },
 })
 
 export default Input

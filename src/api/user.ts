@@ -1,9 +1,10 @@
 import request from '@/until/request'
 
 const api = {
-  getLoginUrl: '/star-gateway/login/getLoginUrl',
-  getUserInfo: '/star-gateway/login/getTokenByUUID',
-  logout: '/star-gateway/login/logout'
+  getLoginUrl: '/star-auth/login/getDingTalkLoginUrl',
+  getUserInfo: '/star-auth/login/getUserInfo',
+  logout: '/star-auth/login/logout',
+  userList: '/star-auth/log/findOperatorList'
 }
 
 
@@ -14,7 +15,7 @@ const api = {
 */
 export function getLoginUrl(data: { clientId: number; uuid: string }) {
   return request({
-    baseURL: '/gateway',
+    // baseURL: '/gateway',
     url: api.getLoginUrl,
     method: 'post',
     data
@@ -29,7 +30,7 @@ export function getLoginUrl(data: { clientId: number; uuid: string }) {
 
 export function getUserInfo(data: { clientId: number; uuid: string; }) {
   return request({
-    baseURL: '/gateway',
+    // baseURL: '/gateway',
     url: api.getUserInfo,
     method: 'post',
     data
@@ -44,9 +45,24 @@ export function getUserInfo(data: { clientId: number; uuid: string; }) {
 
 export function logout(data: any) {
   return request({
-    baseURL: '/gateway',
+    // baseURL: '/gateway',
     url: api.logout,
     method: 'post',
     data
   })
 }
+
+/** 
+*  获取操作人列表
+*/
+
+export function userList() {
+  return request({
+    // baseURL: '/gateway',
+    url: api.userList,
+    method: 'get',
+  })
+}
+
+
+

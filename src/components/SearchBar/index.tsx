@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, RefObject } from 'react'
-import { TextField, MenuItem, Stack, Grid, FormLabel, Box } from '@mui/material'
+import { TextField, MenuItem, Stack, Grid, FormLabel, Box, Menu } from '@mui/material'
 // import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 // import { DatePicker } from '@mui/x-date-pickers/DatePicker'
@@ -137,6 +137,9 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
             inputRef={inputRef}
             value={formParams.inputValue}
             onChange={handleInputChange}
+            sx={{
+              width: '40%',
+            }}
           />
         </Grid>
         <Grid item xs={4} className="from-item">

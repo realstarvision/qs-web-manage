@@ -3,6 +3,8 @@
   box-shadow: 0px 2px 4px 0px rgba(26,28,37,0.5) !important;
   // box-shadow: none;
   border-radius: 2px;
+  max-height: 700px;
+  overflow: auto;
   .table-footer{
     background: #3B4154;
     height: 44px;
@@ -51,6 +53,37 @@
           background: none;
         }
       }
+      .icon{width: 16px;height: 16px;}
+    }
+  }
+}
+
+
+.icon{width: 16px;height: 16px;}
+
+.PopoverContent{
+  padding: 8px;
+  display: flex;
+  .info{
+    margin-right: 26px;
+    font-weight: 400;
+    position: relative;
+    .name{
+      font-size: 13px;
+    }
+    .id{
+      font-size: 12px;
+      color: rgba(255,255,255,0.67);
+    }
+  }
+  .download{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    .font{
+      margin-left: 4px;
+      font-size: 12px;
+      font-weight: 400;
     }
   }
 }

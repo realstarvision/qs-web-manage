@@ -1,55 +1,106 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { getLogList } from '@/api/log'
+import { userList } from '@/api/user'
 import { Box, Grid, FormLabel, Stack, MenuItem, Divider } from '@mui/material'
-import Table from '@/components/Table'
+import Table from '@/components/NewTable'
 import DatePicker from '@/components/DatePicker'
 import Input from '@/components/Input'
 import SvgIcon from '@/components/SvgIcon'
 import Button from '@/components/Button'
 import columns from './columns'
+import moment from 'moment'
 import './style.scss'
 
 export default function index() {
+  const [list, setList] = useState([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [formParams, setFormParams] = useState<{ selectValue: number; date: null | Date }>({
-    selectValue: 0,
-    date: null,
+  const [formParams, setFormParams] = useState<{ userId: string; dateTime: null | Date | string }>({
+    userId: '0',
+    dateTime: null,
   })
-  const userList = [
-    {
-      id: 0,
-      satelliteName: '一号',
-    },
-    {
-      id: 1,
-      satelliteName: '二号',
-    },
-  ]
-  // 输入框事件
-  const handleSelectChange = () => {}
+  const [page, setPage] = useState<{ pageNumber: number; pageSize: number; total: number }>({
+    pageNumber: 1,
+    pageSize: 10,
+    total: 0,
+  })
+  const [userListData, setUserListData] = useState<
+    Array<{
+      userId: string
+      nickName: string
+    }>
+  >([{ nickName: '所有人员', userId: '0' }])
+  // 定时器
+  let timer: NodeJS.Timeout | null | undefined = null
+
+  // 操作人员框chang事件
+  const handleSelectChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    formParams.userId = e.target.value
+    setFormParams({ ...formParams })
+  }
   // 重置事件
-  const handleReset = () => {}
+  const handleReset = () => {
+    setFormParams({ userId: '0', dateTime: null })
+  }
   // 搜索事件
-  const handleSubmit = () => {}
+  const handleSubmit = () => {
+    getLogListData()
+  }
   // 日期选择事件
   const handleDate = (value: Date) => {
-    setFormParams({ ...formParams, date: value })
+    setFormParams({ ...formParams, dateTime: value })
   }
 
-  // table数据
-  const tableData = [
-    {
-      department: '软件工程部',
-      user: 'xxxx',
-      time: '2022-4-6',
-      location: '220.237.120.36',
-      record: '上传56个数据文件',
-    },
-  ]
-
-  const onChange = (value: React.MouseEvent<HTMLElement>, page: number) => {
-    console.log(value)
-    console.log(page)
+  // 分页改变事件
+  const handlePageChange = (e: any, value: number) => {
+    page.pageNumber = value
+    setPage({ ...page })
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      handleSubmit()
+      clearTimeout(timer as NodeJS.Timeout)
+    }, 500)
   }
+
+  // 获取日志数据列表
+  const getLogListData = () => {
+    const params = { ...page, ...formParams }
+    if (params.userId === '0') {
+      params.userId = ''
+    }
+    if (params.dateTime) {
+      params.dateTime = moment(params.dateTime).format('YYYY-MM-DD')
+    }
+    setLoading(true)
+    getLogList(params)
+      .then(({ code, data }: { code?: number; data: any }) => {
+        if (code === 0) {
+          setList(data.records)
+          page.total = data.total
+          setPage({ ...page })
+          setLoading(false)
+        }
+      })
+      .catch(() => {
+        setLoading(false)
+      })
+  }
+  // 获取用户列表数据
+  const getUserList = () => {
+    userList().then(({ code, data }: { code?: number; data: Array<{ nickName: string; userId: string }> }) => {
+      if (code === 0) {
+        setUserListData([...userListData, ...data])
+        formParams.userId = userListData[0].userId
+        setFormParams(formParams)
+      }
+    })
+  }
+  // 初始化
+  useEffect(() => {
+    getUserList()
+    getLogListData()
+  }, [])
   return (
     <Box className="log">
       <Grid container spacing={{ xs: 1, md: 2, lg: 4 }} className="form-bar">
@@ -57,16 +108,10 @@ export default function index() {
           <FormLabel component="span" className="label">
             <SvgIcon svgName="data_icon" svgClass="icon"></SvgIcon> 操作人员
           </FormLabel>
-          <Input
-            id="outlined-select-currency"
-            select
-            value={formParams.selectValue}
-            onChange={handleSelectChange}
-            size="small"
-          >
-            {userList.map((user) => (
-              <MenuItem key={user.id} value={user.id}>
-                {user.satelliteName}
+          <Input select value={formParams.userId} onChange={(e) => handleSelectChange(e)} size="small">
+            {userListData.map((user) => (
+              <MenuItem key={user.userId} value={user.userId}>
+                {user.nickName}
               </MenuItem>
             ))}
           </Input>
@@ -78,7 +123,7 @@ export default function index() {
 
           <DatePicker
             className="date"
-            value={formParams.date}
+            value={formParams.dateTime}
             onChange={(value: Date) => handleDate(value as Date)}
           ></DatePicker>
         </Grid>
@@ -104,7 +149,7 @@ export default function index() {
         </Grid>
       </Grid>
       <Divider className="divider" />
-      <Table data={tableData} columns={columns} pagination={{ count: 10, onChange }} loading={loading}></Table>
+      <Table data={list} columns={columns} loading={loading} pagination={page} onPageChange={handlePageChange}></Table>
     </Box>
   )
 }

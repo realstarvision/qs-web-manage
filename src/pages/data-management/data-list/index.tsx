@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios'
 import { styled } from '@mui/material/styles'
 import { TableCell, TableRow, Button, Modal, Box, Divider, Typography } from '@mui/material'
 import SearchBar from '@/components/SearchBar'
-import Table from '@/components/Table'
+import Table from '@/components/NewTable'
 import Dialog from '@/components/Dialog'
 import { getFileList } from '@/api/data'
 import map from '@/assets/image/png/map.png'
@@ -25,10 +25,10 @@ interface Params {
 
 function MyDialog({ visible, onClose, data }: { visible: boolean; onClose: Function; data: any }) {
   const dialogColumns = [
-    // {
-    //   label: '卫星',
-    //   key: 'sentiment',
-    // },
+    {
+      label: '卫星',
+      key: 'satelliteName',
+    },
     {
       label: '数据级别',
       key: 'productLevel',
@@ -41,10 +41,10 @@ function MyDialog({ visible, onClose, data }: { visible: boolean; onClose: Funct
       label: '云量',
       key: 'cloudCoverage',
     },
-    // {
-    //   label: '分辨率',
-    //   key: 'resolution',
-    // },
+    {
+      label: '分辨率',
+      key: 'satelliteResolutionRatio',
+    },
   ]
   const handleClose = () => {
     onClose()
@@ -52,7 +52,7 @@ function MyDialog({ visible, onClose, data }: { visible: boolean; onClose: Funct
   return (
     <Dialog visible={visible} onClose={handleClose}>
       <Box className="dialog">
-        <img src={map} />
+        <img src={data.thumbnailUrl ? `data:image/jpg;base64,${data.thumbnailUrl}` : map} />
         <Box className="details">
           <Typography className="title">数据详情</Typography>
           <Divider className="hr" />
@@ -134,7 +134,6 @@ export default function index() {
 
   // 页面改变事件
   const handlePageChange = (e: any, value: number) => {
-    console.log(value)
     page.pageNumber = value
     setPage({ ...page })
     const params = {

@@ -59,7 +59,7 @@ export function getMemoryContrast() {
 */
 export function getFileList(data: { satelliteId: number | undefined; identifier: string | undefined; shootEndTime: string; shootStartTime: string; cloudCoverage: number | undefined; pageNumber: number; pageSize: number; count: number; total: number }) {
   return request({
-    baseURL: '/geo',
+    // baseURL: '/geo',
     url: api.getFileList,
     method: 'post',
     data

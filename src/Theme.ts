@@ -41,6 +41,9 @@ const Theme = createTheme({
     typography: {
         // define default fonts.
         fontFamily: 'PingFangSC-Regular, PingFang SC',
+    },
+    '& .MuiPopover-root': {
+        background: '#fff'
     }
 } as any);
 

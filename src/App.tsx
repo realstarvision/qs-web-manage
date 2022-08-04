@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation, useParams, useRoutes, useNavigate } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 import router, { whiteList } from './router'
-import { getToken } from '@/until/auth'
+import { getToken, getUserInfo } from '@/until/auth'
 import './App.scss'
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   let navigate = useNavigate()
   // 路由守卫
   useEffect(() => {
-    if (getToken()) {
+    if (getToken() && getUserInfo()) {
       if (location.pathname === '/login') {
         navigate('/')
       }

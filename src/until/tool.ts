@@ -16,3 +16,20 @@ export function debounce(fn: any, delay = 500,) {
     }, delay)
   }
 }
+
+
+/* 
+*数组对象去重
+*
+*/
+
+export function repetition(data: any[]) {
+
+  let obj: any = {};
+  let peon = data.reduce((cur, next) => {
+    obj[next.id] ? "" : obj[next.id] = true && cur.push(next);
+    return cur
+  }, []) //设置cur默认类型为数组，并且初始值为空的数组
+
+  return peon
+}

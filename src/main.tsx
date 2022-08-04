@@ -7,6 +7,7 @@ import Theme from './Theme'
 import '@/i18n/config'
 import 'virtual:svg-icons-register'
 import './assets/index.css'
+import './assets/styles/date.scss'
 
 let theme = responsiveFontSizes(Theme)
 ReactDOM.createRoot(document.getElementById('root')!).render(
