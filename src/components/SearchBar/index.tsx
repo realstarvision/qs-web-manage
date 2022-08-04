@@ -227,12 +227,12 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
             <Button onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
               搜索
             </Button>
-            <Box className="upload">
+            {/* <Box className="upload">
               <span>数据上传</span>
               <div>
                 <SvgIcon svgName="upload_icon" svgClass="icon"></SvgIcon>
               </div>
-            </Box>
+            </Box> */}
           </Stack>
         </Grid>
       </Grid>
