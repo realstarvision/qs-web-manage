@@ -95,8 +95,8 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
   }
 
   // 提交按钮
-  const handleSubmit = () => {
-    ;(onSubmit as Function)(formParams)
+  const handleSubmit = (pageNumber: number) => {
+    ;(onSubmit as Function)(formParams, pageNumber)
   }
 
   //重置按钮
@@ -224,7 +224,10 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
             >
               重置
             </Button>
-            <Button onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
+            <Button
+              onClick={() => handleSubmit(1)}
+              startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}
+            >
               搜索
             </Button>
             {/* <Box className="upload">

@@ -88,8 +88,12 @@ export default function index() {
   }
 
   // 列表搜索接口
-  const handleSubmit = (value: Params) => {
+  const handleSubmit = (value: Params, pageNumber?: number) => {
     setFormParams(value)
+    if (pageNumber) {
+      page.pageNumber = 1
+      setPage({ ...page })
+    }
     const params = {
       ...page,
       satelliteId: value.selectValue,

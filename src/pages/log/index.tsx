@@ -42,8 +42,8 @@ export default function index() {
     setFormParams({ userId: '0', dateTime: null })
   }
   // 搜索事件
-  const handleSubmit = () => {
-    getLogListData()
+  const handleSubmit = (pageNumber?: number) => {
+    getLogListData(pageNumber)
   }
   // 日期选择事件
   const handleDate = (value: Date) => {
@@ -64,7 +64,11 @@ export default function index() {
   }
 
   // 获取日志数据列表
-  const getLogListData = () => {
+  const getLogListData = (pageNumber?: number) => {
+    if (pageNumber) {
+      page.pageNumber = pageNumber
+      setPage({ ...page })
+    }
     const params = { ...page, ...formParams }
     if (params.userId === '0') {
       params.userId = ''
@@ -136,7 +140,10 @@ export default function index() {
             >
               重置
             </Button>
-            <Button onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
+            <Button
+              onClick={() => handleSubmit(1)}
+              startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}
+            >
               查询
             </Button>
             {/* <Box className="upload">

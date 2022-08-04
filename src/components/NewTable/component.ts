@@ -13,7 +13,7 @@ export const MyTableCell = styled(TableCell)({
   color: '#AEBDD8',
   padding: '10px 10px',
   boxShadow: 'inset 0px 0px 0px 0px rgba(174,189,216,0.2)',
-  height: '44px',
+  // height: '44px',
   boxSizing: 'border-box'
 })
 
