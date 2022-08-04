@@ -57,13 +57,12 @@ function Home() {
             <QRCodeCanvas
               id="qrCode"
               value={qrUrl}
-              size={500}
+              size={300}
               fgColor="#000"
               bgColor="#aebdd8"
               style={{ margin: 'auto', width: '110px', height: '110px' }}
-
-              // level="M"
-              // includeMargin
+              level="M"
+              includeMargin
             ></QRCodeCanvas>
             <Typography className="hint" component="p">
               {t('login.prompt')}

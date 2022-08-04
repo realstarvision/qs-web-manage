@@ -83,9 +83,9 @@ export default function index() {
     getListData()
   }
   // 数据初始化
-  // useEffect(() => {
-  //   getListData()
-  // }, [])
+  useEffect(() => {
+    getListData()
+  }, [])
 
   //tag的点击事件
   const handleTagClick = (data: { id: number }) => {
