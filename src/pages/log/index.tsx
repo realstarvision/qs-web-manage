@@ -14,7 +14,7 @@ import './style.scss'
 export default function index() {
   const [list, setList] = useState([])
   const [loading, setLoading] = useState<boolean>(false)
-  const [formParams, setFormParams] = useState<{ userId: string; dateTime: null | Date | string }>({
+  const [formParams, setFormParams] = useState<{ userId: string; dateTime: null | Date }>({
     userId: '0',
     dateTime: null,
   })
@@ -29,6 +29,7 @@ export default function index() {
       nickName: string
     }>
   >([{ nickName: '所有人员', userId: '0' }])
+
   // 定时器
   let timer: NodeJS.Timeout | null | undefined = null
 
@@ -37,14 +38,17 @@ export default function index() {
     formParams.userId = e.target.value
     setFormParams({ ...formParams })
   }
+
   // 重置事件
   const handleReset = () => {
     setFormParams({ userId: '0', dateTime: null })
   }
+
   // 搜索事件
   const handleSubmit = (pageNumber?: number) => {
     getLogListData(pageNumber)
   }
+
   // 日期选择事件
   const handleDate = (value: Date) => {
     setFormParams({ ...formParams, dateTime: value })
@@ -74,7 +78,7 @@ export default function index() {
       params.userId = ''
     }
     if (params.dateTime) {
-      params.dateTime = moment(params.dateTime).format('YYYY-MM-DD')
+      params.dateTime = moment(params.dateTime).format('YYYY-MM-DD') as unknown as Date
     }
     setLoading(true)
     getLogList(params)
@@ -90,6 +94,7 @@ export default function index() {
         setLoading(false)
       })
   }
+
   // 获取用户列表数据
   const getUserList = () => {
     userList().then(({ code, data }: { code?: number; data: Array<{ nickName: string; userId: string }> }) => {
@@ -100,11 +105,13 @@ export default function index() {
       }
     })
   }
+
   // 初始化
   useEffect(() => {
     getUserList()
     getLogListData()
   }, [])
+
   return (
     <Box className="log">
       <Grid container spacing={{ xs: 1, md: 2, lg: 4 }} className="form-bar">

@@ -110,11 +110,6 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
     })
   }
 
-  //上传
-  const handleUpload = () => {
-    console.log('上传')
-  }
-
   return (
     <>
       <Grid

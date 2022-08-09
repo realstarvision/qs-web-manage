@@ -1,16 +1,15 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import { Box, Grid, FormLabel, Stack, MenuItem, Divider, Typography } from '@mui/material'
+import { Box, Grid, FormLabel, Stack, MenuItem, Button, Divider, Typography, Popper } from '@mui/material'
+import MyButton from '@/components/Button'
 import Input from '@/components/Input'
 import SvgIcon from '@/components/SvgIcon'
-import Button from '@/components/Button'
 import Table, { Column } from '@/components/NewTable'
-import { getListLabelSet } from '@/api/algorithm'
+import { getListLabelSet, getOriginaByUuid } from '@/api/algorithm'
 import InputAdornment from '@mui/material/InputAdornment'
 import Tag from '@/components/Tag'
 import { repetition } from '@/until/tool'
+import { MyPopover, popoverWidth } from './components'
 import '../triangle.scss'
-// import columns from './columns'
-// import './style.scss'
 
 export default function index() {
   const [loading, setLoading] = useState<boolean>(false)
@@ -20,7 +19,18 @@ export default function index() {
     serachName: '',
   })
   const [listData, setListData] = useState<Array<any>>([])
+  const [filterListData, setFilterListData] = useState<Array<any>>([])
   const [tags, setTags] = useState<Array<any>>([])
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  const [checkData, setCheckData] = useState<{ dataUrl: string; uuid: number | string; taskName: string }>({
+    dataUrl: '',
+    uuid: '',
+    taskName: '',
+  })
+  const [coord, setCoord] = useState({
+    x: 0,
+    y: 0,
+  })
   // 定时器
   let timer: NodeJS.Timeout | null | undefined = null
 
@@ -35,7 +45,7 @@ export default function index() {
       key: 'taskName',
       align: 'center',
       title: '原始数据名称',
-      slot: function ({ data }: { data: { tags: Array<{ tagName: string }>; taskName: string } }) {
+      slot: function ({ row }: { row: { tags: Array<{ tagName: string }>; taskName: string } }) {
         return (
           <Box>
             <p
@@ -45,20 +55,113 @@ export default function index() {
                 color: '#AEBDD8',
               }}
             >
-              {data.taskName}
+              {row.taskName}
             </p>
             <Box
               sx={{
                 marginTop: '8px',
               }}
             >
-              {data.tags && data.tags.map((tag: { tagName: string }) => <Tag content={tag.tagName} />)}
+              {row.tags && row.tags.map((tag: { tagName: string }) => <Tag content={tag.tagName} />)}
             </Box>
           </Box>
         )
       },
     },
+    {
+      key: 'oprated',
+      align: 'center',
+      title: '操作',
+      slot: function ({
+        row,
+      }: {
+        row: {
+          id: string | undefined
+          open?: any
+          extend?: string
+          dataUrl?: string
+        }
+      }) {
+        return (
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <Button
+              aria-describedby={row.id}
+              key={row.id}
+              variant="text"
+              onClick={(e) => handleCheckOriginal(e, row)}
+              className="btn"
+              sx={{
+                color: row.open ? '#fff' : '',
+              }}
+            >
+              查看原始数据
+            </Button>
+
+            <MyButton
+              onClick={() => handleDownload(row)}
+              startIcon={<SvgIcon svgName="download" svgClass="icon"></SvgIcon>}
+              sx={{
+                fontSize: '12px',
+                height: '24px',
+              }}
+            >
+              下载
+            </MyButton>
+          </Stack>
+        )
+      },
+    },
   ]
+  // 查看原始数据
+  const handleCheckOriginal = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    row: {
+      id: string | undefined
+      open?: any
+      extend?: string | undefined
+      dataUrl?: string | undefined
+    }
+  ) => {
+    const currentTarget = e.currentTarget
+    let coord = {
+      x: e.pageX,
+      y: e.pageY,
+    }
+    setCoord({ ...coord })
+
+    row.extend &&
+      getOriginaByUuid({ extend: row.extend }).then(({ code, data }: { code?: number; data: any }) => {
+        if (code === 0) {
+          setCheckData(data[0])
+          setAnchorEl(currentTarget)
+        }
+      })
+  }
+
+  // 弹出框取消事件
+  const handleClose = () => {
+    setAnchorEl(null)
+    setTimeout(() => {
+      setCheckData({ dataUrl: '', uuid: '', taskName: '' })
+    }, 300)
+  }
+  // 下载按钮
+  const handleDownload = (row: {
+    id: string | undefined
+    open?: any
+    extend?: string | undefined
+    dataUrl?: string | undefined
+  }) => {
+    row.dataUrl && (window.location.href = row.dataUrl)
+  }
   // 输入框事件
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: number) => {
     let value = e.target.value
@@ -89,7 +192,17 @@ export default function index() {
         checkTags.push(tag.id)
       }
     })
-    getListData({ tagIds: checkTags })
+    let filterData = listData.filter((value) => {
+      let tagsList = value.tags
+      if (tagsList) {
+        return tagsList.find((item: { id: number }) => {
+          if (checkTags.includes(item.id)) {
+            return true
+          }
+        })
+      }
+    })
+    setFilterListData(filterData.length > 0 ? filterData : listData)
   }
 
   // 数据列表查询接口
@@ -114,6 +227,7 @@ export default function index() {
             setTags(repetition(tags))
           }
           setListData(list)
+          setFilterListData(list)
         }
         setLoading(false)
       })
@@ -131,7 +245,6 @@ export default function index() {
           </FormLabel>
           <Input
             required
-            // helperText={formParams.inputValue ? '' : '不能为空!'}
             id="outlined-required"
             size="small"
             placeholder="支持名称或属性描述模糊搜索"
@@ -159,22 +272,16 @@ export default function index() {
         </Grid>
         <Grid item xs={4} className="btn-box">
           <Stack direction="row" className="btn-bar">
-            <Button
+            <MyButton
               variant="outlined"
               onClick={handleReset}
               startIcon={<SvgIcon svgName="reset_icon" svgClass="icon"></SvgIcon>}
             >
               重置
-            </Button>
-            <Button onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
+            </MyButton>
+            <MyButton onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
               搜索
-            </Button>
-            {/* <Box className="upload">
-              <span>数据上传</span>
-              <div>
-                <SvgIcon svgName="upload_icon" svgClass="icon"></SvgIcon>
-              </div>
-            </Box> */}
+            </MyButton>
           </Stack>
         </Grid>
       </Grid>
@@ -202,7 +309,45 @@ export default function index() {
           marginBottom: '20px',
         }}
       />
-      <Table columns={columns} data={listData} loading={loading} operate={['checkOriginal', 'download']}></Table>
+      <Table columns={columns} data={filterListData} loading={loading} operate={['checkOriginal', 'download']}></Table>
+      <MyPopover
+        sx={{
+          top: coord.y,
+          left: coord.x - popoverWidth,
+        }}
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <PopoverContent data={checkData}></PopoverContent>
+      </MyPopover>
+    </Box>
+  )
+}
+
+// 悬浮框内容
+function PopoverContent({ data }: { data: { dataUrl: string; uuid: number | string; taskName: string } }) {
+  const handleDownload = () => {
+    window.location.href = data.dataUrl
+  }
+  return (
+    <Box className="PopoverContent">
+      <Box className="info">
+        <Typography className="name">{data.taskName}</Typography>
+        <Typography className="id">ID： {data.uuid}</Typography>
+      </Box>
+      <Box className="download" onClick={handleDownload}>
+        <SvgIcon svgName="download" svgClass="icon"></SvgIcon>
+        <Typography className="font">下载关联原始数据</Typography>
+      </Box>
     </Box>
   )
 }

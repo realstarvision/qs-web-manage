@@ -17,7 +17,7 @@ export default function index({
 }) {
   return (
     <Box
-      className="tag"
+      className="tag active"
       style={{
         color: unchecked ? 'rgba(255,255,255,0.4)' : '',
         background: background,

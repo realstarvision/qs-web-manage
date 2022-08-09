@@ -16,6 +16,7 @@ import {
 import { styled, useTheme } from '@mui/material/styles'
 import { menuRouter, Router } from '@/router'
 import { drawerWidth, barHeight } from '@/config'
+import { getUserInfo } from '@/until/auth'
 import './side.scss'
 
 const MyDrawer = styled(Drawer)(({ theme }) => ({
@@ -38,17 +39,38 @@ export default function sidebar() {
 
   // 初始化
   useEffect(() => {
-    routers.forEach((router: Router) => {
-      router['open'] = false
-    })
+    if (getUserInfo()) {
+      const menuDTOS = getUserInfo().menuDTOS
+      for (let i = 0; i < menuDTOS.length; i++) {
+        for (let j = 0; j < routers.length; j++) {
+          if (menuDTOS[i]['menuUrl'] === routers[j]['path']) {
+            routers[j].show = true
+            if (menuDTOS[i].childrenMenu) {
+              menuDTOS[i].childrenMenu.forEach((menuDTO: { [x: string]: string }) => {
+                routers[j].children.forEach((router) => {
+                  if (menuDTO['menuUrl'] === routers[j]['path'] + '/' + router['path']) {
+                    router.show = true
+                  }
+                })
+              })
+            }
+          }
+        }
+      }
+
+      routers.forEach((router: Router) => {
+        router['open'] = false
+      })
+      setRouters([...routers])
+    }
   }, [])
-  //
+  // 侧边栏点击事件
   function handleClick(index: number) {
     routers[index].open = !routers[index].open
     setRouters([...routers])
   }
 
-  // 监听路由
+  // 监听路由 获取当前选中的路由
   useEffect(() => {
     let routerName = location.pathname.split('/')[1]
     routers.forEach((router: Router, index) => {
@@ -68,8 +90,8 @@ export default function sidebar() {
         />
         <Box className="menu">
           <List className="menuList">
-            {menuRouter.map((prop, index) => {
-              if (!prop.children) {
+            {routers.map((prop, index) => {
+              if (!prop.children && prop.show) {
                 return (
                   <NavLink to={prop.path} key={index}>
                     <ListItem button key={prop.path} disablePadding className="list-item">
@@ -84,30 +106,32 @@ export default function sidebar() {
                     </ListItem>
                   </NavLink>
                 )
-              } else {
+              } else if (prop.children && prop.show) {
                 let child = prop.children
                 const nav = (
                   <Box className="item">
                     {child.map((item, childrenIndex) => {
-                      const key = childrenIndex + '_child'
-                      return (
-                        <NavLink to={prop.path + '/' + item.path} key={key}>
-                          <Collapse in={prop.open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding className="btn">
-                              <ListItem button>
-                                <ListItemIcon
-                                  sx={{
-                                    minWidth: 0,
-                                  }}
-                                >
-                                  {item.icon}
-                                </ListItemIcon>
-                                <ListItemText disableTypography={true} primary={item.name} className="second-text" />
-                              </ListItem>
-                            </List>
-                          </Collapse>
-                        </NavLink>
-                      )
+                      if (item.show) {
+                        const key = childrenIndex + '_child'
+                        return (
+                          <NavLink to={prop.path + '/' + item.path} key={key}>
+                            <Collapse in={prop.open} timeout="auto" unmountOnExit>
+                              <List component="div" disablePadding className="btn">
+                                <ListItem button>
+                                  <ListItemIcon
+                                    sx={{
+                                      minWidth: 0,
+                                    }}
+                                  >
+                                    {item.icon}
+                                  </ListItemIcon>
+                                  <ListItemText disableTypography={true} primary={item.name} className="second-text" />
+                                </ListItem>
+                              </List>
+                            </Collapse>
+                          </NavLink>
+                        )
+                      }
                     })}
                   </Box>
                 )
@@ -135,90 +159,6 @@ export default function sidebar() {
           </List>
         </Box>
       </MyDrawer>
-      {/* <DrawerHeader>
-        <IconButton onClick={handleClose}>
-          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
-      </DrawerHeader>
-      <Divider /> */}
-
-      {/* 菜单列表
-      <List className="menuList">
-        {menuRouter.map((prop, index) => {
-          if (!prop.children) {
-            return (
-              <NavLink to={prop.path} key={index}>
-                <ListItem button key={prop.path} disablePadding sx={{ display: 'block' }}>
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {prop.icon}
-                  </ListItemIcon>
-                  <ListItemText primary={prop.name} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItem>
-              </NavLink>
-            )
-          } else {
-            let child = prop.children
-            const nav = (
-              <Box className="item">
-                {child.map((item, childrenIndex) => {
-                  const key = childrenIndex + '_child'
-                  return (
-                    <NavLink to={prop.path + '/' + item.path} key={key}>
-                      <Collapse in={prop.open} timeout="auto" unmountOnExit>
-                        <List
-                          component="div"
-                          disablePadding
-                          sx={{
-                            marginLeft: '15px',
-                            color: '#666',
-                          }}
-                          className="btn"
-                        >
-                          <ListItem button>
-                            <ListItemIcon
-                              sx={{
-                                minWidth: 0,
-                                mr: open ? 3 : 'auto',
-                                justifyContent: 'center',
-                              }}
-                            >
-                              {item.icon}
-                            </ListItemIcon>
-                            <ListItemText disableTypography={true} primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
-                          </ListItem>
-                        </List>
-                      </Collapse>
-                    </NavLink>
-                  )
-                })}
-              </Box>
-            )
-            return (
-              <Box>
-                <ListItem button onClick={() => handleClick(index)}>
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
-                    }}
-                  >
-                    {prop.icon}
-                  </ListItemIcon>
-                  <ListItemText disableTypography={true} primary={prop.name} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItem>
-                {nav}
-              </Box>
-            )
-          }
-        })}
-      </List> */}
     </>
   )
 }

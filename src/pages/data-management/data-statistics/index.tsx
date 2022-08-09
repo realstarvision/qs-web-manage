@@ -7,28 +7,27 @@ import DataBox, { Sentinel } from '@/components/DataBox'
 import AddChart from '@/components/AddChart'
 import MySkeleton from '@/components/Skeleton'
 import SvgIcon from '@/components/SvgIcon'
-import { memoryOption } from './options'
-import './style.scss'
+import moment from 'moment'
 import box1 from '@/assets/image/png/box1.png'
 import box2 from '@/assets/image/png/box2.png'
 import box3 from '@/assets/image/png/box3.png'
 import box4 from '@/assets/image/png/box4.png'
 import box5 from '@/assets/image/png/box5.png'
 import activeIcon from '@/assets/image/png/switch.png'
+import './style.scss'
 
 export default function index() {
   const [typeSelect, setTypeSelect] = useState(0)
   const [baseData, setBaseData] = useState([])
   const [sentinelList, setSentinelList] = useState<Array<Sentinel>>([])
-  const [memoryContrast, setMemoryContrast] = useState<number>(0)
-  const [loadingShow, setLoadingShow] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
   const [imgArr, setImgArr] = useState<Array<string>>([])
 
-  const typeName = ['雷达数据', '光学数据']
   const boxArr = [
     [box1, box2, box3],
     [box4, box5],
   ]
+  const typeName = ['雷达数据', '光学数据']
   const selectData = [
     {
       icon: 'satellite',
@@ -48,7 +47,7 @@ export default function index() {
     weekList: Array<Array<number | string>>
   }
 
-  // 监听下拉框触发事件
+  // 监听tab触发事件
   useEffect(() => {
     let baseData: any = []
     let radarData: Data = {
@@ -119,7 +118,7 @@ export default function index() {
   // 初始化获取卫星基本信息
   useEffect(() => {
     // 设置加载loading状态
-    setLoadingShow(true)
+    setLoading(true)
     // 获取卫星基本数据信息
     getSatelliteList().then(async ({ data }) => {
       for (let i = 0; i < data.length; i++) {
@@ -150,6 +149,7 @@ export default function index() {
           let sum: number = 0
           let time: string = ''
           for (let i = 0; i < res.length; i++) {
+            sum += res[i].dataSize
             if ((i + 1) % 7 === 1) {
               time += res[i].createTime
             }
@@ -160,26 +160,25 @@ export default function index() {
               sum = 0
               time = ''
             }
-            sum += res[i].dataSize
           }
           data[i].weekList = [dataSizeList, createTimeList]
         })
       }
       // 设置加载loading状态
-      setLoadingShow(false)
+      setLoading(false)
       setSentinelList([...data])
     })
 
     // 获取内存
-    getMemoryContrastData()
+    // getMemoryContrastData()
   }, [])
 
   // 内存数据接口
-  const getMemoryContrastData = (): void => {
-    getMemoryContrast().then(({ data }) => {
-      setMemoryContrast(data.diskInfo)
-    })
-  }
+  // const getMemoryContrastData = (): void => {
+  //   getMemoryContrast().then(({ data }) => {
+  //     setMemoryContrast(data.diskInfo)
+  //   })
+  // }
 
   // 数据/数据类型切换事件
   const handleChange = (index: number) => {
@@ -215,7 +214,7 @@ export default function index() {
           container
           spacing={5}
         >
-          {!loadingShow ? (
+          {!loading ? (
             baseData.map((item, index) => {
               return (
                 <>
@@ -229,25 +228,17 @@ export default function index() {
             <MySkeleton />
           )}
         </Grid>
-        {/* <Box
-          sx={{
-            width: '100px',
-            height: '100%',
-          }}
-        >
-          内存占比:
-          <Echants options={memoryOption(memoryContrast)}></Echants>
-        </Box> */}
       </Box>
-
       {/* 每日更新 */}
+
       <Box className="add-bar">
+        <Typography className="note">注：该数据为{moment(new Date()).format('YYYY/MM/DD')}数据总量</Typography>
         <Box className="title-bar">
           <SvgIcon svgName="daily" svgClass="svgClass"></SvgIcon>
           <Typography className="title">每日新增</Typography>
         </Box>
         <Grid className="echart-bar" container spacing={3}>
-          {!loadingShow ? (
+          {!loading ? (
             baseData.map((item: Data) => {
               return (
                 <Grid xs={4} lg={3}>
@@ -260,7 +251,6 @@ export default function index() {
           )}
         </Grid>
       </Box>
-
       {/* 每周更新 */}
       <Box className="add-bar">
         <Box className="title-bar">
@@ -268,7 +258,7 @@ export default function index() {
           <Typography className="title">每周新增</Typography>
         </Box>
         <Grid className="echart-bar" container spacing={3}>
-          {!loadingShow ? (
+          {!loading ? (
             baseData.map((item: Data) => {
               return (
                 <Grid xs={4} lg={3}>
@@ -281,8 +271,6 @@ export default function index() {
           )}
         </Grid>
       </Box>
-
-      {/* <Loading show={loadingShow}></Loading> */}
     </Box>
   )
 }

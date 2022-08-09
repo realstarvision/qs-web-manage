@@ -32,22 +32,20 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
   ]
 
   useEffect(() => {
+    let maxValue = 0
     targetValueArr.forEach((item) => {
       if (item.title === title) {
         setTargetValue(item.targetValue)
+        maxValue = item.targetValue
       }
     })
-  }, [title])
-
-  useEffect(() => {
     data[0].forEach((item) => {
-      if (item > targetValue) {
-        setMax(item as number)
-      } else {
-        setMax(targetValue)
+      if (item >= maxValue) {
+        maxValue = item as number
       }
     })
-  }, [targetValue])
+    setMax(maxValue)
+  }, [])
 
   // 折线图配置
   let options = {
@@ -132,7 +130,8 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
     yAxis: {
       show: false,
       type: 'value',
-      max: targetValue * 2,
+      // max: targetValue * 2,
+      max: max > targetValue ? max : targetValue * 2,
     },
     series: [
       {
@@ -155,8 +154,6 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
         lineStyle: {
           width: 1.5,
           shadowColor: 'rgba(26, 28, 37, 0.5)',
-          shadowOffsetX: 4,
-          shadowOffsetY: 4,
           color: {
             type: 'linear',
             x: 0,

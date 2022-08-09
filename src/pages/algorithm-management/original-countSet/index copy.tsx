@@ -1,10 +1,10 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import { Box, Grid, FormLabel, Stack, MenuItem, Button, Divider, Typography } from '@mui/material'
+import { Box, Grid, FormLabel, Stack, MenuItem, Divider, Typography } from '@mui/material'
 import Input from '@/components/Input'
 import SvgIcon from '@/components/SvgIcon'
-import MyButton from '@/components/Button'
+import Button from '@/components/Button'
 import Table, { Column } from '@/components/NewTable'
-import { getListOriginalSet, getLabelByUuid } from '@/api/algorithm'
+import { getListOriginalSet, getTagList, getOriginaByUuid } from '@/api/algorithm'
 import InputAdornment from '@mui/material/InputAdornment'
 import Tag from '@/components/Tag'
 import { repetition } from '@/until/tool'
@@ -31,7 +31,7 @@ export default function index() {
       key: 'taskName',
       align: 'center',
       title: '原始数据名称',
-      slot: function ({ row }: { row: { tags: Array<{ tagName: string }>; taskName: string } }) {
+      slot: function ({ data }: { data: { tags: Array<{ tagName: string }>; taskName: string } }) {
         return (
           <Box>
             <p
@@ -41,14 +41,14 @@ export default function index() {
                 color: '#AEBDD8',
               }}
             >
-              {row.taskName}
+              {data.taskName}
             </p>
             <Box
               sx={{
                 marginTop: '8px',
               }}
             >
-              {row.tags && row.tags.map((tag: { tagName: string }) => <Tag content={tag.tagName} />)}
+              {data.tags && data.tags.map((tag: { tagName: string }) => <Tag content={tag.tagName} />)}
             </Box>
           </Box>
         )
@@ -59,154 +59,7 @@ export default function index() {
       align: 'center',
       title: 'ID',
     },
-    {
-      key: 'oprated',
-      align: 'center',
-      title: '操作',
-      slot: function ({
-        row,
-      }: {
-        row: {
-          id: string | undefined
-          open?: any
-          extend?: string
-          dataUrl?: string
-        }
-      }) {
-        return (
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <Button
-              variant="text"
-              onClick={() => handleCheckLabel(row)}
-              className="btn"
-              sx={{
-                color: row.open ? '#fff' : '',
-              }}
-            >
-              查看标注数据
-            </Button>
-
-            <MyButton
-              onClick={() => handleDownload(row)}
-              startIcon={<SvgIcon svgName="download" svgClass="icon"></SvgIcon>}
-              sx={{
-                fontSize: '12px',
-                height: '24px',
-              }}
-            >
-              下载
-            </MyButton>
-          </Stack>
-        )
-      },
-    },
   ]
-  const extensionColums: Column[] = [
-    {
-      key: 'taskName',
-      align: 'center',
-      title: '原始数据名称',
-      slot: function ({ row }: { row: { tags: Array<{ tagName: string }>; taskName: string } }) {
-        return (
-          <Box>
-            <p
-              style={{
-                fontSize: '12px',
-                fontWeight: 400,
-                color: '#AEBDD8',
-              }}
-            >
-              {row.taskName}
-            </p>
-            <Box
-              sx={{
-                marginTop: '8px',
-              }}
-            >
-              {row.tags && row.tags.map((tag: { tagName: string }) => <Tag content={tag.tagName} />)}
-            </Box>
-          </Box>
-        )
-      },
-    },
-    {
-      key: 'uuid',
-      align: 'center',
-      title: 'ID',
-    },
-    {
-      key: 'oprated',
-      align: 'center',
-      title: '操作',
-      slot: function ({
-        row,
-      }: {
-        row: {
-          id: string | undefined
-          open?: any
-          extend?: string
-          dataUrl?: string
-        }
-      }) {
-        return (
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <MyButton
-              onClick={() => handleDownload(row)}
-              startIcon={<SvgIcon svgName="download" svgClass="icon"></SvgIcon>}
-              sx={{
-                fontSize: '12px',
-                height: '24px',
-              }}
-            >
-              下载
-            </MyButton>
-          </Stack>
-        )
-      },
-    },
-  ]
-  // 下载按钮
-  const handleDownload = (row: {
-    id: string | undefined
-    open?: any
-    extend?: string | undefined
-    dataUrl?: string | undefined
-  }) => {
-    row.dataUrl && (window.location.href = row.dataUrl)
-  }
-  // 查看标注类型
-  const handleCheckLabel = async (row: any) => {
-    if (!row.open) {
-      await getLabelByUuid({ uuid: row.uuid }).then(({ code, data }: { code?: number; data: any }) => {
-        if (code === 0) {
-          row.labelList = data || []
-        }
-      })
-    }
-    row.open = !row.open
-    listData.forEach((item: any) => {
-      if (item.id === row.id) {
-        item.row
-      }
-    })
-    setListData([...listData])
-  }
   // 输入框事件
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: number) => {
     let value = e.target.value
@@ -318,16 +171,16 @@ export default function index() {
         </Grid>
         <Grid item xs={4} className="btn-box">
           <Stack direction="row" className="btn-bar">
-            <MyButton
+            <Button
               variant="outlined"
               onClick={handleReset}
               startIcon={<SvgIcon svgName="reset_icon" svgClass="icon"></SvgIcon>}
             >
               重置
-            </MyButton>
-            <MyButton onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
+            </Button>
+            <Button onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
               搜索
-            </MyButton>
+            </Button>
             {/* <Box className="upload">
               <span>数据上传</span>
               <div>
@@ -361,13 +214,7 @@ export default function index() {
           marginBottom: '20px',
         }}
       />
-      <Table
-        columns={columns}
-        data={filterListData}
-        loading={loading}
-        operate={['checkLabel', 'download']}
-        extensionColums={extensionColums}
-      ></Table>
+      <Table columns={columns} data={filterListData} loading={loading} operate={['checkLabel', 'download']}></Table>
     </Box>
   )
 }

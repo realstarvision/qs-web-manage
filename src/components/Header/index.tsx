@@ -45,19 +45,18 @@ export default function Header() {
   // 显示弹出框
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget)
-    console.log(getUserInfo())
   }
 
   // 退出登录事件
-  const handletLogout = () => {
-    // logout({ clientId: 0, uuid: getToken() }).then((res: any) => {
-    //   if (res.code === 0) {
-    removeUserInfo()
-    removeToken()
-    navigate('/login')
-    handleCloseUserMenu()
-    // }
-    // })
+  const handleLogout = () => {
+    logout({ clientId: 0, uuid: getToken() }).then((res: any) => {
+      if (res.code === 0) {
+        removeUserInfo()
+        removeToken()
+        navigate('/login')
+        handleCloseUserMenu()
+      }
+    })
   }
 
   return (
@@ -84,14 +83,16 @@ export default function Header() {
           <ClickAwayListener onClickAway={handleCloseUserMenu}>
             <Tooltip title="" arrow>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={getUserInfo().avatarUrl || avatar} />
+                <Avatar src={getUserInfo() ? getUserInfo().avatarUrl : avatar} />
               </IconButton>
             </Tooltip>
           </ClickAwayListener>
           <Box className="user-info">
-            <Typography className="name">{getUserInfo().nick}</Typography>
+            <Typography className="name">{getUserInfo() ? getUserInfo().nick : ''}</Typography>
             <Typography className="department">
-              {getUserInfo().title + '-' + getUserInfo().depts[0].deptName}
+              {(getUserInfo() ? getUserInfo().title : '') +
+                '-' +
+                (getUserInfo() ? getUserInfo().depts[0].deptName : '')}
             </Typography>
           </Box>
           <MyMenu
@@ -112,7 +113,7 @@ export default function Header() {
             {settings.map((setting) => (
               <MenuItem
                 key={setting}
-                onClick={handletLogout}
+                onClick={handleLogout}
                 sx={{
                   color: '#ffffff99',
                   ':hover': {

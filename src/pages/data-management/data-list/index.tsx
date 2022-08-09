@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { AxiosResponse } from 'axios'
 import { styled } from '@mui/material/styles'
-import { TableCell, TableRow, Button, Modal, Box, Divider, Typography } from '@mui/material'
+import { TableCell, TableRow, Modal, Button, Box, Divider, Typography } from '@mui/material'
 import SearchBar from '@/components/SearchBar'
-import Table from '@/components/NewTable'
+import Table, { Column } from '@/components/NewTable'
 import Dialog from '@/components/Dialog'
 import { getFileList } from '@/api/data'
 import map from '@/assets/image/png/map.png'
 import moment from 'moment'
-import columns from './columns'
+import dialogColumns from './columns'
 import './style.scss'
 
 interface Params {
@@ -24,28 +24,6 @@ interface Params {
 }
 
 function MyDialog({ visible, onClose, data }: { visible: boolean; onClose: Function; data: any }) {
-  const dialogColumns = [
-    {
-      label: '卫星',
-      key: 'satelliteName',
-    },
-    {
-      label: '数据级别',
-      key: 'productLevel',
-    },
-    {
-      label: '采集时间',
-      key: 'endTime',
-    },
-    {
-      label: '云量',
-      key: 'cloudCoverage',
-    },
-    {
-      label: '分辨率',
-      key: 'satelliteResolutionRatio',
-    },
-  ]
   const handleClose = () => {
     onClose()
   }
@@ -69,6 +47,45 @@ function MyDialog({ visible, onClose, data }: { visible: boolean; onClose: Funct
 }
 
 export default function index() {
+  const columns: Column[] = [
+    {
+      align: 'center',
+      title: '数据名称',
+      key: 'identifier',
+    },
+    {
+      align: 'center',
+      title: '卫星',
+      key: 'satelliteName',
+    },
+    {
+      align: 'center',
+      title: '数据级别',
+      key: 'productLevel',
+    },
+    {
+      align: 'center',
+      title: '采集时间',
+      key: 'endTime',
+    },
+    {
+      align: 'center',
+      title: '云量',
+      key: 'cloudCoverage',
+    },
+    {
+      align: 'center',
+      title: '操作',
+      key: 'operate',
+      slot: function ({ row }: { row: any }) {
+        return (
+          <Button variant="text" onClick={() => handleCheck(row)} className="btn">
+            查看
+          </Button>
+        )
+      },
+    },
+  ]
   // 定时器
   let timer: NodeJS.Timeout | null | undefined = null
   // 状态变量

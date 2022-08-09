@@ -11,7 +11,6 @@ const DataStatistics = lazy(() => import('@/pages/data-management/data-statistic
 const DataList = lazy(() => import('@/pages/data-management/data-list'))
 const OriginalCountSet = lazy(() => import('@/pages/algorithm-management/original-countSet'))
 const LabelCountSet = lazy(() => import('@/pages/algorithm-management/label-countSet'))
-const Role = lazy(() => import('@/pages/authority/role'))
 const Error = lazy(() => import('../pages/error/404'))
 
 // 组件懒加载
@@ -23,27 +22,20 @@ const lazyload = (children: ReactNode): ReactNode => {
 export const whiteList = ['/login']
 
 export interface Router {
+  show?: boolean
   path: string
   element: JSX.Element
   name: string
   open?: boolean
   icon?: JSX.Element | string
-  children?: (
-    | {
-        index: boolean
-        path: string
-        element: ReactNode
-        name: string
-        icon?: JSX.Element | string
-      }
-    | {
-        path: string
-        element: ReactNode
-        name: string
-        index?: undefined
-        icon?: JSX.Element | string
-      }
-  )[]
+  children?: Array<{
+    index?: boolean
+    path: string
+    element: ReactNode
+    name: string
+    icon?: JSX.Element | string
+    show?: boolean
+  }>
 }
 
 // 菜单
@@ -89,26 +81,6 @@ export const menuRouter: Router[] = [
       },
     ],
   },
-  // {
-  //   path: '/authority',
-  //   element: <Layout />,
-  //   name: '权限管理',
-  //   icon: <SvgIcon svgName="dashboard_icon" />,
-  //   children: [
-  //     {
-  //       path: 'role',
-  //       element: lazyload(<Role />),
-  //       name: '角色管理',
-  //       icon: <Mood />,
-  //     },
-  //     {
-  //       path: 'log',
-  //       element: lazyload(<Log />),
-  //       name: '操作日志',
-  //       icon: <Mood />,
-  //     },
-  //   ],
-  // },
   {
     path: '/log',
     element: (

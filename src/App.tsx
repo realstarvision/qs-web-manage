@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useParams, useRoutes, useNavigate } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 import router, { whiteList } from './router'
@@ -8,6 +8,7 @@ import './App.scss'
 function App() {
   let location = useLocation()
   let navigate = useNavigate()
+  let [routers, setRouters] = useState(router)
   // 路由守卫
   useEffect(() => {
     if (getToken() && getUserInfo()) {
@@ -21,28 +22,15 @@ function App() {
     }
   }, [location.pathname])
 
-  return (
-    <Box className="app">
-      {/* <Routes>
-        {router.map((item, i) => {
-          return (
-            <Route
-              key={i}
-              path={item.path}
-              element={
-                <Suspense>
-                  <RequireAuth data={item}>
-                    <item.component />
-                  </RequireAuth>
-                </Suspense>
-              }
-            />
-          )
-        })}
-      </Routes> */}
-      {useRoutes(router)}
-    </Box>
-  )
+  // useEffect(() => {
+  //   let filterMenuDTOS = getUserInfo().filterMenuDTOS
+  //   if (filterMenuDTOS) {
+  //     setRouters([...routers, ...filterMenuDTOS])
+  //   }
+  //   console.log(filterMenuDTOS)
+  // }, [getUserInfo()])
+
+  return <Box className="app">{useRoutes(router)}</Box>
 }
 
 // 判断
