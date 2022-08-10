@@ -105,11 +105,7 @@ export default function CurTable({
           </caption>
         )}
         <TableHead className="table-header">
-          <TableRow
-            sx={{
-              height: '44px',
-            }}
-          >
+          <TableRow>
             {columns.map((column: Column) => (
               <MyTableCell className="table-cell" align={column.align || 'left'}>
                 {column.title}
@@ -130,7 +126,7 @@ export default function CurTable({
                 >
                   {columns.map((column: Column) => (
                     <MyTableCell align={column.align || 'left'}>
-                      <Box sx={{ minHeight: '24px', lineHeight: '24px' }}>
+                      <Box className="height-24">
                         {column.slot ? <column.slot row={row}></column.slot> : row[column.key]}
                       </Box>
                     </MyTableCell>
@@ -167,19 +163,12 @@ function SecondTable({
   extensionColums?: Array<Column>
 }) {
   return (
-    <TableRow>
+    <TableRow className="second-table">
       <MyTableCell style={{ padding: 0 }} colSpan={6}>
         <Collapse in={open} timeout={300}>
-          <Box
-            sx={{
-              marginLeft: '58px',
-              marginRight: '53px',
-              background: '#2E3343',
-            }}
-          >
+          <Box className="collapse-box">
             <Box
               sx={{
-                // marginRight: '58px',
                 maxHeight: data.length > 0 ? '210px' : '',
                 overflow: data.length > 0 ? 'auto' : '',
                 padding: '0 10px',
@@ -192,8 +181,8 @@ function SecondTable({
                       {extensionColums &&
                         extensionColums.map((column) => (
                           <MyTableCell align={column.align || 'left'}>
-                            <Box sx={{ minHeight: '24px', lineHeight: '24px' }}>
-                              {column.slot ? <column.slot data={row}></column.slot> : row[column.key]}
+                            <Box className="height-24">
+                              {column.slot ? <column.slot row={row}></column.slot> : row[column.key]}
                             </Box>
                           </MyTableCell>
                         ))}

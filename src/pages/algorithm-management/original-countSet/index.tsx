@@ -200,12 +200,12 @@ export default function index() {
       })
     }
     row.open = !row.open
-    listData.forEach((item: any) => {
+    filterListData.forEach((item: any) => {
       if (item.id === row.id) {
         item.row
       }
     })
-    setListData([...listData])
+    setFilterListData([...filterListData])
   }
   // 输入框事件
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: number) => {

@@ -40,6 +40,17 @@
     height: 44px;
     background:#3B4154;
     position: relative;
+    .second-table{
+      .collapse-box{
+        margin-left: 58px;
+        margin-right: 53px;
+        background: #2E3343;
+      }
+    }
+    .height-24{
+      min-height: 24px;
+      line-height: 24px;
+    }
     .body-row{
       &:hover{
         background: #2E3343;
@@ -67,9 +78,13 @@
 }
 
 
+
+
 .icon{width: 16px;height: 16px;}
 
-.PopoverContent{
+
+//弹出层框样式
+.popover-content{
   padding: 8px;
   display: flex;
   .info{

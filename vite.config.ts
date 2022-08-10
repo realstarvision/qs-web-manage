@@ -19,36 +19,13 @@ export default defineConfig({
     port: 3001,
     proxy: {
       '/api': {
+        // target: "http://192.168.148.33:8054",
         target: "http://192.168.152.10:8054",
         // target: "http://192.168.48.241.:8054",
         changeOrigin: true,
         cookieDomainRewrite: "",
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '')
-      },
-      '/geo': {
-        target: "http://192.168.148.33:8051",
-        // target: "http://192.168.48.241.:8054",
-        changeOrigin: true,
-        cookieDomainRewrite: "",
-        secure: false,
-        rewrite: (path) => path.replace(/^\/geo/, '')
-      },
-      "/gateway": {
-        target: "http://192.168.148.33:8056",
-        // target: "http://192.168.48.241.:8054",
-        changeOrigin: true,
-        cookieDomainRewrite: "",
-        secure: false,
-        rewrite: (path) => path.replace(/^\/gateway/, '')
-      },
-      "/data-set": {
-        target: "http://192.168.148.33:8055",
-        // target: "http://192.168.48.241.:8054",
-        changeOrigin: true,
-        cookieDomainRewrite: "",
-        secure: false,
-        rewrite: (path) => path.replace(/^\/data-set/, '')
       },
     },
   },

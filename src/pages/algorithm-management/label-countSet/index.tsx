@@ -339,7 +339,7 @@ function PopoverContent({ data }: { data: { dataUrl: string; uuid: number | stri
     window.location.href = data.dataUrl
   }
   return (
-    <Box className="PopoverContent">
+    <Box className="popover-content">
       <Box className="info">
         <Typography className="name">{data.taskName}</Typography>
         <Typography className="id">ID： {data.uuid}</Typography>
