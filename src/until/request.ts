@@ -14,6 +14,7 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config: any) => {
     // 是否需要设置 token
+    console.log(getToken())
     if (getToken()) {
       config.headers['starToken'] = getToken()  // 让每个请求携带自定义token 请根据实际情况自行修改
     }

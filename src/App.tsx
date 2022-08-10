@@ -27,7 +27,6 @@ function App() {
   //   if (filterMenuDTOS) {
   //     setRouters([...routers, ...filterMenuDTOS])
   //   }
-  //   console.log(filterMenuDTOS)
   // }, [getUserInfo()])
 
   return <Box className="app">{useRoutes(router)}</Box>

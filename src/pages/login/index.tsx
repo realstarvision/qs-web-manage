@@ -6,17 +6,20 @@ import { useNavigate } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { getLoginUrl, getUserInfo } from '@/api/user'
+import SvgIcon from '@/components/SvgIcon'
 import { menuRouter } from '@/router'
 import './style.scss'
 import starVision from '@/assets/image/png/starVision.png'
 // import QRCode from '@/assets/image/png/QRCode.png'
 import pcIcon from '@/assets/image/png/pc_icon.png'
 import logo from '@/assets/image/png/logo.png'
+import refreshQR from '@/assets/image/png/refreshQR.png'
 
 function Home() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const [qrUrl, setQrUrl] = useState('')
+  const [QRCodeState, setQRCodeState] = useState(false)
 
   // 获取用户信息接口
   let getUserInfoData = (uuid: string, timer: string | number | NodeJS.Timer | undefined) => {
@@ -57,7 +60,7 @@ function Home() {
         // let userInfo = {
         //   avatarUrl: res.data.avatarUrl,
         //   depts: res.data.depts,
-        //   filterMenuDTOS: menuRouter,
+        //   filterMenuDTOS: newMenuRouter,
         //   nick: res.data.nick,
         //   title: res.data.title,
         // }
@@ -76,21 +79,30 @@ function Home() {
       const timer = setInterval(() => {
         getUserInfoData(uuid, timer)
       }, 500)
+
+      setTimeout(() => {
+        clearTimeout(timer)
+        setQRCodeState(true)
+      }, 120000)
     })
   }
 
   // 初始化
   useEffect(() => {
+    initData()
+  }, [])
+
+  // 初始化事件
+  let initData = () => {
     const uuid = uuidv4()
     getLoginUrlData(uuid)
-    let timerQR = setInterval(() => {
-      getLoginUrlData(uuid)
-    }, 180000)
+  }
 
-    return () => {
-      clearInterval(timerQR)
-    }
-  }, [])
+  // 二维码失效重新获取点击事件
+  let handleQRClick = () => {
+    initData()
+    setQRCodeState(false)
+  }
 
   return (
     <Box className="container">
@@ -108,23 +120,40 @@ function Home() {
           <Box className="qrCode">
             {/* <img src={qrUrl} /> */}
             {/* <div id="qrinvitecode"></div> */}
-            <QRCodeCanvas
-              id="qrCode"
-              renderAs="svg"
-              value={qrUrl}
-              size={300}
-              fgColor="#1C1C25"
-              bgColor="#616C8C"
-              style={{ margin: 'auto', width: '110px', height: '110px' }}
-              level="M"
-              // includeMargin
-              // imageSettings={{
-              //   src: logo,
-              //   width: 98,
-              //   height: 24,
-              //   excavate: true,
-              // }}
-            ></QRCodeCanvas>
+            <Box
+              sx={{
+                width: '110px',
+                position: 'relative',
+              }}
+            >
+              <QRCodeCanvas
+                id="qrCode"
+                renderAs="svg"
+                value={qrUrl}
+                size={300}
+                fgColor="#1C1C25"
+                bgColor="#616C8C"
+                style={{ margin: 'auto', width: '110px', height: '110px' }}
+                level="M"
+                // imageSettings={{
+                //   src: logo,
+                //   width: 98,
+                //   height: 24,
+                //   excavate: true,
+                // }}
+              ></QRCodeCanvas>
+              {QRCodeState ? (
+                <Box onClick={handleQRClick} className="qrCode_shade">
+                  <Box className="box">
+                    {/* <SvgIcon svgName="refreshQR" svgClass="icon"></SvgIcon> */}
+                    <img src={refreshQR} className="icon" />
+                    <Typography className="font">请刷新二维码</Typography>
+                  </Box>
+                </Box>
+              ) : (
+                ''
+              )}
+            </Box>
             <Typography className="hint" component="p">
               {t('login.prompt')}
             </Typography>
