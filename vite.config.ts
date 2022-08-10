@@ -19,7 +19,7 @@ export default defineConfig({
     port: 3001,
     proxy: {
       '/api': {
-        target: "http://192.168.148.33:8054",
+        target: "http://192.168.152.10:8054",
         // target: "http://192.168.48.241.:8054",
         changeOrigin: true,
         cookieDomainRewrite: "",
