@@ -6,13 +6,9 @@ import { useNavigate } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import { getLoginUrl, getUserInfo } from '@/api/user'
-import SvgIcon from '@/components/SvgIcon'
-import { menuRouter } from '@/router'
+import Snackbar from '@/components/Snackbar'
 import './style.scss'
 import starVision from '@/assets/image/png/starVision.png'
-// import QRCode from '@/assets/image/png/QRCode.png'
-import pcIcon from '@/assets/image/png/pc_icon.png'
-import logo from '@/assets/image/png/logo.png'
 import refreshQR from '@/assets/image/png/refreshQR.png'
 
 function Home() {
@@ -20,53 +16,18 @@ function Home() {
   const navigate = useNavigate()
   const [qrUrl, setQrUrl] = useState('')
   const [QRCodeState, setQRCodeState] = useState(false)
+  const [openMessage, setOpenMessage] = useState(false)
 
   // 获取用户信息接口
   let getUserInfoData = (uuid: string, timer: string | number | NodeJS.Timer | undefined) => {
     getUserInfo({ clientId: 0, uuid: uuid }).then((res: any) => {
       if (res.code === 0) {
-        // 处理路由权限
-        // const menuDTOS = res.data.menuDTOS
-        // for (let i = 0; i < menuDTOS.length; i++) {
-        //   for (let j = 0; j < menuRouter.length; j++) {
-        //     if (menuDTOS[i]['menuUrl'] === menuRouter[j]['path']) {
-        //       menuRouter[j].show = true
-        //       if (menuDTOS[i].childrenMenu) {
-        //         menuDTOS[i].childrenMenu.forEach((menuDTO: { [x: string]: string }) => {
-        //           menuRouter[j].children.forEach((router) => {
-        //             if (menuDTO['menuUrl'] === menuRouter[j]['path'] + '/' + router['path']) {
-        //               router.show = true
-        //             }
-        //           })
-        //         })
-        //       }
-        //     }
-        //   }
-        // }
-        // // 筛选处理后的路由
-        // let newMenuRouter = menuRouter.filter((router) => {
-        //   if (router.show && router.children) {
-        //     return router.children.filter((childRouter) => {
-        //       if (childRouter.show) {
-        //         return childRouter
-        //       }
-        //     })
-        //   } else if (router.show) {
-        //     return router
-        //   }
-        // })
-
-        // // res.data.filterMenuDTOS = newMenuRouter
-        // let userInfo = {
-        //   avatarUrl: res.data.avatarUrl,
-        //   depts: res.data.depts,
-        //   filterMenuDTOS: newMenuRouter,
-        //   nick: res.data.nick,
-        //   title: res.data.title,
-        // }
         setUserInfo(res.data)
         clearInterval(timer)
         navigate('/')
+      } else if (res.code === 10004) {
+        setOpenMessage(true)
+        clearInterval(timer)
       }
     })
   }
@@ -104,22 +65,21 @@ function Home() {
     setQRCodeState(false)
   }
 
+  // 提示框关闭事件
+  let handleClose = () => {
+    setOpenMessage(false)
+  }
+
+  let handleClick = () => {
+    alert('121651')
+  }
   return (
     <Box className="container">
+      <Snackbar open={openMessage} message="暂无权限，请联系人事开通！" onClose={handleClose}></Snackbar>
       <Box className="login_box">
-        <img src={starVision} className="starvisonIcon" />
-        {/* <Box className="banner">
-          <Typography className="title" component="p">
-            {t('login.title')}
-          </Typography>
-          <Typography className="subTitle" component="p">
-            {t('login.subTitle')}
-          </Typography>
-        </Box> */}
+        <img src={starVision} className="starvisonIcon" onClick={handleClick} />
         <Box className="qrCode_box">
           <Box className="qrCode">
-            {/* <img src={qrUrl} /> */}
-            {/* <div id="qrinvitecode"></div> */}
             <Box
               sx={{
                 width: '110px',
@@ -135,12 +95,6 @@ function Home() {
                 bgColor="#616C8C"
                 style={{ margin: 'auto', width: '110px', height: '110px' }}
                 level="M"
-                // imageSettings={{
-                //   src: logo,
-                //   width: 98,
-                //   height: 24,
-                //   excavate: true,
-                // }}
               ></QRCodeCanvas>
               {QRCodeState ? (
                 <Box onClick={handleQRClick} className="qrCode_shade">

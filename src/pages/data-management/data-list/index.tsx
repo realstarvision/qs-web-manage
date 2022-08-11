@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { AxiosResponse } from 'axios'
 import { styled } from '@mui/material/styles'
-import { TableCell, TableRow, Modal, Button, Box, Divider, Typography, Alert } from '@mui/material'
+import { TableCell, TableRow, Modal, Button, Box, Divider, Typography } from '@mui/material'
 import SearchBar from '@/components/SearchBar'
 import Table, { Column } from '@/components/NewTable'
 import Dialog from '@/components/Dialog'
 import Snackbar from '@/components/Snackbar'
-import SvgIcon from '@/components/SvgIcon'
 import { getFileList } from '@/api/data'
 import map from '@/assets/image/png/map.png'
 import moment from 'moment'
@@ -159,7 +158,6 @@ export default function index() {
 
   // 查看
   const handleCheck = (value: any) => {
-    console.log(value)
     setRowData(value)
     setVisible(true)
   }
@@ -183,28 +181,7 @@ export default function index() {
   return (
     <Box className="data-list">
       <Box className="content">
-        <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          open={snackbarVisible}
-          onClose={handleSnackbarClose}
-          autoHideDuration={3000}
-          sx={{}}
-        >
-          <Alert
-            severity="error"
-            sx={{
-              width: '224px',
-              background: '#3b4154',
-              boxShadow: '0px 2px 8px 0px rgba(26,28,37,0.5000)',
-              borderRadius: '2px',
-              color: '#fff',
-              fontSize: '12px',
-              padding: '0 35px',
-            }}
-          >
-            采集时间不能为空!
-          </Alert>
-        </Snackbar>
+        <Snackbar open={snackbarVisible} onClose={handleSnackbarClose} message="采集时间不能为空!"></Snackbar>
         <SearchBar onSubmit={handleSubmit}></SearchBar>
         <Divider className="divider" />
         <Table
