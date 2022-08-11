@@ -132,6 +132,7 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
             inputRef={inputRef}
             value={formParams.inputValue}
             onChange={handleInputChange}
+            autoComplete="off"
             sx={{
               width: '40%',
             }}
@@ -145,7 +146,7 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
               minWidth: '100px',
             }}
           >
-            <SvgIcon svgName="calendar_icon" svgClass="icon"></SvgIcon> 采集时间
+            <SvgIcon svgName="gather_date" svgClass="icon"></SvgIcon> 采集时间
           </FormLabel>
           <Stack
             // spacing={1}

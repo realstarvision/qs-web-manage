@@ -117,7 +117,7 @@ export default function index() {
       <Grid container spacing={{ xs: 1, md: 2, lg: 4 }} className="form-bar">
         <Grid item xs={4} className="input-box">
           <FormLabel component="span" className="label">
-            <SvgIcon svgName="data_icon" svgClass="icon"></SvgIcon> 操作人员
+            <SvgIcon svgName="operate_person" svgClass="icon"></SvgIcon> 操作人员
           </FormLabel>
           <Input select value={formParams.userId} onChange={(e) => handleSelectChange(e)} size="small">
             {userListData.map((user) => (
@@ -129,7 +129,7 @@ export default function index() {
         </Grid>
         <Grid item xs={4} className="input-box">
           <FormLabel component="span" className="label">
-            <SvgIcon svgName="data_icon" svgClass="icon"></SvgIcon> 操作日期
+            <SvgIcon svgName="operate_date" svgClass="icon"></SvgIcon> 操作日期
           </FormLabel>
 
           <DatePicker

@@ -71,6 +71,7 @@ export default function index() {
           open?: any
           extend?: string
           dataUrl?: string
+          secondList?: string
         }
       }) {
         return (
@@ -88,10 +89,10 @@ export default function index() {
               onClick={() => handleCheckLabel(row)}
               className="btn"
               sx={{
-                color: row.open ? '#fff' : '',
+                color: row.secondList && row.secondList.length === 0 ? '#232734' : row.open ? '#fff' : '',
               }}
             >
-              查看标注数据
+              {row.secondList && row.secondList.length === 0 ? '暂无数据' : '查看标注数据'}
             </Button>
 
             <MyButton
@@ -195,11 +196,13 @@ export default function index() {
     if (!row.open) {
       await getLabelByUuid({ uuid: row.uuid }).then(({ code, data }: { code?: number; data: any }) => {
         if (code === 0) {
-          row.labelList = data || []
+          row.secondList = data || []
         }
       })
     }
-    row.open = !row.open
+    if (row.secondList.length > 0) {
+      row.open = !row.open
+    }
     filterListData.forEach((item: any) => {
       if (item.id === row.id) {
         item.row
@@ -300,6 +303,7 @@ export default function index() {
             // inputRef={inputRef}
             value={formParams.serachName}
             onChange={(e) => handleInputChange(e, 1)}
+            autoComplete="off"
             InputProps={{
               startAdornment: (
                 <InputAdornment
@@ -341,8 +345,8 @@ export default function index() {
         <Grid item xs={8} className="input-box">
           <Box
             sx={{
-              width: 'calc(100% - 120px)',
-              marginLeft: '120px',
+              width: 'calc(100% - 126px)',
+              marginLeft: '126px',
             }}
           >
             <Box>

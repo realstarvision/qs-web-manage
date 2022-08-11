@@ -117,3 +117,24 @@ div,p,span,h1,h2,h3,h4,h5,h6{
 	box-shadow: 0px 0px 8px 0px rgba(43,48,63,0.5000);
 	border-radius: 1px;
 }
+
+
+/* 浏览器去除自动选中输入框背景色 */
+input:autofill {
+  box-shadow: 0 0 0 1000px #000 inset;
+  -webkit-text-fill-color: white;
+}
+input:-webkit-autofill ,textarea:-webkit-autofill, select:-webkit-autofill{  
+  -webkit-text-fill-color: #ededed !important;  
+  -webkit-box-shadow: 0 0 0px 1000px transparent  inset !important;  
+  background-color:transparent;  
+  background-image: none;  
+  transition: background-color 50000s ease-in-out 0s;  
+}  
+input {  
+  background-color:transparent;  
+  caret-color: #fff;  
+}  
+input:-webkit-autofill:focus {
+  　-webkit-text-fill-color: transparent !important;
+}

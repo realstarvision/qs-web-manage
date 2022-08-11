@@ -194,8 +194,8 @@ export default function index() {
         <Grid item xs={8} className="input-box">
           <Box
             sx={{
-              width: 'calc(100% - 120px)',
-              marginLeft: '120px',
+              width: 'calc(100% - 130px)',
+              marginLeft: '130px',
             }}
           >
             <Box>

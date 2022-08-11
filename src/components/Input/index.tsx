@@ -19,6 +19,9 @@ const Input = styled(TextField)({
   '& .MuiPopover-root': {
     '& .MuiPaper-root': {
       background: '#353B4D',
+      '& .MuiMenu-list': {
+        height: '200px !important',
+      },
     },
   },
 })

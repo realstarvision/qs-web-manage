@@ -12,33 +12,6 @@ export interface Column {
   slot?: any
 }
 
-function None({ height = '484px', hint = '暂无数据', background = '#3B4154', color = '#232734' }) {
-  return (
-    <Box
-      sx={{
-        width: '100%',
-        height: height,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: background,
-      }}
-    >
-      <img src={nullImg} />
-      <span
-        style={{
-          fontSize: '14px',
-          fontWeight: 400,
-          color: color,
-          marginLeft: '8px',
-        }}
-      >
-        {hint}
-      </span>
-    </Box>
-  )
-}
-
 export default function CurTable({
   data,
   columns,
@@ -47,7 +20,7 @@ export default function CurTable({
   loading,
   extensionColums,
 }: {
-  data: any
+  data: Array<T>
   columns: Array<Column>
   pagination?: any
   operate?: Array<string>
@@ -56,7 +29,7 @@ export default function CurTable({
   loading?: boolean
   extensionColums?: Array<Column>
 }) {
-  const [listData, setListData] = useState([])
+  const [listData, setListData] = useState<Array<T>>([])
 
   // 输入框事件
   const handleCurrent = (e: { target: { value: string | number } }) => {
@@ -70,7 +43,7 @@ export default function CurTable({
   }
 
   useEffect(() => {
-    setListData(data)
+    setListData(data as Array<T>)
   }, [data])
 
   return (
@@ -115,7 +88,7 @@ export default function CurTable({
         </TableHead>
         {listData.length > 0 && (
           <TableBody className="table-body">
-            {listData.map((row: any, index: React.Key | null | undefined) => (
+            {listData.map((row: T, index: React.Key | null | undefined) => (
               <>
                 <TableRow
                   key={index}
@@ -133,11 +106,11 @@ export default function CurTable({
                   ))}
                 </TableRow>
                 {/* 二级表格 */}
-                {row.labelList && (
+                {row.secondList && (
                   <SecondTable
                     key={index}
                     open={row.open}
-                    data={row.labelList}
+                    data={row.secondList}
                     extensionColums={extensionColums}
                   ></SecondTable>
                 )}
@@ -147,7 +120,7 @@ export default function CurTable({
           </TableBody>
         )}
       </Table>
-      {data.length === 0 && <None />}
+      {data.length === 0 && <Empty />}
     </TableContainer>
   )
 }
@@ -164,7 +137,7 @@ function SecondTable({
 }) {
   return (
     <TableRow className="second-table">
-      <MyTableCell style={{ padding: 0 }} colSpan={6}>
+      <MyTableCell style={{ padding: 0, border: !open ? 0 : '' }} colSpan={6}>
         <Collapse in={open} timeout={300}>
           <Box className="collapse-box">
             <Box
@@ -189,12 +162,40 @@ function SecondTable({
                     </TableRow>
                   ))}
                 </TableBody>
-                {data.length === 0 && <None height="50px" background="#2E3343" />}
+                {/* {data.length === 0 && <Empty height="50px" background="#2E3343" />} */}
               </Table>
             </Box>
           </Box>
         </Collapse>
       </MyTableCell>
     </TableRow>
+  )
+}
+
+//空状态
+function Empty({ height = '484px', hint = '暂无数据', background = '#3B4154', color = '#232734' }) {
+  return (
+    <Box
+      sx={{
+        width: '100%',
+        height: height,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        background: background,
+      }}
+    >
+      <img src={nullImg} />
+      <span
+        style={{
+          fontSize: '14px',
+          fontWeight: 400,
+          color: color,
+          marginLeft: '8px',
+        }}
+      >
+        {hint}
+      </span>
+    </Box>
   )
 }

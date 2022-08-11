@@ -1,6 +1,6 @@
 .MuiCalendarPicker-root{
-	background: linear-gradient(180deg, rgba(64,72,92,0.3000) 0%, rgba(64,72,92,0.7000) 100%);
-	box-shadow: 0px 0px 24px 4px rgba(26,28,37,0.5000);
+	background: linear-gradient(180deg, #40485C 30%, #40485C 70%);
+	box-shadow: 0px 0px 24px 4px rgba(26,28,37,0.5);
 	border-radius: 2px;
 	backdrop-filter: blur(3px);
   .MuiPickersDay-root{
@@ -17,7 +17,7 @@
 
 .MuiMenu-root{
   .MuiPaper-root{
-    background: linear-gradient(180deg, rgba(64,72,92,0.3) 0%, rgba(64,72,92,0.7) 100%);
+    background: linear-gradient(180deg, #40485C 30%, #40485C 70%);
     box-shadow: 0px 0px 24px 4px rgba(26,28,37,0.5);
     border-radius: 2px;
     backdrop-filter: blur(3px);

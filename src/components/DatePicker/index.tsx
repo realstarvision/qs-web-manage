@@ -71,7 +71,13 @@ export default function index({
         inputFormat={!value ? placeholder : format}
         onChange={(value) => handleDate(value as Date)}
         renderInput={(params) => (
-          <CssTextField size="small" {...params} className={className} onClick={() => handleFocus()} />
+          <CssTextField
+            size="small"
+            {...params}
+            className={className}
+            onClick={() => handleFocus()}
+            autoComplete="off"
+          />
         )}
         maxDate={maxDate || undefined}
         minDate={minDate || undefined}

@@ -254,6 +254,7 @@ export default function index() {
             // inputRef={inputRef}
             value={formParams.serachName}
             onChange={(e) => handleInputChange(e, 1)}
+            autoComplete="off"
             InputProps={{
               startAdornment: (
                 <InputAdornment
@@ -289,8 +290,8 @@ export default function index() {
         <Grid item xs={8} className="input-box">
           <Box
             sx={{
-              width: 'calc(100% - 120px)',
-              marginLeft: '120px',
+              width: 'calc(100% - 126px)',
+              marginLeft: '126px',
             }}
           >
             <Box>
