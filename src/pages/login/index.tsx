@@ -37,12 +37,12 @@ function Home() {
     getLoginUrl({ clientId: 0, uuid: uuid }).then((res) => {
       setQrUrl(res.data)
       setToken(uuid)
-      const timer = setInterval(() => {
+      let timer = setInterval(() => {
         getUserInfoData(uuid, timer)
       }, 500)
 
       setTimeout(() => {
-        clearTimeout(timer)
+        clearInterval(timer)
         setQRCodeState(true)
       }, 120000)
     })
@@ -75,7 +75,12 @@ function Home() {
   }
   return (
     <Box className="container">
-      <Snackbar open={openMessage} message="暂无权限，请联系人事开通！" onClose={handleClose}></Snackbar>
+      <Snackbar
+        open={openMessage}
+        message="暂无权限，请联系人事开通！"
+        onClose={handleClose}
+        background="#232734"
+      ></Snackbar>
       <Box className="login_box">
         <img src={starVision} className="starvisonIcon" onClick={handleClick} />
         <Box className="qrCode_box">
