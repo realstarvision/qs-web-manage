@@ -25,7 +25,8 @@ const MyDrawer = styled(Drawer)(({ theme }) => ({
   [`& .MuiDrawer-paper`]: {
     width: drawerWidth,
     boxSizing: 'border-box',
-    backgroundColor: theme.palette.black.main,
+    // backgroundColor: theme.palette.black.main,
+    bacgroundColor: '#1A1C25',
     border: 'none',
   },
 }))
@@ -47,11 +48,13 @@ export default function sidebar() {
             routers[j].show = true
             if (menuDTOS[i].childrenMenu) {
               menuDTOS[i].childrenMenu.forEach((menuDTO: { [x: string]: string }) => {
-                routers[j].children.forEach((router) => {
-                  if (menuDTO['menuUrl'] === routers[j]['path'] + '/' + router['path']) {
-                    router.show = true
-                  }
-                })
+                if (routers[j].children) {
+                  routers[j].children.forEach((router) => {
+                    if (menuDTO['menuUrl'] === routers[j]['path'] + '/' + router['path']) {
+                      router.show = true
+                    }
+                  })
+                }
               })
             }
           }

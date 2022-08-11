@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { AxiosResponse } from 'axios'
 import { styled } from '@mui/material/styles'
-import { TableCell, TableRow, Modal, Button, Box, Divider, Typography } from '@mui/material'
+import { TableCell, TableRow, Modal, Button, Box, Divider, Typography, Alert } from '@mui/material'
 import SearchBar from '@/components/SearchBar'
 import Table, { Column } from '@/components/NewTable'
 import Dialog from '@/components/Dialog'
+import Snackbar from '@/components/Snackbar'
+import SvgIcon from '@/components/SvgIcon'
 import { getFileList } from '@/api/data'
 import map from '@/assets/image/png/map.png'
 import moment from 'moment'
@@ -91,6 +93,7 @@ export default function index() {
   // 状态变量
   const [listData, setListData] = useState([])
   const [visible, setVisible] = useState(false)
+  const [snackbarVisible, setSnackbarVisible] = useState(false)
   const [rowData, setRowData] = useState({})
   const [formParams, setFormParams] = useState<Params | null>(null)
   const [page, setPage] = useState({
@@ -100,12 +103,20 @@ export default function index() {
     total: 0,
   })
   const [loading, setLoading] = useState<boolean>(false)
+  // 关闭详情弹出框
   const handleClose = () => {
     setVisible(false)
   }
-
+  // 关闭提示弹出框
+  const handleSnackbarClose = () => {
+    setSnackbarVisible(false)
+  }
   // 列表搜索接口
   const handleSubmit = (value: Params, pageNumber?: number) => {
+    if (!value.startDateValue || !value.endDateValue) {
+      setSnackbarVisible(true)
+      return false
+    }
     setFormParams(value)
     if (pageNumber) {
       page.pageNumber = 1
@@ -172,6 +183,28 @@ export default function index() {
   return (
     <Box className="data-list">
       <Box className="content">
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          open={snackbarVisible}
+          onClose={handleSnackbarClose}
+          autoHideDuration={3000}
+          sx={{}}
+        >
+          <Alert
+            severity="error"
+            sx={{
+              width: '224px',
+              background: '#3b4154',
+              boxShadow: '0px 2px 8px 0px rgba(26,28,37,0.5000)',
+              borderRadius: '2px',
+              color: '#fff',
+              fontSize: '12px',
+              padding: '0 35px',
+            }}
+          >
+            采集时间不能为空!
+          </Alert>
+        </Snackbar>
         <SearchBar onSubmit={handleSubmit}></SearchBar>
         <Divider className="divider" />
         <Table

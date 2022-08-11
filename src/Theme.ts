@@ -1,6 +1,7 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, Theme } from '@mui/material/styles';
 
 // define constomize scheme
+
 const Theme = createTheme({
     palette: {
         mode: 'dark',
@@ -28,10 +29,10 @@ const Theme = createTheme({
         white: {
             main: '#AEBDD8',
         },
-        black: {
-            main: '#1A1C25',
-            light: '#212121',
-        },
+        // black: {
+        //     main: '#1A1C25',
+        //     light: '#212121',
+        // },
         bt: {
             main: '#aebdd8',
             dark: '#697283',

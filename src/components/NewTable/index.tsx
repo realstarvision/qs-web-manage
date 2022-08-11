@@ -20,7 +20,7 @@ export default function CurTable({
   loading,
   extensionColums,
 }: {
-  data: Array<T>
+  data: any
   columns: Array<Column>
   pagination?: any
   operate?: Array<string>
@@ -29,7 +29,7 @@ export default function CurTable({
   loading?: boolean
   extensionColums?: Array<Column>
 }) {
-  const [listData, setListData] = useState<Array<T>>([])
+  const [listData, setListData] = useState<any>([])
 
   // 输入框事件
   const handleCurrent = (e: { target: { value: string | number } }) => {
@@ -43,7 +43,7 @@ export default function CurTable({
   }
 
   useEffect(() => {
-    setListData(data as Array<T>)
+    setListData(data as any)
   }, [data])
 
   return (
@@ -88,7 +88,7 @@ export default function CurTable({
         </TableHead>
         {listData.length > 0 && (
           <TableBody className="table-body">
-            {listData.map((row: T, index: React.Key | null | undefined) => (
+            {listData.map((row: any, index: React.Key | null | undefined) => (
               <>
                 <TableRow
                   key={index}
