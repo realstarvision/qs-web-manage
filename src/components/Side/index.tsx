@@ -16,7 +16,7 @@ import {
 import { styled, useTheme } from '@mui/material/styles'
 import { menuRouter, Router } from '@/router'
 import { drawerWidth, barHeight } from '@/config'
-import { getUserInfo } from '@/until/auth'
+import { getUserInfo } from '@/untils/auth'
 import './side.scss'
 
 const MyDrawer = styled(Drawer)(({ theme }) => ({

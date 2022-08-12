@@ -1,0 +1,15 @@
+.error404{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .font{
+    color: #fff;
+    font-size: 48px;
+  }
+  .btn{
+    margin-top: 20px;
+  }
+
+}

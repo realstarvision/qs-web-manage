@@ -1,5 +1,5 @@
 
-import request from '@/until/request'
+import request from '@/untils/request'
 
 const api = {
   logList: '/star-auth/log/findOperationLogByPage',

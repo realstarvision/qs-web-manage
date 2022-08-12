@@ -1,24 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import {
-  TableContainer,
-  Table,
-  TableHead,
-  TableRow,
-  TableBody,
-  Paper,
-  Button,
-  Box,
-  Collapse,
-  Stack,
-  Typography,
-} from '@mui/material'
-import MyButton from '../Button'
+import { TableContainer, Table, TableHead, TableRow, TableBody, Paper, Box, Collapse } from '@mui/material'
 import Loading from '@/components/Loading'
-import SvgIcon from '@/components/SvgIcon'
 import nullImg from '@/assets/image/png/data_null.png'
-import Tag from '@/components/Tag'
-import { MyTableCell, MyPagination, MyTextField, MyPopover } from './component'
-import { getLabelByUuid, getOriginaByUuid } from '@/api/algorithm'
+import { MyTableCell, MyPagination, MyTextField } from './component'
 import './style.scss'
 
 export interface Column {
@@ -32,10 +16,9 @@ export default function CurTable({
   data,
   columns,
   pagination,
-  operate,
-  onCheck,
   onPageChange,
   loading,
+  extensionColums,
 }: {
   data: any
   columns: Array<Column>
@@ -44,55 +27,9 @@ export default function CurTable({
   onCheck?: Function
   onPageChange?: ((event: React.ChangeEvent<unknown>, page: number) => void) | undefined
   loading?: boolean
+  extensionColums?: Array<Column>
 }) {
-  const [listData, setListData] = useState([])
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
-  const [checkData, setCheckData] = useState<{ dataUrl: string; uuid: number | string; taskName: string }>({
-    dataUrl: '',
-    uuid: '',
-    taskName: '',
-  })
-  // 查看按钮
-  const handleCheck = (row: any) => {
-    ;(onCheck as Function)(row)
-  }
-  // 查看标注类型
-  const handleCheckLabel = async (row: any) => {
-    await getLabelByUuid({ uuid: row.uuid }).then(({ code, data }: { code?: number; data: any }) => {
-      if (code === 0) {
-        row.labelList = data || []
-      }
-    })
-    row.open = !row.open
-    listData.forEach((item: any) => {
-      if (item.id === row.id) {
-        item.row
-      }
-    })
-    setListData([...listData])
-  }
-  // 查看原始数据
-  const handleCheckOriginal = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, row: { extend: string }) => {
-    const currentTarget = e.currentTarget
-    getOriginaByUuid({ extend: row.extend }).then(({ code, data }: { code?: number; data: any }) => {
-      if (code === 0) {
-        setCheckData(data[0])
-        setAnchorEl(currentTarget)
-      }
-    })
-
-    // setAnchorEl(e.currentTarget)
-  }
-  const handleClose = () => {
-    setAnchorEl(null)
-    setTimeout(() => {
-      setCheckData({ dataUrl: '', uuid: '', taskName: '' })
-    }, 300)
-  }
-  // 下载按钮
-  const handleDownload = (row: { dataUrl: string }) => {
-    window.location.href = row.dataUrl
-  }
+  const [listData, setListData] = useState<any>([])
 
   // 输入框事件
   const handleCurrent = (e: { target: { value: string | number } }) => {
@@ -106,11 +43,17 @@ export default function CurTable({
   }
 
   useEffect(() => {
-    setListData(data)
+    setListData(data as any)
   }, [data])
 
   return (
-    <TableContainer component={Paper} className="table">
+    <TableContainer
+      component={Paper}
+      sx={{
+        position: 'relative',
+      }}
+      className="table"
+    >
       <Table sx={{ minWidth: 700 }} aria-label="caption table">
         {listData.length > 0 && pagination && (
           <caption className="table-footer">
@@ -141,18 +84,12 @@ export default function CurTable({
           </caption>
         )}
         <TableHead className="table-header">
-          <TableRow
-            sx={{
-              height: '44px',
-            }}
-          >
+          <TableRow>
             {columns.map((column: Column) => (
               <MyTableCell className="table-cell" align={column.align || 'left'}>
                 {column.title}
               </MyTableCell>
             ))}
-
-            {operate && <MyTableCell align="center">操作</MyTableCell>}
           </TableRow>
         </TableHead>
         {listData.length > 0 && (
@@ -168,121 +105,49 @@ export default function CurTable({
                 >
                   {columns.map((column: Column) => (
                     <MyTableCell align={column.align || 'left'}>
-                      <Box sx={{ minHeight: '24px', lineHeight: '24px' }}>
-                        {column.slot ? <column.slot data={row}></column.slot> : row[column.key]}
+                      <Box className="height-24">
+                        {column.slot ? <column.slot row={row}></column.slot> : row[column.key]}
                       </Box>
                     </MyTableCell>
                   ))}
-                  {operate && (
-                    <>
-                      <MyTableCell align="center">
-                        <Stack
-                          direction="row"
-                          spacing={2}
-                          sx={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                          }}
-                        >
-                          {operate.includes('check') && (
-                            <Button variant="text" onClick={() => handleCheck(row)} className="btn">
-                              查看
-                            </Button>
-                          )}
-                          {operate.includes('checkLabel') && (
-                            <Button
-                              variant="text"
-                              onClick={() => handleCheckLabel(row)}
-                              className="btn"
-                              sx={{
-                                color: row.open ? '#fff' : '',
-                              }}
-                            >
-                              查看标注数据
-                            </Button>
-                          )}
-                          {operate.includes('checkOriginal') && (
-                            <>
-                              <Button
-                                aria-describedby={row.id}
-                                variant="text"
-                                onClick={(e) => handleCheckOriginal(e, row)}
-                                className="btn"
-                                sx={{
-                                  color: row.open ? '#fff' : '',
-                                }}
-                              >
-                                查看原始数据
-                              </Button>
-                            </>
-                          )}
-                          {operate.includes('download') && (
-                            <MyButton
-                              onClick={() => handleDownload(row)}
-                              startIcon={<SvgIcon svgName="download" svgClass="icon"></SvgIcon>}
-                              sx={{
-                                fontSize: '12px',
-                                height: '24px',
-                              }}
-                            >
-                              下载
-                            </MyButton>
-                          )}
-                        </Stack>
-                      </MyTableCell>
-                    </>
-                  )}
                 </TableRow>
                 {/* 二级表格 */}
-                {row.labelList && <SecondTable key={index} open={row.open} data={row.labelList}></SecondTable>}
+                {row.secondList && (
+                  <SecondTable
+                    key={index}
+                    open={row.open}
+                    data={row.secondList}
+                    extensionColums={extensionColums}
+                  ></SecondTable>
+                )}
               </>
             ))}
             <Loading show={loading}></Loading>
           </TableBody>
         )}
       </Table>
-      {data.length === 0 && <None />}
-
-      <MyPopover
-        open={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      >
-        <PopoverContent data={checkData}></PopoverContent>
-      </MyPopover>
+      {data.length === 0 && <Empty loading={loading} />}
     </TableContainer>
   )
 }
 
 /* 二级表格 */
-function SecondTable({ open, data = [] }: { open: boolean; data: any }) {
-  // 下载按钮
-  const handleDownload = (row: { dataUrl: string }) => {
-    window.location.href = row.dataUrl
-  }
+function SecondTable({
+  open,
+  data = [],
+  extensionColums,
+}: {
+  open: boolean
+  data: any
+  extensionColums?: Array<Column>
+}) {
   return (
-    <TableRow>
-      <MyTableCell style={{ padding: 0 }} colSpan={6}>
+    <TableRow className="second-table">
+      <MyTableCell style={{ padding: 0, border: !open ? 0 : '' }} colSpan={6}>
         <Collapse in={open} timeout={300}>
-          <Box
-            sx={{
-              marginLeft: '58px',
-              marginRight: '53px',
-              background: '#2E3343',
-            }}
-          >
+          <Box className="collapse-box">
             <Box
               sx={{
-                // marginRight: '58px',
                 maxHeight: data.length > 0 ? '210px' : '',
                 overflow: data.length > 0 ? 'auto' : '',
                 padding: '0 10px',
@@ -290,62 +155,19 @@ function SecondTable({ open, data = [] }: { open: boolean; data: any }) {
             >
               <Table size="small" aria-label="purchases">
                 <TableBody>
-                  {data.map((item: { uuid?: string; taskName?: any; tags?: any; dataUrl?: string }) => (
+                  {data.map((row: any) => (
                     <TableRow>
-                      <MyTableCell component="th" scope="row">
-                        <Box>
-                          <p
-                            style={{
-                              fontSize: '12px',
-                              fontWeight: 400,
-                              color: '#AEBDD8',
-                            }}
-                          >
-                            {item.taskName}
-                          </p>
-                          <Box
-                            sx={{
-                              marginTop: '8px',
-                            }}
-                          >
-                            {item.tags &&
-                              item.tags.map((tag: { tagName: string }) => (
-                                <Tag content={tag.tagName} background="#464F63" triangleColor="#707B91" />
-                              ))}
-                          </Box>
-                        </Box>
-                      </MyTableCell>
-                      <MyTableCell align="center">{item.uuid}</MyTableCell>
-                      <MyTableCell
-                        align="center"
-                        sx={{
-                          width: '200px',
-                        }}
-                      >
-                        <MyButton
-                          onClick={() =>
-                            handleDownload(
-                              item as {
-                                uuid: string
-                                taskName: string
-                                tags: any
-                                dataUrl: string
-                              }
-                            )
-                          }
-                          startIcon={<SvgIcon svgName="download" svgClass="icon"></SvgIcon>}
-                          sx={{
-                            fontSize: '12px',
-                            height: '24px',
-                          }}
-                        >
-                          下载
-                        </MyButton>
-                      </MyTableCell>
+                      {extensionColums &&
+                        extensionColums.map((column) => (
+                          <MyTableCell align={column.align || 'left'}>
+                            <Box className="height-24">
+                              {column.slot ? <column.slot row={row}></column.slot> : row[column.key]}
+                            </Box>
+                          </MyTableCell>
+                        ))}
                     </TableRow>
                   ))}
                 </TableBody>
-                {data.length === 0 && <None height="50px" background="#2E3343" />}
               </Table>
             </Box>
           </Box>
@@ -355,27 +177,8 @@ function SecondTable({ open, data = [] }: { open: boolean; data: any }) {
   )
 }
 
-// 悬浮框内容
-function PopoverContent({ data }: { data: { dataUrl: string; uuid: number | string; taskName: string } }) {
-  const handleDownload = () => {
-    window.location.href = data.dataUrl
-  }
-  return (
-    <Box className="PopoverContent">
-      <Box className="info">
-        <Typography className="name">{data.taskName}</Typography>
-        <Typography className="id">ID： {data.uuid}</Typography>
-      </Box>
-      <Box className="download" onClick={handleDownload}>
-        <SvgIcon svgName="download" svgClass="icon"></SvgIcon>
-        <Typography className="font">下载关联原始数据</Typography>
-      </Box>
-    </Box>
-  )
-}
-
-// 空状态
-function None({ height = '484px', hint = '暂无数据', background = '#3B4154', color = '#232734' }) {
+//空状态
+function Empty({ height = '484px', hint = '暂无数据', background = '#3B4154', color = '#232734', loading = false }) {
   return (
     <Box
       sx={{
@@ -385,6 +188,7 @@ function None({ height = '484px', hint = '暂无数据', background = '#3B4154',
         justifyContent: 'center',
         alignItems: 'center',
         background: background,
+        position: 'relative',
       }}
     >
       <img src={nullImg} />
@@ -398,6 +202,7 @@ function None({ height = '484px', hint = '暂无数据', background = '#3B4154',
       >
         {hint}
       </span>
+      <Loading show={loading}></Loading>
     </Box>
   )
 }

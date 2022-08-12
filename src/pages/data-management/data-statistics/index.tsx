@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Select, MenuItem, Typography, Toolbar, Grid, Skeleton } from '@mui/material'
-import { getDayDataList, getWeekDataList, satelliteCount, getMemoryContrast } from '@/api/data'
-import { styled, useTheme } from '@mui/material/styles'
+import { Box, Typography, Grid } from '@mui/material'
+import { getDayDataList, getWeekDataList, satelliteCount } from '@/api/data'
 import { getSatelliteList } from '@/api/satellite'
 import DataBox, { Sentinel } from '@/components/DataBox'
 import AddChart from '@/components/AddChart'
@@ -135,7 +134,7 @@ export default function index() {
           let dataSizeList: Array<number> = []
           let createTimeList: Array<string> = []
           res.forEach((item: any): void => {
-            dataSizeList.push(item.dataSize)
+            dataSizeList.push(item.dataSize.toFixed(2))
             createTimeList.push(item.createTime)
           })
           data[i].dayList = [dataSizeList, createTimeList]
@@ -156,7 +155,7 @@ export default function index() {
             if ((i + 1) % 7 === 0) {
               time += '至' + res[i].createTime
               createTimeList.push(time)
-              dataSizeList.push(sum)
+              dataSizeList.push(sum.toFixed(2) as unknown as number)
               sum = 0
               time = ''
             }
@@ -168,17 +167,7 @@ export default function index() {
       setLoading(false)
       setSentinelList([...data])
     })
-
-    // 获取内存
-    // getMemoryContrastData()
   }, [])
-
-  // 内存数据接口
-  // const getMemoryContrastData = (): void => {
-  //   getMemoryContrast().then(({ data }) => {
-  //     setMemoryContrast(data.diskInfo)
-  //   })
-  // }
 
   // 数据/数据类型切换事件
   const handleChange = (index: number) => {

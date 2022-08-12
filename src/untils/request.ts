@@ -11,7 +11,7 @@ const instance = axios.create({
 });
 
 
-// request拦截器
+// 请求拦截器拦截器
 instance.interceptors.request.use(
   (config: any) => {
     // 是否需要设置 token
@@ -25,13 +25,12 @@ instance.interceptors.request.use(
   }
 )
 
-// 添加响应拦截器
+// 响应拦截器
 instance.interceptors.response.use(
   (res) => {
-    // 跳转
-
     // 未设置状态码则默认成功状态
     const status = res.data.code || 200
+    // 状态判断
     if (status === 401 || status === 10001) {
       Message({ content: '登录状态已过期，3秒后跳转到登录页' })
       setTimeout(() => {

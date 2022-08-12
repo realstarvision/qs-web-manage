@@ -3,11 +3,11 @@ import { Box, Grid, FormLabel, Stack, MenuItem, Button, Divider, Typography, Pop
 import MyButton from '@/components/Button'
 import Input from '@/components/Input'
 import SvgIcon from '@/components/SvgIcon'
-import Table, { Column } from '@/components/NewTable'
+import Table, { Column } from '@/components/Table'
 import { getListLabelSet, getOriginaByUuid } from '@/api/algorithm'
 import InputAdornment from '@mui/material/InputAdornment'
 import Tag from '@/components/Tag'
-import { repetition } from '@/until/tool'
+import { repetition } from '@/untils/tool'
 import { MyPopover, popoverWidth } from './components'
 import '../triangle.scss'
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '@/api/user'
-import { getToken, removeUserInfo, getUserInfo } from '@/until/auth'
+import { getToken, removeUserInfo, getUserInfo } from '@/untils/auth'
 // import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import { styled } from '@mui/material/styles'
 import { Toolbar, Divider, Typography, Box, Tooltip, IconButton, Avatar, Menu, MenuItem, AppBar } from '@mui/material'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { removeToken } from '@/until/auth'
+import { removeToken } from '@/untils/auth'
 import { barHeight } from '@/config'
 import stardust from '@/assets/image/png/stardust.png'
 import avatar from '@/assets/image/png/avatar.png'
@@ -90,7 +90,7 @@ export default function Header() {
           <Box className="user-info">
             <Typography className="name">{getUserInfo() ? getUserInfo().nick : ''}</Typography>
             <Typography className="department">
-              {(getUserInfo() ? getUserInfo().title : '') +
+              {(getUserInfo() && getUserInfo().title ? getUserInfo().title : '无职务') +
                 '-' +
                 (getUserInfo() ? getUserInfo().depts[0].deptName : '')}
             </Typography>

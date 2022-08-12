@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import QRCodeCanvas from 'qrcode.react'
-import { setToken, setUserInfo } from '@/until/auth'
+import { setToken, setUserInfo } from '@/untils/auth'
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -27,6 +27,7 @@ function Home() {
         navigate('/')
       } else if (res.code === 10004) {
         setOpenMessage(true)
+        setQRCodeState(true)
         clearInterval(timer)
       }
     })

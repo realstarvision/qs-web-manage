@@ -29,8 +29,6 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
   const inputRef = useRef<any>(null)
   const [open, setOpen] = useState<{ start: boolean; end: boolean }>({ start: false, end: false })
   const [satelliteList, setSatelliteList] = useState<Array<Satellite>>([])
-  // const [selectValue, setSelectValue] = useState<number | null>(null)
-  // const [sliderValue, setSliderValue] = useState<number>(0)
   const [formParams, setFormParams] = useState<FormParams>({
     inputValue: '',
     selectValue: 0,

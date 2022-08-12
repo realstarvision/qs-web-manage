@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useParams, useRoutes, useNavigate } from 'react-router-dom'
 import { Box, Grid } from '@mui/material'
 import router, { whiteList } from './router'
-import { getToken, getUserInfo } from '@/until/auth'
+import { getToken, getUserInfo } from '@/untils/auth'
 import './App.scss'
 
 function App() {
