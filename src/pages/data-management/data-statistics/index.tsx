@@ -18,16 +18,20 @@ import './style.scss'
 export default function index() {
   const [typeSelect, setTypeSelect] = useState(0)
   const [baseData, setBaseData] = useState([])
-  const [sentinelList, setSentinelList] = useState<Array<Sentinel>>([])
+  const [satelliteList, setSatelliteList] = useState<Array<Sentinel>>([])
   const [loading, setLoading] = useState<boolean>(false)
   const [imgArr, setImgArr] = useState<Array<string>>([])
 
-  const boxArr = [
+  // 背景图片
+  const boxImgArr = [
     [box1, box2, box3],
     [box4, box5],
   ]
+
   const typeName = ['雷达数据', '光学数据']
-  const selectData = [
+
+  // 切换类型数据标签
+  const tabsList = [
     {
       icon: 'satellite',
       label: '按卫星统计',
@@ -63,9 +67,9 @@ export default function index() {
         weekList: [],
         title: '',
       }
-    sentinelList.forEach((item: Sentinel) => {
+    satelliteList.forEach((item: Sentinel) => {
       if (typeSelect === 0) {
-        setImgArr(boxArr[0])
+        setImgArr(boxImgArr[0])
         let data = {
           title: item.satelliteName,
           dataNum: item.dataNum,
@@ -75,7 +79,7 @@ export default function index() {
         }
         baseData.push(data)
       } else if (typeSelect === 1) {
-        setImgArr(boxArr[1])
+        setImgArr(boxImgArr[1])
         switch (item.dataType) {
           case 0:
             radarData = manageData(radarData, item, 0)
@@ -88,7 +92,7 @@ export default function index() {
       }
     })
     setBaseData(baseData)
-  }, [typeSelect, sentinelList])
+  }, [typeSelect, satelliteList])
 
   // 统一数据处理
   function manageData(data: Data, item: Sentinel, type: number) {
@@ -98,7 +102,7 @@ export default function index() {
 
     if (data.dayList.length > 0) {
       item.dayList[0].forEach((el: number, index: number) => {
-        ;(data.dayList[0][index] as number) += el
+        ;(data.dayList[0][index] as number) += Number(el.toFixed(2))
       })
     } else {
       data.dayList = item.dayList
@@ -106,7 +110,7 @@ export default function index() {
 
     if (data.weekList.length > 0) {
       item.weekList[0].forEach((el: number, index: number) => {
-        ;(data.weekList[0][index] as number) += el
+        ;(data.weekList[0][index] as number) += Number(el.toFixed(2))
       })
     } else {
       data.weekList = item.weekList
@@ -134,7 +138,7 @@ export default function index() {
           let dataSizeList: Array<number> = []
           let createTimeList: Array<string> = []
           res.forEach((item: any): void => {
-            dataSizeList.push(item.dataSize.toFixed(2))
+            dataSizeList.push(Number(item.dataSize.toFixed(2)))
             createTimeList.push(item.createTime)
           })
           data[i].dayList = [dataSizeList, createTimeList]
@@ -155,7 +159,7 @@ export default function index() {
             if ((i + 1) % 7 === 0) {
               time += '至' + res[i].createTime
               createTimeList.push(time)
-              dataSizeList.push(sum.toFixed(2) as unknown as number)
+              dataSizeList.push(Number(sum.toFixed(2)))
               sum = 0
               time = ''
             }
@@ -165,7 +169,7 @@ export default function index() {
       }
       // 设置加载loading状态
       setLoading(false)
-      setSentinelList([...data])
+      setSatelliteList([...data])
     })
   }, [])
 
@@ -177,8 +181,9 @@ export default function index() {
   return (
     <Box className="statistics">
       <Box>
+        {/* tabs */}
         <Box className="select_bar">
-          {selectData.map((item, i) => {
+          {tabsList.map((item, i) => {
             return (
               <Box className={(typeSelect === i ? 'active' : '') + ' select'} onClick={() => handleChange(i)}>
                 {typeSelect === i ? <img src={activeIcon} className="img" /> : ''}
@@ -195,6 +200,8 @@ export default function index() {
             )
           })}
         </Box>
+
+        {/* 卫星基本数据 */}
         <Grid
           sx={{
             marginTop: '35px',
@@ -218,8 +225,8 @@ export default function index() {
           )}
         </Grid>
       </Box>
-      {/* 每日更新 */}
 
+      {/* 每日更新 */}
       <Box className="add-bar">
         <Typography className="note">注：该数据为{moment(new Date()).format('YYYY/MM/DD')}数据总量</Typography>
         <Box className="title-bar">
@@ -240,6 +247,7 @@ export default function index() {
           )}
         </Grid>
       </Box>
+
       {/* 每周更新 */}
       <Box className="add-bar">
         <Box className="title-bar">

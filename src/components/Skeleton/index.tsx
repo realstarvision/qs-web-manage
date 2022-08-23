@@ -13,7 +13,7 @@ export default function MySkeleton({ size = 3 }: { size?: number }) {
         container
         spacing={5}
       >
-        {[...Array(size)].map(() => {
+        {[...Array(size)].map((index) => {
           return (
             <Grid xs={4} lg={3}>
               <Skeleton width="200px" height="112px" variant="rectangular"></Skeleton>

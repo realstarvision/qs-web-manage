@@ -23,7 +23,7 @@ export function debounce(fn: any, delay = 500,) {
 *
 */
 
-export function repetition(data: any[]) {
+export function deleteRepetition(data: any[]) {
 
   let obj: any = {};
   let peon = data.reduce((cur, next) => {

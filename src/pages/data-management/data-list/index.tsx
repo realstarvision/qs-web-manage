@@ -188,8 +188,6 @@ export default function index() {
           data={listData}
           columns={columns}
           pagination={page}
-          operate={['check']}
-          onCheck={handleCheck}
           onPageChange={handlePageChange}
           loading={loading}
         ></Table>

@@ -8,6 +8,7 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
   let [targetValue, setTargetValue] = useState<number>(0)
   let [max, setMax] = useState<number>(0)
 
+  // 目标值
   const targetValueArr = [
     {
       title: 'sentinel_1',
@@ -31,6 +32,7 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
     },
   ]
 
+  // 初始化
   useEffect(() => {
     let maxValue = 0
     targetValueArr.forEach((item) => {

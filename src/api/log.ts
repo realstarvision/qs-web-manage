@@ -1,5 +1,5 @@
 
-import request from '@/untils/request'
+import request from '@/utils/request'
 
 const api = {
   logList: '/star-auth/log/findOperationLogByPage',
@@ -9,7 +9,7 @@ const api = {
 /**
  *  分页获取日志列表
 */
-export function getLogList(data) {
+export function getLogList(data: { userId: string; dateTime: Date | null; pageNumber: number; pageSize: number; total: number }) {
   return request({
     url: api.logList,
     method: 'POST',

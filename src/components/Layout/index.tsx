@@ -9,8 +9,10 @@ import './style.scss'
 
 export default function Layout({ children }: { children?: any }) {
   const location = useLocation()
+  // 动画状态
   const [fade, setFade] = useState(false)
 
+  // 监听路由变化，实现动画效果
   useEffect(() => {
     setFade(false)
     setTimeout(() => {

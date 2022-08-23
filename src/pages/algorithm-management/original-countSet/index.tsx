@@ -7,10 +7,8 @@ import Table, { Column } from '@/components/Table'
 import { getListOriginalSet, getLabelByUuid } from '@/api/algorithm'
 import InputAdornment from '@mui/material/InputAdornment'
 import Tag from '@/components/Tag'
-import { repetition } from '@/untils/tool'
+import { deleteRepetition } from '@/utils/tool'
 import '../triangle.scss'
-// import columns from './columns'
-// import './style.scss'
 
 export default function index() {
   const [loading, setLoading] = useState<boolean>(false)
@@ -22,10 +20,8 @@ export default function index() {
   const [listData, setListData] = useState<Array<any>>([])
   const [filterListData, setFilterListData] = useState<Array<any>>([])
   const [tags, setTags] = useState<Array<any>>([])
-  // 定时器
-  let timer: NodeJS.Timeout | null | undefined = null
 
-  // 变量
+  // table列对应字段
   const columns: Column[] = [
     {
       key: 'taskName',
@@ -110,6 +106,7 @@ export default function index() {
       },
     },
   ]
+  // table列对应二级字段
   const extensionColums: Column[] = [
     {
       key: 'taskName',
@@ -182,6 +179,7 @@ export default function index() {
       },
     },
   ]
+
   // 下载按钮
   const handleDownload = (row: {
     id: string | undefined
@@ -191,6 +189,7 @@ export default function index() {
   }) => {
     row.dataUrl && (window.location.href = row.dataUrl)
   }
+
   // 查看标注类型
   const handleCheckLabel = async (row: any) => {
     if (!row.open) {
@@ -210,20 +209,24 @@ export default function index() {
     })
     setFilterListData([...filterListData])
   }
+
   // 输入框事件
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: number) => {
     let value = e.target.value
     formParams.serachName = value
     setFormParams({ ...formParams })
   }
+
   // 重置事件
   const handleReset = () => {
     setFormParams({ serachName: '' })
   }
+
   // 搜索事件
   const handleSubmit = () => {
     getListData()
   }
+
   // 数据初始化
   useEffect(() => {
     getListData()
@@ -272,7 +275,7 @@ export default function index() {
             return item
           })
           if (!tagIds) {
-            setTags(repetition(tags))
+            setTags(deleteRepetition(tags))
           }
           setListData(list)
           setFilterListData(list)
@@ -293,14 +296,12 @@ export default function index() {
           </FormLabel>
           <Input
             required
-            // helperText={formParams.inputValue ? '' : '不能为空!'}
             id="outlined-required"
             size="small"
             placeholder="支持名称或属性描述模糊搜索"
             sx={{
               width: '50%',
             }}
-            // inputRef={inputRef}
             value={formParams.serachName}
             onChange={(e) => handleInputChange(e, 1)}
             autoComplete="off"
@@ -332,12 +333,6 @@ export default function index() {
             <MyButton onClick={handleSubmit} startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}>
               搜索
             </MyButton>
-            {/* <Box className="upload">
-              <span>数据上传</span>
-              <div>
-                <SvgIcon svgName="upload_icon" svgClass="icon"></SvgIcon>
-              </div>
-            </Box> */}
           </Stack>
         </Grid>
       </Grid>
@@ -365,13 +360,7 @@ export default function index() {
           marginBottom: '20px',
         }}
       />
-      <Table
-        columns={columns}
-        data={filterListData}
-        loading={loading}
-        operate={['checkLabel', 'download']}
-        extensionColums={extensionColums}
-      ></Table>
+      <Table columns={columns} data={filterListData} loading={loading} extensionColums={extensionColums}></Table>
     </Box>
   )
 }

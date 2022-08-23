@@ -1,4 +1,4 @@
-import request from '@/untils/request'
+import request from '@/utils/request'
 
 const api = {
   dayListData: '/star-manage/satelliteData/listSatelliteDataForDay',

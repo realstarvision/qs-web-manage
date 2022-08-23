@@ -43,6 +43,7 @@ export default function index({
   placeholder = '请选择',
   onFocus,
   format = 'yyyy-MM-dd',
+  onClose,
 }: {
   open?: boolean
   value: Date | null
@@ -53,6 +54,7 @@ export default function index({
   placeholder?: string
   onFocus?: Function
   format?: string
+  onClose?: Function
 }) {
   // 聚焦时间
   const handleFocus = () => {
@@ -62,6 +64,11 @@ export default function index({
   }
   const handleDate = (value: Date) => {
     onChange(value)
+  }
+
+  // 关闭事件
+  const handleClose = () => {
+    onClose()
   }
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -81,6 +88,7 @@ export default function index({
         )}
         maxDate={maxDate || undefined}
         minDate={minDate || undefined}
+        onClose={handleClose}
       />
     </LocalizationProvider>
   )

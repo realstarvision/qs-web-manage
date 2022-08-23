@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '@/api/user'
-import { getToken, removeUserInfo, getUserInfo } from '@/untils/auth'
-// import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
+import { getToken, removeUserInfo, getUserInfo } from '@/utils/auth'
 import { styled } from '@mui/material/styles'
 import { Toolbar, Divider, Typography, Box, Tooltip, IconButton, Avatar, Menu, MenuItem, AppBar } from '@mui/material'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { removeToken } from '@/untils/auth'
+import { removeToken } from '@/utils/auth'
 import { barHeight } from '@/config'
 import stardust from '@/assets/image/png/stardust.png'
 import avatar from '@/assets/image/png/avatar.png'
 import './header.scss'
 
+// 自定义Header占位框
 export const DrawerHeader = styled('div')(({ theme }) => ({
   height: barHeight,
   display: 'flex',
@@ -21,6 +21,7 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }))
 
+// 自定义menu
 export const MyMenu = styled(Menu)({
   '& .MuiPaper-root': {
     background: 'linear-gradient(180deg, #AEBDD8 0%, #7E98C8 85%, #8499BF 100%)',
@@ -35,6 +36,7 @@ export default function Header() {
   const settings = ['退出']
   const navigate = useNavigate()
 
+  // 绑定点击头像按钮，用于（打开/关闭）弹出框
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
   // 隐藏弹出框
@@ -80,6 +82,8 @@ export default function Header() {
 
         <Box className="user">
           <Divider orientation="vertical" variant="middle" flexItem className="divider" />
+
+          {/* s 头像 */}
           <ClickAwayListener onClickAway={handleCloseUserMenu}>
             <Tooltip title="" arrow>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -87,6 +91,9 @@ export default function Header() {
               </IconButton>
             </Tooltip>
           </ClickAwayListener>
+          {/* e 头像 */}
+
+          {/* s 基本信息 */}
           <Box className="user-info">
             <Typography className="name">{getUserInfo() ? getUserInfo().nick : ''}</Typography>
             <Typography className="department">
@@ -95,6 +102,9 @@ export default function Header() {
                 (getUserInfo() ? getUserInfo().depts[0].deptName : '')}
             </Typography>
           </Box>
+          {/* e 基本信息 */}
+
+          {/* s 弹出框 */}
           <MyMenu
             sx={{ mt: '45px', ml: '20px' }}
             id="menu-appbar"
@@ -128,6 +138,7 @@ export default function Header() {
               </MenuItem>
             ))}
           </MyMenu>
+          {/* e 弹出框 */}
         </Box>
       </Toolbar>
     </AppBar>

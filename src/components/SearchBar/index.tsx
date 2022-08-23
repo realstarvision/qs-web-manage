@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useRef, RefObject } from 'react'
 import { TextField, MenuItem, Stack, Grid, FormLabel, Box, Menu } from '@mui/material'
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import DatePicker from '@/components/DatePicker'
 import Slider from '@/components/Slider'
 import Button from '@/components/Button'
@@ -159,6 +156,9 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
               onFocus={() => handleFocus(1)}
               placeholder="起始时间"
               className="hidden-icon"
+              onClose={() => {
+                setOpen({ start: false, end: false })
+              }}
             ></DatePicker>
             <SvgIcon svgName="date_icon" svgClass="icon"></SvgIcon>
             <DatePicker
@@ -169,6 +169,9 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
               onFocus={() => handleFocus(2)}
               placeholder="截止时间"
               className="end hidden-icon"
+              onClose={() => {
+                setOpen({ start: false, end: false })
+              }}
             ></DatePicker>
           </Stack>
         </Grid>
@@ -224,12 +227,6 @@ export default function SearchBar({ onSubmit }: { onSubmit?: Function }) {
             >
               搜索
             </Button>
-            {/* <Box className="upload">
-              <span>数据上传</span>
-              <div>
-                <SvgIcon svgName="upload_icon" svgClass="icon"></SvgIcon>
-              </div>
-            </Box> */}
           </Stack>
         </Grid>
       </Grid>

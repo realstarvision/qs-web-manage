@@ -1,4 +1,4 @@
-import request from '@/untils/request'
+import request from '@/utils/request'
 
 const api = {
   listOriginalSetByPage: '/star-dataset/data/listOriginalSetByPage',

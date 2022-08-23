@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import QRCodeCanvas from 'qrcode.react'
-import { setToken, setUserInfo } from '@/untils/auth'
+import { setToken, setUserInfo } from '@/utils/auth'
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography } from '@mui/material'
 import { useTranslation } from 'react-i18next'
@@ -71,9 +71,6 @@ function Home() {
     setOpenMessage(false)
   }
 
-  let handleClick = () => {
-    alert('121651')
-  }
   return (
     <Box className="container">
       <Snackbar
@@ -83,12 +80,12 @@ function Home() {
         background="#232734"
       ></Snackbar>
       <Box className="login_box">
-        <img src={starVision} className="starvisonIcon" onClick={handleClick} />
+        <img src={starVision} className="starvisonIcon" />
         <Box className="qrCode_box">
           <Box className="qrCode">
             <Box
               sx={{
-                width: '110px',
+                width: '100%',
                 position: 'relative',
               }}
             >
@@ -99,7 +96,7 @@ function Home() {
                 size={300}
                 fgColor="#1C1C25"
                 bgColor="#616C8C"
-                style={{ margin: 'auto', width: '110px', height: '110px' }}
+                style={{ margin: 'auto', width: '120px', height: '120px' }}
                 level="M"
               ></QRCodeCanvas>
               {QRCodeState ? (

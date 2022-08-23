@@ -12,7 +12,7 @@ export interface Column {
   slot?: any
 }
 
-export default function CurTable({
+export default function index({
   data,
   columns,
   pagination,
@@ -23,8 +23,6 @@ export default function CurTable({
   data: any
   columns: Array<Column>
   pagination?: any
-  operate?: Array<string>
-  onCheck?: Function
   onPageChange?: ((event: React.ChangeEvent<unknown>, page: number) => void) | undefined
   loading?: boolean
   extensionColums?: Array<Column>
@@ -181,23 +179,16 @@ function SecondTable({
 function Empty({ height = '484px', hint = '暂无数据', background = '#3B4154', color = '#232734', loading = false }) {
   return (
     <Box
+      className="empty"
       sx={{
-        width: '100%',
         height: height,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
         background: background,
-        position: 'relative',
       }}
     >
       <img src={nullImg} />
       <span
         style={{
-          fontSize: '14px',
-          fontWeight: 400,
           color: color,
-          marginLeft: '8px',
         }}
       >
         {hint}

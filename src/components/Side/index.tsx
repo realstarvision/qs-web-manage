@@ -1,47 +1,36 @@
 import React, { useState, useEffect } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import {
-  IconButton,
-  Divider,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Box,
-  Collapse,
-  Toolbar,
-  Drawer,
-  ListItemButton,
-} from '@mui/material'
+import { List, ListItem, ListItemIcon, ListItemText, Box, Collapse, Toolbar, Drawer } from '@mui/material'
 import { styled, useTheme } from '@mui/material/styles'
 import { menuRouter, Router } from '@/router'
 import { drawerWidth, barHeight } from '@/config'
-import { getUserInfo } from '@/untils/auth'
+import { getUserInfo } from '@/utils/auth'
 import './side.scss'
 
+// 自定义Drawer样式
 const MyDrawer = styled(Drawer)(({ theme }) => ({
   width: drawerWidth,
   flexShrink: 0,
   [`& .MuiDrawer-paper`]: {
     width: drawerWidth,
     boxSizing: 'border-box',
-    // backgroundColor: theme.palette.black.main,
     bacgroundColor: '#1A1C25',
     border: 'none',
   },
 }))
 
-export default function sidebar() {
-  const theme = useTheme()
+export default function index() {
   const location = useLocation()
-
+  // 菜单路由
   const [routers, setRouters] = useState<Router[]>(menuRouter)
+  // 当前选中的路由
   const [activeRouter, setActiveRouter] = useState<number>(0)
 
-  // 初始化
+  // 初始化用户路由权限
   useEffect(() => {
     if (getUserInfo()) {
       const menuDTOS = getUserInfo().menuDTOS
+
       for (let i = 0; i < menuDTOS.length; i++) {
         for (let j = 0; j < routers.length; j++) {
           if (menuDTOS[i]['menuUrl'] === routers[j]['path']) {
@@ -64,9 +53,11 @@ export default function sidebar() {
       routers.forEach((router: Router) => {
         router['open'] = false
       })
+
       setRouters([...routers])
     }
   }, [])
+
   // 侧边栏点击事件
   function handleClick(index: number) {
     routers[index].open = !routers[index].open
@@ -94,6 +85,7 @@ export default function sidebar() {
         <Box className="menu">
           <List className="menuList">
             {routers.map((prop, index) => {
+              // 显示只有一级路由的路由
               if (!prop.children && prop.show) {
                 return (
                   <NavLink to={prop.path} key={index}>
@@ -109,6 +101,7 @@ export default function sidebar() {
                     </ListItem>
                   </NavLink>
                 )
+                // 显示有二级路由的路由
               } else if (prop.children && prop.show) {
                 let child = prop.children
                 const nav = (

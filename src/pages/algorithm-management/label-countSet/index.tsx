@@ -7,34 +7,40 @@ import Table, { Column } from '@/components/Table'
 import { getListLabelSet, getOriginaByUuid } from '@/api/algorithm'
 import InputAdornment from '@mui/material/InputAdornment'
 import Tag from '@/components/Tag'
-import { repetition } from '@/untils/tool'
+import { deleteRepetition } from '@/utils/tool'
 import { MyPopover, popoverWidth } from './components'
 import '../triangle.scss'
 
 export default function index() {
+  // table加载状态
   const [loading, setLoading] = useState<boolean>(false)
+  // 搜索参数
   const [formParams, setFormParams] = useState<{
     serachName: string
   }>({
     serachName: '',
   })
+  // 列表数据
   const [listData, setListData] = useState<Array<any>>([])
+  // 处理后的数据
   const [filterListData, setFilterListData] = useState<Array<any>>([])
+  // 标签列表
   const [tags, setTags] = useState<Array<any>>([])
+  // 选中的dom
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+  // 选中的数据
   const [checkData, setCheckData] = useState<{ dataUrl: string; uuid: number | string; taskName: string }>({
     dataUrl: '',
     uuid: '',
     taskName: '',
   })
+  // 选中dom位置
   const [coord, setCoord] = useState({
     x: 0,
     y: 0,
   })
-  // 定时器
-  let timer: NodeJS.Timeout | null | undefined = null
 
-  // 变量
+  // table列对应字段
   const columns: Column[] = [
     {
       key: 'uuid',
@@ -120,6 +126,7 @@ export default function index() {
       },
     },
   ]
+
   // 查看原始数据
   const handleCheckOriginal = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -136,7 +143,6 @@ export default function index() {
       y: e.pageY,
     }
     setCoord({ ...coord })
-
     row.extend &&
       getOriginaByUuid({ extend: row.extend }).then(({ code, data }: { code?: number; data: any }) => {
         if (code === 0) {
@@ -153,6 +159,7 @@ export default function index() {
       setCheckData({ dataUrl: '', uuid: '', taskName: '' })
     }, 300)
   }
+
   // 下载按钮
   const handleDownload = (row: {
     id: string | undefined
@@ -162,20 +169,24 @@ export default function index() {
   }) => {
     row.dataUrl && (window.location.href = row.dataUrl)
   }
+
   // 输入框事件
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, type: number) => {
     let value = e.target.value
     formParams.serachName = value
     setFormParams({ ...formParams })
   }
+
   // 重置事件
   const handleReset = () => {
     setFormParams({ serachName: '' })
   }
+
   // 搜索事件
   const handleSubmit = () => {
     getListData()
   }
+
   // 数据初始化
   useEffect(() => {
     getListData()
@@ -192,6 +203,7 @@ export default function index() {
         checkTags.push(tag.id)
       }
     })
+    // 筛选选中tag后的数据
     let filterData = listData.filter((value) => {
       let tagsList = value.tags
       if (tagsList) {
@@ -224,7 +236,7 @@ export default function index() {
             return item
           })
           if (!tagIds) {
-            setTags(repetition(tags))
+            setTags(deleteRepetition(tags))
           }
           setListData(list)
           setFilterListData(list)
@@ -310,7 +322,7 @@ export default function index() {
           marginBottom: '20px',
         }}
       />
-      <Table columns={columns} data={filterListData} loading={loading} operate={['checkOriginal', 'download']}></Table>
+      <Table columns={columns} data={filterListData} loading={loading}></Table>
       <MyPopover
         sx={{
           top: coord.y,

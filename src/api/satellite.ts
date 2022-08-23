@@ -1,4 +1,4 @@
-import request from '@/untils/request'
+import request from '@/utils/request'
 
 const api = {
   getSatelliteList: '/star-geo/task/listSatellite',
