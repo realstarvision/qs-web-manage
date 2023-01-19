@@ -20,7 +20,7 @@ i18n
   // 所有配置选项: https://www.i18next.com/overview/configuration-options
   .init({
     resources,
-    fallbackLng: "zh",
+    // fallbackLng: "zh",
     lng: "zh",
     debug: true,
     interpolation: {

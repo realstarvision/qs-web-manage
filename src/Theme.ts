@@ -6,7 +6,7 @@ const Theme = createTheme({
     palette: {
         mode: 'dark',
         primary: {
-            main: '#aebdd8',
+            main: '#2E6EDF',
         },
         secondary: {
             main: '#9070af',
@@ -34,14 +34,15 @@ const Theme = createTheme({
         //     light: '#212121',
         // },
         bt: {
-            main: '#aebdd8',
+            main: '#AEBDD8',
             dark: '#697283',
             cont: '#c189d9',
         }
     },
     typography: {
         // define default fonts.
-        fontFamily: 'PingFangSC-Regular, PingFang SC',
+        fontFamily: "-apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif"
+
     },
     '& .MuiPopover-root': {
         background: '#fff'

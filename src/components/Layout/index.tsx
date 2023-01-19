@@ -25,11 +25,11 @@ export default function Layout({ children }: { children?: any }) {
       <CssBaseline />
       <Header />
       <Sidebar />
-      <Footer />
+      {/* <Footer /> */}
       <Box component="main" className="main">
         <DrawerHeader />
         <Box className={fade ? 'translation-aimation visible' : 'hidden'}>{children ? children : <Outlet />}</Box>
-        <DrawerFooter />
+        {/* <DrawerFooter /> */}
       </Box>
     </Box>
   )

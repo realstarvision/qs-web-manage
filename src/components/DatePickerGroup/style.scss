@@ -1,0 +1,30 @@
+.datePickerGroup-container{
+  background:#F2F3F5;
+  caret-color: #333;
+  // padding-left:14px;
+  display:flex;
+  align-items:center;
+  border-radius: 3px;
+  .icon{
+    width: 16px;
+    height: 16px;
+  }
+  .divider{
+    display:inline-block;
+    width:10%;
+    color:#C1C1C1;
+    position: relative;
+    height: 100%;
+    &::after{
+      content: '';
+      width: 10px;
+      height: 2px;
+      background-color:#C1C1C1 ;
+      position: absolute;
+      z-index: 999;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

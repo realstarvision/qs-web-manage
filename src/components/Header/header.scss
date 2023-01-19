@@ -1,7 +1,7 @@
 .header{
   min-height: 80px ;
-  background: #232734 !important;
-  box-shadow: 0px 0px 24px 4px rgba(26,28,37,0.5000) !important;
+  background: #fff !important;
+  box-shadow:inset 0px -1px 1px 0px #E5E6EB !important;
   .bar{
     >img{
       width: 220px;
@@ -10,7 +10,11 @@
     .title{
       font-weight: 400;
       color: #FFFFFF;
-      font-size: 16px;
+      font-size: 24px;
+    }
+    .logo{
+      width: 120px;
+      height: 42px;
     }
     .user{
       display: flex; 
@@ -18,12 +22,12 @@
       align-items: center;
       flex-grow: 1;
       height: 100%;
-      .divider{
-        margin-right: 20px;
-        box-shadow: inset 0px 1px 0px 0px #3B4257;
-        background-color:  #3b4257;
-        opacity: 0.4;
-      }
+      // .divider{
+      //   margin-right: 20px;
+      //   box-shadow: inset 0px 1px 0px 0px #3B4257;
+      //   background-color:  #3b4257;
+      //   opacity: 0.4;
+      // }
       .user-info{
         margin-left: 20px;
         .name{

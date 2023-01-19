@@ -1,15 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>search icon</title>
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="slicing-v1.1" transform="translate(-1015.000000, -115.000000)">
-            <g id="search-butten备份" transform="translate(1007.000000, 111.000000)">
-                <g id="search-icon" transform="translate(8.000000, 4.000000)">
-                    <rect id="矩形" fill-opacity="0" fill="#FFFFFF" fill-rule="nonzero" x="0" y="0" width="16" height="16"></rect>
-                    <path d="M7.53250349,13.2563037 C10.6621035,13.2563037 13.1991702,10.719237 13.1991702,7.58963705 C13.1991702,4.46003705 10.6621035,1.92297038 7.53250349,1.92297038 C4.40290349,1.92297038 1.86583683,4.46003705 1.86583683,7.58963705 C1.86583683,10.719237 4.40290349,13.2563037 7.53250349,13.2563037 Z" id="路径" stroke="#FFFFFF"></path>
-                    <line x1="11.6064368" y1="11.6635704" x2="14.4348702" y2="14.4920037" id="路径" stroke="#FFFFFF"></line>
-                </g>
-            </g>
-        </g>
-    </g>
+<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="interactive-button/search">
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M9.56655 4.35679C7.97191 2.76215 5.38649 2.76215 3.79185 4.35679C2.19721 5.95143 2.19721 8.53685 3.79185 10.1315C5.38649 11.7261 7.97191 11.7261 9.56655 10.1315C11.1612 8.53685 11.1612 5.95143 9.56655 4.35679ZM2.96689 3.53183C5.01714 1.48158 8.34126 1.48158 10.3915 3.53183C12.3023 5.44266 12.4323 8.45999 10.7813 10.5213L12.8664 12.6064L12.0414 13.4313L9.95637 11.3463C7.89505 12.9972 4.87772 12.8673 2.96689 10.9565C0.916636 8.9062 0.916636 5.58208 2.96689 3.53183Z" fill="white"/>
+</g>
 </svg>

@@ -101,7 +101,7 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
       axisLabel: {
         color: '#AEBDD8',
         fontSize: 10,
-        fontFamily: 'PingFangSC-Regular, PingFang SC',
+        // fontFamily: 'PingFangSC-Regular, PingFang SC',
         fontWeight: 400,
         height: 14,
         lineHeight: 14,
@@ -199,7 +199,7 @@ export default function AddChart({ title, data }: { title: string; data: Array<A
               fontWeight: 400,
               fontSize: 10,
               lineHeight: 14,
-              fontFamily: 'PingFangSC-Regular, PingFang SC',
+              // fontFamily: 'PingFangSC-Regular, PingFang SC',
               formatter: '目标值\n{c}GB',
               distance: 10,
             },

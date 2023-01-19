@@ -7,6 +7,83 @@
     "passwordPlaceholder": "Password",
     "remember": "Remember me",
     "loginBtn": "LOGIN",
-    "prompt": "Please log in with DingTalk scan code"
+    "prompt": "Please log in with DingTalk scan code",
+    "btnText": "LOGIN",
+    "helperText": "账号或密码错误"
+  },
+  "date": {
+    "startTime": "开始日期",
+    "endTime": "结束日期"
+  },
+  "header": {
+    "logout": "退出"
+  },
+  "instrumentPanel": {
+    "welcomeText": "欢迎回来，",
+    "units": "个",
+    "echartTitle": {
+      "title": "订单数据",
+      "subTitle": "（近7日）",
+      "countOrder": "总订单量"
+    }
+  },
+  "customerManagement": {
+    "title": "查询表格",
+    "copyMessage": "复制到剪切板",
+    "searchBar": {
+      "accountCode": "账号编号",
+      "accountCodePlaceholder": "请输入账号编号",
+      "submitTime": "提交时间",
+      "searchBtnText": "查询",
+      "resetBtnText": "重置"
+    },
+    "stateList": {
+      "start": "启用",
+      "disable": "禁用"
+    },
+    "paginationProps": {
+      "count": "共有",
+      "units": "条"
+    },
+    "popupBox": {
+      "state": "启用/禁用",
+      "name": "姓名",
+      "company": "公司",
+      "editInfo": "编辑信息"
+    },
+    "table": {
+      "accountCode": "账号编号",
+      "name": "姓名",
+      "email": "邮箱",
+      "creatTime": "创建时间",
+      "action": "操作",
+      "checkBtn": "查看"
+    }
+  },
+  "orderManagement": {
+    "title": "查询表格",
+    "searchBar": {
+      "orderCode": "订单编号",
+      "orderCodePlaceholder": "请输入订单编号",
+      "orderType": "订单类型",
+      "orderTypePlaceholder": "请输入订单类型",
+      "email": "客户邮箱",
+      "emailPlaceholder": "请输入客户邮箱",
+      "orderState": "订单状态",
+      "submitTime": "提交时间"
+    },
+    "PopupBox": {
+      "areaLabel": "区域范围",
+      "downloadBtn": "下载区域数据",
+      "filtrateLabel": "筛选条件",
+      "dataOriginLabel": "数据源",
+      "orderDataLabel": "订单数据",
+      "communicationRecordLabel": "沟通记录",
+      "editStateLabel": "修改状态",
+      "deliverableLabel": "交付物",
+      "cancelBtn": "取消订单",
+      "confirmBtn": "确认订单",
+      "communicationRecordPlaceholder": "请记录与客户间的沟通内容"
+    }
   }
 }

@@ -33,3 +33,36 @@ export function deleteRepetition(data: any[]) {
 
   return peon
 }
+
+
+/* 复制到剪切板 */
+export function copyToClip(content) {
+  const aux = document.createElement('input')
+  aux.setAttribute('value', content)
+  document.body.appendChild(aux)
+  aux.select()
+  document.execCommand('copy')
+  document.body.removeChild(aux)
+}
+
+
+/* 保存成geojson文件下载 */
+export function saveGeoJSON(data, filename) {
+  if (!data) {
+    alert("保存的数据为空");
+    return;
+  }
+  if (!filename) filename = "json.geojson";
+  if (typeof data === "object") {
+    data = JSON.stringify(data, undefined, 4);
+  }
+  let blob = new Blob([data], { type: "text/geojson" }),
+    a = document.createElement("a");
+  a.download = filename;
+  a.href = window.URL.createObjectURL(blob);
+  a.dataset.downloadurl = ["text/geojson", a.download, a.href].join(":");
+  document.body.appendChild(a);
+  a.click();
+  // 然后移除
+  document.body.removeChild(a);
+}

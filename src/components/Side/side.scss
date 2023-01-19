@@ -1,7 +1,8 @@
 
 @mixin itemText{
   margin-left: 8px;
-  color: #fff
+  color: #666666;
+  font-size: 18px;
 }
 
 .menu{
@@ -14,11 +15,23 @@
     }
     .item-text{
        @include itemText;
+
+    }
+    .icon{
+      width: 20px;
+      height: 20px;
+      color:#666666;
     }
     // 一级路由使用
     .active{
       >div{
-          background: #2E3343;
+          color: #2E6EDF
+      }
+      .item-text{
+        color: #2E6EDF
+      }
+      .icon{
+        color:#2E6EDF
       }
     }
     // 二级路由使用
@@ -45,7 +58,7 @@
 
     >.active{
       .btn{
-        color: #FFFFFF ;
+        color: #2E6EDF ;
       }
     }
   }  
@@ -54,6 +67,12 @@
       color: $w-40;
       text-decoration: none;
       width: 100%;
+    }
+  }
+
+  .MuiListItemText-root {
+    .MuiTypography-root{
+      font-size: 14px;
     }
   }
 }

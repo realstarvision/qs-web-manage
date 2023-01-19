@@ -1,0 +1,128 @@
+.order_popupBox-container{
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  display: flex;
+  justify-content: space-between;
+  .from-item{
+    position: relative;
+    width: 47%;
+    .area{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .label{
+        font-size: 14px;
+      }
+      overflow: hidden;
+    }
+    .download_btn{
+      height: 32px;
+      padding: 8px;
+      color:#fff;
+      background:#2E6EDF;
+      &:hover{
+        background:#2E6EDF;
+      }
+    }
+    .area_img{
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+      margin-bottom: 15px;
+      border-radius: 2px;
+    }
+    .grid-item{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      margin-bottom: 15px;
+      position: relative;
+      .communicationRecord_btn{
+        color:#fff;
+        font-size: 12px;
+        padding: 5px;
+        position: absolute;
+        bottom: 0;
+        left: -5px;
+        text-align: left;
+        background:#2E6EDF;
+        transform: scale(0.8);
+        &:hover{
+          background:#2E6EDF;
+        }
+      }
+      .label{
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        line-height: 22px;
+        min-width: 60px;
+        margin-right: 17px;
+        .deliverableLabel{
+          display: flex;
+          align-items: center;
+        }
+        .help_icon{
+          width: 12px;
+          height: 12px;
+          opacity: 0.6;
+          cursor: pointer;
+          margin-top: 6px;
+          margin-left: 3px;
+          &:hover{
+            opacity: 1;
+          }
+        }
+      }
+      .content{
+        font-size: 14px;
+        font-weight: 400;
+        color: #666666;
+        line-height: 22px;
+      }
+    }
+    .steps{
+      width: 100%;
+      
+    }
+    .ant-steps-inline {
+      .ant-steps-item-container{
+        padding: 9px 10px 0 !important;
+      }
+      .ant-steps-item-active{
+        .ant-steps-item-title{
+          color:#1677ff !important
+        }
+      }
+    }
+
+    .btn-bar{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      .cancel_btn,.confirm_btn{
+        width: 104px;
+        height: 32px;
+        border-radius: 2px;
+        padding: 8px;
+        color:#fff;
+      }
+      .cancel_btn{
+        background:#DF2E2E;
+        &:hover{
+          background:#DF2E2E;
+        }
+      }
+      .confirm_btn{
+        background:#2E6EDF;
+        &:hover{
+          background:#2E6EDF;
+        }
+        margin-left: 15px;
+      }
+    }
+    .ant-table-thead>tr>th, .ant-table-wrapper .ant-table-tbody>tr>td{
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+  }
+}

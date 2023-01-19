@@ -1,0 +1,97 @@
+.instrument_panel-container{
+  color:#333333;
+  @include containerBox;
+  .welcome{
+    .icon{
+      width: 26px;
+      height: 26px;
+      margin-right: 2px;
+    }
+    font-size: 26px;
+    font-weight: bold;
+    line-height: 22px;
+  }
+  .order_type_list{
+    border-top: 1px solid  #F2F3F5;
+    border-bottom: 1px solid  #F2F3F5;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding: 25px 14px  24px 14px;
+    @media screen and (max-width: 1440px){
+      .emptyBox{
+        width: 0px;
+      }
+    }
+    @media screen and (min-width: 1700px){
+      .emptyBox{
+        width: 100px;
+      }
+    }
+    @media screen and (min-width: 1820px){
+      .emptyBox{
+        width: 300px;
+      }
+    }
+    @media screen and (min-width: 1920px){
+      .emptyBox{
+        width: 370px;
+      }
+    }
+    .order_type_item{
+      min-width: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // padding: 25px 0  24px 34px;
+      .icon{
+        width: 71px;
+        height: 71px;
+        margin-right: 17px;
+      }
+      .info{
+        .title{
+          line-height: 22px;
+          font-size: 16px;
+        }
+        .count{
+          font-size: 28px;
+          font-family: Roboto-Medium, Roboto;
+          font-weight: bold;
+          display: flex;
+          // justify-content: center;
+          align-items: center;
+          line-height: 22px;
+          margin-top: 15px;
+        }
+        .units{
+          font-size: 16px;
+          color: #666666;
+          margin-left: 10px;
+        }
+        .icon{
+          width: 14px;
+          height:10px;
+          margin-left: 10px;
+        }
+      }
+    }
+    .hr{
+      height: 71px;
+      width: 1px;
+      background-color: #F2F3F5 ;
+    }
+  }
+
+  .echart-title{
+    margin-top: 35px;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 22px;
+    span{
+      color: #666666;
+      font-weight: 400;
+      font-size: 16px;
+    }
+  }
+}

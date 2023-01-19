@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { logout } from '@/api/user'
+import { useTranslation } from 'react-i18next'
 import { getToken, removeUserInfo, getUserInfo } from '@/utils/auth'
 import { styled } from '@mui/material/styles'
 import { Toolbar, Divider, Typography, Box, Tooltip, IconButton, Avatar, Menu, MenuItem, AppBar } from '@mui/material'
@@ -8,7 +8,9 @@ import ClickAwayListener from '@mui/material/ClickAwayListener'
 import { removeToken } from '@/utils/auth'
 import { barHeight } from '@/config'
 import stardust from '@/assets/image/png/stardust.png'
-import avatar from '@/assets/image/png/avatar.png'
+import avatar from '@/assets/image/avatar.png'
+import SvgIcon from '@/components/SvgIcon'
+import { message } from 'antd'
 import './header.scss'
 
 // 自定义Header占位框
@@ -24,8 +26,8 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
 // 自定义menu
 export const MyMenu = styled(Menu)({
   '& .MuiPaper-root': {
-    background: 'linear-gradient(180deg, #AEBDD8 0%, #7E98C8 85%, #8499BF 100%)',
-    boxShadow: '0px 0px 8px 0px rgba(43,48,63,0.5000)',
+    background: '#fff',
+    // boxShadow: '0px 0px 8px 0px rgba(43,48,63,0.5000)',
     '& .MuiMenu-list': {
       padding: '3px 0',
     },
@@ -33,9 +35,9 @@ export const MyMenu = styled(Menu)({
 })
 
 export default function Header() {
-  const settings = ['退出']
   const navigate = useNavigate()
-
+  const { t } = useTranslation()
+  const [messageApi, contextHolder] = message.useMessage()
   // 绑定点击头像按钮，用于（打开/关闭）弹出框
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
@@ -51,14 +53,11 @@ export default function Header() {
 
   // 退出登录事件
   const handleLogout = () => {
-    logout({ clientId: 0, uuid: getToken() }).then((res: any) => {
-      if (res.code === 0) {
-        removeUserInfo()
-        removeToken()
-        navigate('/login')
-        handleCloseUserMenu()
-      }
-    })
+    removeUserInfo()
+    messageApi.success('退出成功，2s后跳转到登录页')
+    setTimeout(() => {
+      navigate('/login')
+    }, 2000)
   }
 
   return (
@@ -66,7 +65,7 @@ export default function Header() {
       position="fixed"
       className="header"
       sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
+        zIndex: 100,
       }}
     >
       <Toolbar
@@ -75,38 +74,41 @@ export default function Header() {
           height: barHeight,
         }}
       >
-        <img src={stardust} />
-        <Typography sx={{ display: { xs: 'none', md: 'flex' } }} className="title">
-          综合管理系统
-        </Typography>
+        {/* <img src={stardust} /> */}
+        <SvgIcon svgName="logo" svgClass="logo"></SvgIcon>
 
         <Box className="user">
-          <Divider orientation="vertical" variant="middle" flexItem className="divider" />
+          {/* <Divider orientation="vertical" variant="middle" flexItem className="divider" /> */}
 
           {/* s 头像 */}
           <ClickAwayListener onClickAway={handleCloseUserMenu}>
             <Tooltip title="" arrow>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={getUserInfo() ? getUserInfo().avatarUrl : avatar} />
-              </IconButton>
+              <Avatar
+                onClick={handleOpenUserMenu}
+                src={avatar}
+                sx={{
+                  cursor: 'pointer',
+                  '&:hover': {
+                    opacity: 0.6,
+                  },
+                }}
+              />
             </Tooltip>
           </ClickAwayListener>
           {/* e 头像 */}
 
           {/* s 基本信息 */}
-          <Box className="user-info">
-            <Typography className="name">{getUserInfo() ? getUserInfo().nick : ''}</Typography>
+          {/* <Box className="user-info">
+            <Typography className="name">{getUserInfo() ? getUserInfo().userName : ''} </Typography>
             <Typography className="department">
-              {(getUserInfo() && getUserInfo().title ? getUserInfo().title : '无职务') +
-                '-' +
-                (getUserInfo() ? getUserInfo().depts[0].deptName : '')}
+              {getUserInfo() && getUserInfo().roleEntitie ? getUserInfo().roleEntitie.roleName : '无职务'}
             </Typography>
-          </Box>
+          </Box> */}
           {/* e 基本信息 */}
 
           {/* s 弹出框 */}
           <MyMenu
-            sx={{ mt: '45px', ml: '20px' }}
+            sx={{ mt: '45px', mr: '20px' }}
             id="menu-appbar"
             anchorEl={anchorElUser}
             anchorOrigin={{
@@ -120,27 +122,27 @@ export default function Header() {
             }}
             open={Boolean(anchorElUser)}
           >
-            {settings.map((setting) => (
-              <MenuItem
-                key={setting}
-                onClick={handleLogout}
-                sx={{
-                  color: '#ffffff99',
-                  ':hover': {
-                    background: 'none',
-                    color: '#fff',
-                  },
-                }}
-              >
-                <Typography textAlign="center" sx={{ fontSize: '12px' }}>
-                  {setting}
-                </Typography>
-              </MenuItem>
-            ))}
+            <Typography
+              textAlign="center"
+              sx={{
+                fontSize: '12px',
+                padding: '8px',
+                margin: '5px 0',
+                cursor: 'pointer',
+                minWidth: '70px',
+                '&:hover': {
+                  background: '#eee',
+                },
+              }}
+              onClick={handleLogout}
+            >
+              {t('header.logout')}
+            </Typography>
           </MyMenu>
           {/* e 弹出框 */}
         </Box>
       </Toolbar>
+      {contextHolder}
     </AppBar>
   )
 }

@@ -101,10 +101,10 @@ export default function index({
                     background: row.open ? '#2E3343' : '',
                   }}
                 >
-                  {columns.map((column: Column) => (
+                  {columns.map((column: Column, indexColumn) => (
                     <MyTableCell align={column.align || 'left'}>
                       <Box className="height-24">
-                        {column.slot ? <column.slot row={row}></column.slot> : row[column.key]}
+                        {column.slot ? <column.slot row={row} index={indexColumn}></column.slot> : row[column.key]}
                       </Box>
                     </MyTableCell>
                   ))}

@@ -1,0 +1,66 @@
+.customer_management-container{
+  color:#333333;
+  @include containerBox;
+  position: relative;
+  .title{
+    font-weight: bold;
+    color: #333333;
+    line-height: 24px;
+    font-size: 16px;
+    // font-family: system-ui;
+    // font-family:PingFang SC-Medium, PingFang SC !important,
+
+  }
+  .pagination_count{
+    position: absolute;
+    bottom: 50px;
+    right:30px;
+  }
+  .copyIcon{
+    width: 12px;
+    height: 12px;
+    margin-left: 7px;
+    cursor: pointer;
+    color:#C9CDD4;
+    &:hover{
+      color:#999
+    }
+  }
+}
+.customer-PopupBox-item{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  justify-content: flex-end;
+  &:last-child{
+    margin-bottom: 0;
+  }
+  .label{
+    font-size: 14px;
+    font-weight: 400;
+    color: #333333;
+    line-height: 22px;
+    margin-right: 10px;
+  }
+  .sub-item{
+    display: flex;
+    align-items: center;
+    .label{
+      font-size: 14px;
+      font-weight: 400;
+      color: #666666;
+      line-height: 22px;
+    }
+  }
+  .loadingButton{
+    height: 25px;
+    padding: 9px 16px ;
+    background: #2E6EDF ;
+    border-radius: 2px ;
+    color: #fff ;
+    font-size: 14px ;
+    &:hover {
+      background: #2E6EDF ;
+    }
+  }
+}

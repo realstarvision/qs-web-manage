@@ -1,0 +1,55 @@
+.ant-table-wrapper{
+  th{
+    color:#333333 !important;
+    &::before{
+      width: 0 !important;
+    }
+    // 排序
+    .ant-table-column-sorters{
+      justify-content:center;
+      .ant-table-column-title{
+        flex: none;
+        margin-right: 5px;
+      }
+    }
+    // 筛选
+    .ant-table-filter-column{
+      justify-content:center;
+      .ant-table-column-title{
+        flex: none;
+        margin-right: 5px;
+      }
+    }
+  }
+  td{
+    color:#333333 !important
+  }
+
+  // 分页
+  .ant-pagination{
+    .ant-pagination-item{
+      border-radius: 2px !important;
+      font-weight: 600 !important;
+      color: #666666 ;
+    } 
+    .ant-pagination-item-active{
+      background: #E8F3FF !important;
+      color: #2E6EDF !important;
+      border: none !important;
+    }
+    .ant-pagination-total-text{
+      font-weight: 400;
+      color: #333333;
+    }
+    .ant-pagination-options{
+      .ant-select{
+        .ant-select-selector{
+          border-color: transparent !important;
+          background-color: #F2F3F5 !important;
+          border-radius: 2px;
+          color:#333333
+        }
+      }
+    }
+  } 
+}

@@ -4,26 +4,39 @@ import { styled } from '@mui/material/styles'
 
 const Input = styled(TextField)({
   '& .MuiOutlinedInput-root': {
-    fontSize: '12px',
-    fontWeight: 300,
-    color: '#FFFFFF',
-    width: '100%',
-    height: '26px',
+    fontSize: '14px',
+    fontWeight: 500,
+    color: '#666666',
+    background:'#F2F3F5',
     '& fieldset': {
       border: 'none',
-      background: '#232734',
-      borderRadius: '2px',
-      opacity: '0.6',
     },
-  },
-  '& .MuiPopover-root': {
-    '& .MuiPaper-root': {
-      background: '#353B4D',
-      '& .MuiMenu-list': {
-        height: '200px !important',
+    'input':{
+      caretColor:'#333',
+      // background:'#F2F3F5',
+      borderRadius: '3px',
+      '&::-webkit-input-placeholder':{
+        color: '#c1c1c1',
       },
-    },
+      '&:-ms-input-placeholder':{
+        color: '#c1c1c1',
+      }
+    }
   },
+  // '& .MuiPopover-root': {
+  //   '& .MuiPaper-root': {
+  //     background: '#353B4D',
+  //     '& .MuiMenu-list': {
+  //       height: '200px !important',
+  //     },
+  //   },
+  // },
+})
+
+export const MyInput = styled(Input)({
+  '& .MuiInputBase-input':{
+    padding: '6.5px 14px !important'
+  }
 })
 
 export default Input

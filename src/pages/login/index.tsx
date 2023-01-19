@@ -1,121 +1,161 @@
 import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import QRCodeCanvas from 'qrcode.react'
+import { useTranslation } from 'react-i18next'
+import { CSSTransition } from 'react-transition-group'
 import { setToken, setUserInfo } from '@/utils/auth'
 import { useNavigate } from 'react-router-dom'
-import { Box, Typography } from '@mui/material'
-import { useTranslation } from 'react-i18next'
-import { getLoginUrl, getUserInfo } from '@/api/user'
-import Snackbar from '@/components/Snackbar'
+import { Box, Typography, Grid, FormLabel, InputAdornment } from '@mui/material'
+import { LoadingButton as Button } from '@/components/Button'
+import Input from '@/components/Input'
+import { Login } from '@/api/user'
+import SvgIcon from '@/components/SvgIcon'
 import './style.scss'
-import starVision from '@/assets/image/png/starVision.png'
-import refreshQR from '@/assets/image/png/refreshQR.png'
+
+// 图片
+import logo from '@/assets/image/logo.png'
 
 function Home() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const [qrUrl, setQrUrl] = useState('')
-  const [QRCodeState, setQRCodeState] = useState(false)
+  // 眼睛（密码）
+  let [eyeState, setEyeState] = useState(true)
+  // 登录加载状态
+  let [loading, setLoading] = useState(false)
+  // 报错消息
+  const [helperText, setHelperText] = useState('')
   const [openMessage, setOpenMessage] = useState(false)
+  const [params, setParams] = useState({
+    name: '',
+    password: '',
+  })
 
-  // 获取用户信息接口
-  let getUserInfoData = (uuid: string, timer: string | number | NodeJS.Timer | undefined) => {
-    getUserInfo({ clientId: 0, uuid: uuid }).then((res: any) => {
-      if (res.code === 0) {
-        setUserInfo(res.data)
-        clearInterval(timer)
-        navigate('/')
-      } else if (res.code === 10004) {
-        setOpenMessage(true)
-        setQRCodeState(true)
-        clearInterval(timer)
-      }
-    })
+  /* 登录 */
+  const handleLogin = () => {
+    setHelperText('')
+    setLoading(true)
+    Login(params)
+      .then(({ data, code }: any) => {
+        if (code === 200) {
+          setUserInfo(data)
+          navigate('/')
+        } else {
+          setHelperText(t('login.helperText'))
+        }
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+  /* 键盘按下登录 */
+  const handleKeyUp = (e) => {
+    if (e.keyCode === 13) {
+      handleLogin()
+    }
+  }
+  /* 设置账户密码 */
+  const handleUsernameChange = (e) => {
+    params.name = e.target.value
+    setParams({ ...params })
+  }
+  const handlePhoneNumberChange = (e) => {
+    params.password = e.target.value
+    setParams({ ...params })
   }
 
-  // 获取登录地址接口
-  const getLoginUrlData = (uuid: string) => {
-    getLoginUrl({ clientId: 0, uuid: uuid }).then((res) => {
-      setQrUrl(res.data)
-      setToken(uuid)
-      let timer = setInterval(() => {
-        getUserInfoData(uuid, timer)
-      }, 500)
-
-      setTimeout(() => {
-        clearInterval(timer)
-        setQRCodeState(true)
-      }, 120000)
-    })
+  /* 密码眼睛切换 */
+  const handleEyeClick = () => {
+    eyeState = !eyeState
+    setEyeState(eyeState)
   }
-
-  // 初始化
-  useEffect(() => {
-    initData()
-  }, [])
-
-  // 初始化事件
-  let initData = () => {
-    const uuid = uuidv4()
-    getLoginUrlData(uuid)
-  }
-
-  // 二维码失效重新获取点击事件
-  let handleQRClick = () => {
-    initData()
-    setQRCodeState(false)
-  }
-
-  // 提示框关闭事件
-  let handleClose = () => {
-    setOpenMessage(false)
-  }
-
   return (
-    <Box className="container">
-      <Snackbar
-        open={openMessage}
-        message="暂无权限，请联系人事开通！"
-        onClose={handleClose}
-        background="#232734"
-      ></Snackbar>
-      <Box className="login_box">
-        <img src={starVision} className="starvisonIcon" />
-        <Box className="qrCode_box">
-          <Box className="qrCode">
-            <Box
+    <Box className="login-container">
+      <Box className="login-wapper">
+        <img src={logo} className="logo_img" />
+        <Grid
+          container
+          spacing={{ xs: 4 }}
+          sx={{
+            padding: '20px 0',
+            width: '400px !important',
+          }}
+          className="grid"
+        >
+          <Grid item xs={12} className="from-item">
+            <Input
+              required
+              id="dataInput"
+              size="small"
+              placeholder={t('login.userPlaceholder')}
+              // value={formParams.firstInput}
+              onChange={handleUsernameChange}
+              autoComplete="off"
+              style={{
+                width: '65%',
+              }}
+            />
+          </Grid>
+
+          <Grid item xs={12} className="from-item">
+            <Input
+              onKeyDown={handleKeyUp}
+              required
+              id="phoneInput"
+              size="small"
+              placeholder={t('login.passwordPlaceholder')}
+              value={params.password}
+              onChange={handlePhoneNumberChange}
+              autoComplete="off"
+              style={{
+                width: '65%',
+              }}
+              type={eyeState ? 'password' : 'text'}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <SvgIcon
+                      svgName={eyeState ? 'eye_hidden' : 'eye_visible'}
+                      svgClass="icon"
+                      onClick={handleEyeClick}
+                    ></SvgIcon>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+
+          <Grid item xs={12} className="from-item">
+            <Button
+              onClick={handleLogin}
+              loading={loading}
               sx={{
-                width: '100%',
-                position: 'relative',
+                width: '65%',
+                height: '36px',
+                background: '#2E6EDF',
+                borderRadius: '4px',
+                color: '#fff',
+                fontSize: '12px',
+                '&:hover': {
+                  background: '#2E6EDF',
+                },
               }}
             >
-              <QRCodeCanvas
-                id="qrCode"
-                renderAs="svg"
-                value={qrUrl}
-                size={300}
-                fgColor="#1C1C25"
-                bgColor="#616C8C"
-                style={{ margin: 'auto', width: '120px', height: '120px' }}
-                level="M"
-              ></QRCodeCanvas>
-              {QRCodeState ? (
-                <Box onClick={handleQRClick} className="qrCode_shade">
-                  <Box className="box">
-                    {/* <SvgIcon svgName="refreshQR" svgClass="icon"></SvgIcon> */}
-                    <img src={refreshQR} className="icon" />
-                    <Typography className="font">请刷新二维码</Typography>
-                  </Box>
-                </Box>
-              ) : (
-                ''
-              )}
-            </Box>
-            <Typography className="hint" component="p">
-              {t('login.prompt')}
-            </Typography>
-          </Box>
-        </Box>
+              {t('login.btnText')}
+            </Button>
+          </Grid>
+          {/* <Grid item xs={12} className="from-item"> */}
+          <CSSTransition
+            in={Boolean(helperText)}
+            //动画时间
+            timeout={1000}
+            // 前缀名注意S
+            classNames="DeclineIn"
+          >
+            <span className="error">{helperText}</span>
+          </CSSTransition>
+
+          {/* </Grid> */}
+        </Grid>
       </Box>
     </Box>
   )

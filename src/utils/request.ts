@@ -44,7 +44,7 @@ instance.interceptors.response.use(
       Message({ content: '服务器错误' })
       return Promise.reject(new Error('服务器错误'))
     } else if (status !== 200 && status !== 10002 && status !== 10004) {
-      return Promise.reject(res.data)
+      return res.data
     } else {
       return res.data
     }

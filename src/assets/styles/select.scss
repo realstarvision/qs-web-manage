@@ -1,0 +1,9 @@
+// 解决下拉选择框样式失效问题
+.MuiMenu-paper{
+  .MuiMenu-list{
+    .MuiButtonBase-root{
+      display: block ;
+      padding: 8px;
+    }
+  }
+}
