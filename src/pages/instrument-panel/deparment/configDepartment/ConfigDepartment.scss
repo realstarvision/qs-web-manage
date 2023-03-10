@@ -1,0 +1,38 @@
+.ConfigDepartBox{
+
+height: 90vh;
+// background-color: red;
+background: #F7F8FA;
+padding:16px 20px 0px 20px;
+display: flex;
+flex-direction: column;
+
+// 面包屑
+.ConfigDepartBra{
+// background-color: aqua;
+margin-bottom: 20px;
+
+}
+// 内容
+.ConfigDepartMain{
+flex: 1;
+background-color: #FFFFFF;
+padding: 10px 20px 0px 20px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+// 内容区上半部分盒子
+.configDepartTopBox{
+
+flex: 1;
+// background-color: yellow;
+padding-left: 8px;
+
+
+
+}
+
+
+}

@@ -1,0 +1,175 @@
+// 最外层盒子
+.EditDepartRole {
+
+    @include container;
+    // background-color: red;
+
+
+
+    // 内容区
+    .EditDepartRoleMain {
+        background: #FFFFFF;
+        // background-color: yellow;
+        border-radius: 4px 4px 4px 4px;
+        flex: 1;
+        padding: 20px 20px 0px 20px;
+        margin-top: 20px;
+
+        // 内容区栅格布局盒子
+        .EditDepartRoleContainer {
+            height: 100%;
+
+            // 左侧区域盒子
+            .EditDepartRoleLeft {
+                height: 100%;
+                // background: pink;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                // 标题
+                .EditDepartRoleTitle {
+                    // background: #fff;
+                    margin-bottom: 16px;
+                    font-size: 16px;
+                    font-family: PingFang SC-Medium, PingFang SC;
+                    font-weight: 600;
+                    color: #333333;
+                }
+
+                // 左侧标题以下盒子
+                .EditDepartRoleForm {
+                    // background: red;
+                    margin-left: 8px;
+
+                    // 角色名称，角色描述输入框盒子
+                    .EditDepartRoleName {
+                        display: flex;
+
+                        // background: yellow;
+                        // 角色描述的输入框内边距
+                        .css-uyazic-MuiFormControl-root-MuiTextField-root .MuiInputBase-input {
+                            padding-left: 0px !important;
+                        }
+
+                        // 角色名称，描述文字盒子
+                        .EditDepartRoleLabel {
+                            margin-right: 16px;
+                            white-space: nowrap;
+                            font-size: 14px;
+                            font-family: PingFang SC-Regular, PingFang SC;
+                            font-weight: 400;
+                            color: #666666;
+                            display: flex;
+                            align-items: center;
+                        }
+
+                        // 角色描述文本盒子
+                        .EditDepartRoleDescribe {
+                            align-items: start;
+                        }
+                    }
+
+                    // 修改权限按钮盒子
+                    .DepRoleEditToPri {
+                        text-decoration: none;
+                        font-size: 14px;
+                        font-family: PingFang SC-Regular, PingFang SC;
+                        font-weight: 400;
+                        color: #165DFF;
+                    }
+                }
+
+                // 左侧底部盒子
+                .EditDepartRoleLeftFot {
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+                    height: 56px;
+                    margin-bottom: 20px;
+
+
+
+                    .EditDepRolLefFotBut {
+
+
+                        background: #165DFF;
+
+                        font-size: 14px;
+                        font-family: PingFang SC-Regular, PingFang SC;
+                        font-weight: 400;
+                        color: #FFFFFF;
+
+                    }
+                }
+
+            }
+        }
+
+        // 中间分割区域
+        .EditDepRolContainer {
+
+            height: 100%;
+            // background: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            // 中间分割线
+            .EditDepRolContainerDivider {
+                height: 100%;
+                background-color: #E5E6EB;
+            }
+        }
+
+        // 右侧盒子
+        .EditDepartRoleRight {
+            height: 100%;
+            background: #fff;
+            margin-bottom: 20px;
+
+            // 右侧第一行盒子
+            .EditDepartRoleRightTitle {
+
+                // background: red;
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+
+                // 左侧盒子
+                .EditDepartRoleRightTitleLeft {
+                    // background: pink;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+                    .EditDepartRoleAllNum {
+
+                        color: #165DFF;
+                    }
+                }
+                // 角色管理按钮
+                .EditDepartRoleToManageBut{
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #FFFFFF;
+                    background: #165DFF;
+                    height: 32px;
+border-radius: 2px 2px 2px 2px;
+
+
+                }
+            }
+
+        }
+
+
+
+
+
+    }
+}

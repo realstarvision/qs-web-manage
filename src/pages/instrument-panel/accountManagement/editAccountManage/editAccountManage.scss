@@ -1,0 +1,103 @@
+// 最外侧盒子
+.editAccountManage {
+    @include container;
+
+    // 面包屑
+    .editAccountManageBra {
+        margin-bottom: 20px;
+        // background-color: aqua;
+    }
+    // 内容区
+    .editAccountManageMain {
+        background-color: #FFFFFF;
+        border-radius: 4px 4px 4px 4px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        // background-color: yellow;
+        padding: 20px 20px 0px 20px;
+
+        // 内容区 标题
+        .editAccountManageTitle {
+            font-size: 16px;
+            font-family: PingFang SC-Medium, PingFang SC;
+            font-weight: 600;
+            color: #333333;
+            // background-color: aqua;
+        }
+// form
+.editAccountManageForm{
+flex: 1; 
+display: flex;
+ flex-direction: column;
+  flex-wrap: nowrap; 
+  margin-top: 20px; 
+  justify-content: left; 
+  font-family: PingFang SC-Regular, PingFang SC !important;
+   font-size: '14px'; 
+   .ant-form-item-no-colon{
+    font-family: PingFang SC-Regular, PingFang SC !important;
+   }
+//    上部分表单
+   .editAccountManageFormTop{
+
+    flex: 1;
+    // 每个输入框
+.editAccountManageFormInput{
+    width: 40%;
+    font-size: 14px;
+    font-weight: 400;
+    color:#666666 ;
+    background: #F2F3F5;
+    border-radius: 2px 2px 2px 2px;
+    border:0px;
+    height: 40px;
+    
+}
+// 第一个输入框
+.editAccountManageFormInputFirst{
+
+    background: #Fff;
+     width: 40%; font-size: 14px;
+    border-radius:  2px 2px 2px 2px;
+    border:0px;
+    height: 32px;
+
+}
+// 选择输入框
+.ant-select-selector{
+
+    border-radius: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    color:#666666 ;
+    border:0px;
+    height: 32px;
+}
+   }
+}
+       
+    }
+}
+ // 内容区底部
+ .addAccountManageFooter {
+    padding-top: 10px;
+    height: 66px;
+    // background-color: blue;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    border-top: 1px solid #E5E6EB;
+
+    .addAccountManageButton {
+        height: 34px;
+        background: #165DFF;
+        border-radius: 2px 2px 2px 2px;
+        text-align: center;
+        color:#fff;
+        line-height: 100%;
+
+    }
+}

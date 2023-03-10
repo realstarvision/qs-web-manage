@@ -1,26 +1,33 @@
 
 @mixin itemText{
   margin-left: 8px;
-  color: #666666;
-  font-size: 18px;
+  // color: #666666;
+  font-size: 14px;
+  // color: #666666;
+  font-family: PingFang SC-Regular, PingFang SC
+
 }
 
 .menu{
-  overflow: auto;
+
+overflow: auto;
+
   .menuList{
+  
+ 
     .list-item{
       display: flex;
-      padding: 8px 16px;
-
-    }
+      padding: 8px 16px !important;
+    
+    } 
     .item-text{
        @include itemText;
-
+    
     }
     .icon{
-      width: 20px;
-      height: 20px;
-      color:#666666;
+      width: 18px;
+      height: 18px;
+   
     }
     // 一级路由使用
     .active{
@@ -28,7 +35,8 @@
           color: #2E6EDF
       }
       .item-text{
-        color: #2E6EDF
+        color: #2E6EDF;
+        
       }
       .icon{
         color:#2E6EDF
@@ -36,12 +44,17 @@
     }
     // 二级路由使用
     .item{
+     
       .item-text{
         @include itemText;
+       
      }
      .second-text{
       margin-left: 8px; 
-      font-size: 16px
+      font-size: 16px;
+    
+    
+
      }
     a{
       font-size: 16px;
@@ -49,30 +62,36 @@
       text-decoration: none;
       &:hover{
         cursor: pointer;
+    
       }
-      width: 100%;
+   
     }
     .btn{
       margin-left: 15px;
+     
     }
 
     >.active{
       .btn{
         color: #2E6EDF ;
+      
+      
       }
     }
   }  
 
     a{
-      color: $w-40;
+      // color: $w-40;
       text-decoration: none;
-      width: 100%;
+      color: #666666;
+    
     }
   }
 
   .MuiListItemText-root {
     .MuiTypography-root{
       font-size: 14px;
+     
     }
   }
 }

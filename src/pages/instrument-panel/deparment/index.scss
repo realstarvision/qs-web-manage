@@ -1,0 +1,169 @@
+// 最外层盒子
+.departmentBox {
+    height: 90vh;
+    padding: 20px 20px 0px 20px;
+    background: #F7F8FA;
+    display: flex;
+    flex-direction: column;
+
+    // 内容盒子
+    .departmentMain {
+        padding: 20px;
+        background: #FFFFFF;
+        border-radius: 4px 4px 4px 4px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        // 标题
+        .departmentTitle {
+            font-size: 16px;
+            font-family: PingFang SC-Medium, PingFang SC;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        // 搜索盒子
+        .departmentSearch {
+            // background-color: blue;
+            padding-left: 8px;
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            // 每一个搜索框盒子
+            .departmentFrom-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+
+                // 搜索框文字
+                .departmentLabel {
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+                    white-space: nowrap;
+                    margin-right: 16px;
+
+                }
+
+                // 搜索框
+            }
+
+            // 按钮盒子
+            .btn-bar {
+                border-left: 1px solid #E5E6EB;
+                padding-left: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+
+                //    查询按钮
+                .departmentSearch_btn {
+                    height: 32px;
+                    background: #165DFF;
+                    border-radius: 2px 2px 2px 2px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #FFFFFF;
+
+                    .departmentIcon {
+
+                        width: 11px;
+                        height: 11px;
+
+
+
+                    }
+
+                }
+
+                //  搜索按钮
+                .departmentReset_btn {
+                    height: 32px;
+                    text-align: center;
+                    background: #F2F3F5;
+                    border-radius: 2px 2px 2px 2px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+
+                    .departmentIcon {
+
+                        width: 11px;
+                        height: 11px;
+
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+        // 分割线
+        .departmenTHr {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            background-color: #E5E6EB;
+            height: 1px;
+            width: 100%;
+
+
+        }
+
+        // 新增按钮盒子
+        .departmentAddBox {
+            margin-bottom: 16px;
+
+            .departmentAddBut {
+                width: auto;
+                height: 32px;
+                background: #165DFF;
+                border-radius: 2px 2px 2px 2px;
+                line-height: 32px;
+                text-align: center;
+                font-size: 14px;
+                font-family: PingFang SC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #FFFFFF;
+            }
+        }
+
+        // table
+        .departmentTableBox {
+            flex: 1;
+
+            display: flex;
+            flex-direction: column;
+
+            .departmentTable {
+                height: auto;
+                min-height: 100% !important;
+            }
+
+        }
+    }
+
+}
+
+.departmentTable td {
+    padding: 9px 16px !important;
+
+
+}
+
+.departmentTable th {
+
+    padding: 9px 16px !important;
+    background: #F2F3F5 !important;
+}

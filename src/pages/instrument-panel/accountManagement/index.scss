@@ -1,0 +1,130 @@
+// 最外层盒子
+.accountBox{
+
+@include container;
+background-color:#F7F8FA;
+// 内容
+.accountMain{
+display: flex;
+flex-direction: column;
+
+background: #FFFFFF;
+border-radius: 4px 4px 4px 4px;
+padding:20px;
+flex: 1;
+
+// 标题
+.accountTitle{
+
+    font-size: 16px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 600;
+    color: #333333;
+}
+// 输入框
+.accountSearch {
+    height: 32px;
+    margin: 20px 0px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    // 每个搜索框的盒子
+    .accountFrom-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+// 搜索框文字
+        .accountLabel {
+            display: flex;
+            align-items: center;
+            margin-right: 28px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+
+        }
+    }
+    //搜索框旁边按钮
+    .accountSearchBtn {
+        flex: 1;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+
+        // 重置按钮
+        .accountStartButton {
+            background: #F2F3F5;
+            border-radius: 2px 2px 2px 2px;
+            margin-right: 20px;
+            height: 32px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+            line-height: 22px;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+
+            .icon {
+
+                height: 11px;
+
+
+            }
+
+
+        }
+
+        // 搜索按钮
+        .accountSearchBtnRight {
+
+            background: #165DFF;
+            border-radius: 2px 2px 2px 2px;
+
+            height: 32px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 22px;
+            text-align: center;
+
+            white-space: nowrap;
+            .icon {
+                height: 11px;
+            }
+        }
+    }
+  
+}
+.accountHr{
+    margin: 0px;
+}
+// 新增按钮
+.accountBut{
+padding:20px 0px;
+
+
+}
+// 新增按钮盒子
+.accountButton{
+
+    height: 32px;
+    background: #165DFF;
+    border-radius: 2px 2px 2px 2px;
+    opacity: 1;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+font-family: PingFang SC-Regular, PingFang SC;
+font-weight: 400;
+color: #FFFFFF;
+
+
+}
+}
+
+}

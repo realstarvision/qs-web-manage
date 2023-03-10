@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 const api = {
   userList: '/star-store/background/findUserListByPage',
-  login: '/star-store/background/login',
+  login: '/star-qiaosi/user/login',
   updateUser: '/star-store/background/updateUser',
 
 }

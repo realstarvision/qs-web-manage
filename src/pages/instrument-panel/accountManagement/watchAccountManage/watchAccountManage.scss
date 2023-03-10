@@ -1,0 +1,213 @@
+// 最外层盒子
+.watchAccountBox {
+
+    @include container;
+    background-color: #F7F8FA;
+
+    // 内容
+    .watchAccountMain {
+        display: flex;
+        flex-direction: column;
+margin-top: 20px;
+        background: #FFFFFF;
+        border-radius: 4px 4px 4px 4px;
+        padding: 20px;
+        flex: 1;
+
+        // 标题
+        .watchAccountTitle {
+
+            font-size: 16px;
+            font-family: PingFang SC-Medium, PingFang SC;
+            font-weight: 600;
+            color: #333333;
+        }
+
+        // 输入框
+        .watchAccountSearch {
+            height: 32px;
+            margin: 20px 0px;
+            margin-left: 8px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+
+            // 每个搜索框的盒子
+            .watchAccountFrom-item {
+                display: grid;
+                grid-template-columns: auto 1fr;
+
+                // 搜索框文字
+                .watchAccountLabel {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 28px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+
+                }
+            }
+
+            //搜索框旁边按钮
+            .watchAccountSearchBtn {
+                flex: 1;
+                display: flex;
+                justify-content: end;
+                align-items: end;
+
+                // 重置按钮
+                .watchAccountStartButton {
+                    background: #F2F3F5;
+                    border-radius: 2px 2px 2px 2px;
+                    margin-right: 20px;
+                    height: 32px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+                    line-height: 22px;
+                    text-align: center;
+                    overflow: hidden;
+                    white-space: nowrap;
+
+                    .icon {
+                        height: 11px;
+                    }
+                }
+
+                // 搜索按钮
+                .watchAccountSearchBtnRight {
+                    background: #165DFF;
+                    border-radius: 2px 2px 2px 2px;
+                    height: 32px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #FFFFFF;
+                    line-height: 22px;
+                    text-align: center;
+                    white-space: nowrap;
+
+                    .icon {
+                        height: 11px;
+                    }
+                }
+            }
+
+        }
+
+        .watchAccountHr {
+            margin: 0px;
+        }
+
+        // 新增按钮
+        .watchAccountBut {
+            padding: 20px 0px;
+
+
+        }
+
+        // 新增按钮盒子
+        .watchAccountButton {
+
+            height: 32px;
+            background: #165DFF;
+            border-radius: 2px 2px 2px 2px;
+            opacity: 1;
+            text-align: center;
+            line-height: 32px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+
+
+        }
+    }
+
+    // table盒子
+    .accountTableBox {
+        padding: 0px;
+
+        font-size: 14px;
+        box-sizing: border-box;
+
+    }
+
+    .accountTableBox td {
+
+        padding: 9px 16px !important;
+
+    }
+
+    .accountTableBox th {
+
+        padding: 9px 16px !important;
+
+    }
+
+    .accountTableOutBox {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 16px;
+
+        .accountTableButtonBox {
+            display: flex;
+            justify-content: center;
+
+            .accountTableButtonSel {
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                text-align: center;
+                width: 65px;
+
+                .accountTableButtonSelLength {
+                    color: #165DFF;
+
+                }
+            }
+
+            .accountTableDelBut {
+                width: 60px;
+
+                height: 30px;
+                font-size: 14px;
+                text-align: center;
+                border-radius: 2px 2px 2px 2px;
+                border: 1px solid #E0E2E4;
+                margin-left: 32px;
+                margin-right: 30px;
+                font-family: PingFang SC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #666666;
+            }
+
+            .accountTableOutBut {
+                width: 60px;
+                background: #165DFF;
+                height: 30px;
+                font-size: 14px;
+                text-align: center;
+                border-radius: 2px 2px 2px 2px;
+                font-family: PingFang SC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #FFFFFF;
+
+
+            }
+
+        }
+
+    }
+
+    .ant-select {
+        .ant-select-selector {
+
+            background: #F2F3F5 !important
+        }
+    }
+}

@@ -1,0 +1,59 @@
+// 底部最外层盒子
+.addNoticeFooterBox{
+    // background:blue;
+    display:flex;
+     justify-content:space-between;
+     align-items:center;
+     margin-top:10px;
+     height:56px;
+     font-size: 14px;
+     font-family: PingFang SC-Regular, PingFang SC;
+     font-weight: 400;
+     color: #666666;
+    //  底部显示富文本字数的盒子
+     .addNoticeLengthBox{
+
+        background:yellow;
+      
+
+     }
+      //  底部按钮组盒子
+     .addNoticeButtonBox{
+        user-select:none;
+        // background:pink;
+        // 底部是否保存的文本
+        span{
+            cursor: pointer;
+        }
+         // 底部删除按钮
+        .addNoticeDelButton{
+      
+      
+            background: #F53F3F;
+            border-radius: 2px 2px 2px 2px;
+            opacity: 1;
+            height: 34px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            margin-left: 20px;
+
+
+        }
+        // 保存按钮
+        .addNoticeSaveButton{
+            background: #165DFF;
+            border-radius: 2px 2px 2px 2px;
+            opacity: 1;
+            height: 34px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            margin-left: 10px;
+
+
+        }
+     }
+}

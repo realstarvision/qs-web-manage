@@ -1,0 +1,74 @@
+.tableBBox{
+    height:328px !important;
+
+    color:#1D2129;
+    white-space:nowrap;
+    text-overflow: ellipsis
+
+}
+
+
+.iconBox{
+height: 20px;
+width: 160px;
+    display: flex;
+    justify-content: space-between;
+    margin-top:-30px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 14px;
+font-family: PingFang SC-Regular, PingFang SC;
+font-weight: 400;
+color: #1D2129;
+.pageBox{
+
+text-align: center;
+width:23px;
+background-color: #F2F3F5;
+font-size: 14px;
+font-family: Nunito Sans-SemiBold, Nunito Sans;
+font-weight: 600;
+color: #4E5969;
+line-height: 22px
+
+}
+.centerBox{
+
+    width: 23px;
+    font-size: 15px;
+
+}
+.rowsPerPageBox{
+
+    width: 17px;
+    font-size: 14px;
+    font-family: PingFang SC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #1D2129;
+
+
+}
+}
+
+
+.TableCellBox{
+   
+ 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border: 0;
+}
+
+.TableCell{
+
+    height:'38px';
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+
+
+}
+
+
+

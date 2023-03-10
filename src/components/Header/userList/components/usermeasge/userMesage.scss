@@ -1,0 +1,224 @@
+.boxTitle {
+
+    display: flex;
+    justify-content: space-between;
+
+    .boxText {
+        margin-bottom: 34px;
+        font-size: 24px;
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #333333;
+        line-height: 28px;
+
+
+    }
+
+    .boxIcon {
+        width: 14px;
+        height: 14px;
+        opacity: 1;
+        margin-top: 5px;
+        cursor: pointer
+    }
+}
+
+// 上传头像盒子
+
+.postBox {
+    margin-left: 8px;
+    box-sizing: border-box;
+
+
+    .postPhotoBox {
+
+        border: none;
+        outline: none;
+        appearance: none;
+        margin-bottom: 29px;
+    }
+
+    .headerBox {
+
+        margin-bottom: 16px;
+        font-size: 18px;
+        line-height: 21px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #333333;
+
+    }
+
+    .photoInput {
+        width: 200px;
+        height: 200px;
+        border-radius: 0px 0px 0px 0px;
+        opacity: 1;
+    }
+
+    .accBox {
+        display: flex;
+        margin-bottom: 29px;
+        box-sizing: border-box;
+
+        .accountText {
+            height: 25px;
+            font-size: 18px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #333333;
+            line-height: 25px;
+            text-align: left;
+            margin-right: 26px;
+
+        }
+    }
+
+    .nameBox {
+        display: flex;
+        margin-bottom: 27px;
+        box-sizing: border-box;
+
+        .nameText {
+
+            height: 38px;
+            font-size: 18px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #333333;
+            line-height: 38px;
+            text-align: left;
+            margin-right: 7px;
+
+
+
+        }
+
+        input {
+            width: 402px;
+            height: 38px;
+            border-radius: 8px 8px 8px 8px;
+            opacity: 1;
+            padding: 0;
+            border: 1px solid #E0E2E4;
+            font-size: 18px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+            line-height: 21px;
+            text-align: left;
+            padding-left: 12px;
+            box-sizing: border-box;
+            
+          
+        }
+       
+    }
+
+    .phoneBox {
+        display: flex;
+        margin-bottom: 28px;
+        box-sizing: border-box;
+        .phoneText {
+            height: 38px;
+            font-size: 18px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #333333;
+            line-height: 38px;
+            text-align: left;
+            margin-right: 26px;
+        }
+        input {
+            width: 402px;
+            height: 38px;
+            border-radius: 8px 8px 8px 8px;
+            opacity: 1;
+            padding: 0;
+            border: 1px solid #E0E2E4;
+            font-size: 18px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+            line-height: 21px;
+            text-align: left;
+            padding-left: 12px;
+            box-sizing: border-box;
+        }
+    }
+
+    .KindBox {
+        display: flex;
+        margin-bottom: 25px;
+        box-sizing: border-box;
+
+        .KindText {
+            height: 25px;
+            font-size: 18px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #333333;
+            line-height: 25px;
+            text-align: left;
+            margin-right: 26px;
+        }
+
+    }
+
+}
+
+.buttonBox {
+    margin-left: 8px;
+
+    .okButton {
+        width: 68px;
+        background: #165DFF;
+        opacity: 0.3;
+        height: 33px;
+        font-size: 18px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #FFFFFF;
+        line-height: 21px;
+        text-align: center;
+        border-radius: 8px 8px 8px 8px;
+        cursor: pointer;
+
+
+    }
+
+    .okButton:hover {
+        background-color: blue;
+    }
+
+    .noButton {
+        width: 68px;
+        background: #FFFFFF;
+        opacity: 1;
+        height: 33px;
+        font-size: 18px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        margin-right: 10px;
+        line-height: 21px;
+        text-align: center;
+        border-radius: 8px 8px 8px 8px;
+        color: #333333;
+        cursor: pointer;
+        border: 1px solid #E0E2E4;
+    }
+
+}
+
+.kindValue {
+
+
+    height: 25px;
+    font-size: 18px;
+    font-family: PingFang SC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #666666;
+    line-height: 25px;
+
+
+}

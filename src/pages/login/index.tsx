@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import QRCodeCanvas from 'qrcode.react'
 import { useTranslation } from 'react-i18next'
 import { CSSTransition } from 'react-transition-group'
-import { setToken, setUserInfo } from '@/utils/auth'
+import {setUserInfo,setToken } from '@/utils/auth'
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography, Grid, FormLabel, InputAdornment } from '@mui/material'
 import { LoadingButton as Button } from '@/components/Button'
@@ -12,8 +12,7 @@ import { Login } from '@/api/user'
 import SvgIcon from '@/components/SvgIcon'
 import './style.scss'
 
-// 图片
-import logo from '@/assets/image/logo.png'
+
 
 function Home() {
   const { t } = useTranslation()
@@ -25,8 +24,9 @@ function Home() {
   // 报错消息
   const [helperText, setHelperText] = useState('')
   const [openMessage, setOpenMessage] = useState(false)
+  const[butBol,setButBol]=useState(false)
   const [params, setParams] = useState({
-    name: '',
+    account: '',
     password: '',
   })
 
@@ -34,13 +34,18 @@ function Home() {
   const handleLogin = () => {
     setHelperText('')
     setLoading(true)
+    // setHelperText('密码错误')
+    console.log(params)
     Login(params)
       .then(({ data, code }: any) => {
+        console.log(data)
         if (code === 200) {
           setUserInfo(data)
+          setToken(data.token)
+          console.log(data)
           navigate('/')
         } else {
-          setHelperText(t('login.helperText'))
+          setHelperText('密码错误')
         }
       })
       .finally(() => {
@@ -55,7 +60,7 @@ function Home() {
   }
   /* 设置账户密码 */
   const handleUsernameChange = (e) => {
-    params.name = e.target.value
+    params.account = e.target.value
     setParams({ ...params })
   }
   const handlePhoneNumberChange = (e) => {
@@ -70,14 +75,18 @@ function Home() {
   }
   return (
     <Box className="login-container">
-      <Box className="login-wapper">
-        <img src={logo} className="logo_img" />
-        <Grid
+      <Box className="loginMain">
+   
+    <Box className="loginMainTop">
+
+<Box className="loginMainTitle">智慧乔司</Box>
+<Box >  
+  <Grid
           container
-          spacing={{ xs: 4 }}
+    
           sx={{
-            padding: '20px 0',
-            width: '400px !important',
+           
+            width: '100% !important',
           }}
           className="grid"
         >
@@ -86,12 +95,24 @@ function Home() {
               required
               id="dataInput"
               size="small"
-              placeholder={t('login.userPlaceholder')}
-              // value={formParams.firstInput}
+              placeholder={'请输入账号'}
+              value={params.account}
               onChange={handleUsernameChange}
               autoComplete="off"
               style={{
-                width: '65%',
+                width: '100%',
+                marginBottom:'28px',
+              }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SvgIcon
+                      svgName='userID'
+                      svgClass="icon"
+                    
+                    ></SvgIcon>
+                  </InputAdornment>
+                ),
               }}
             />
           </Grid>
@@ -102,12 +123,14 @@ function Home() {
               required
               id="phoneInput"
               size="small"
-              placeholder={t('login.passwordPlaceholder')}
+              placeholder={'请输入密码'}
               value={params.password}
               onChange={handlePhoneNumberChange}
               autoComplete="off"
+          
+             
               style={{
-                width: '65%',
+                width: '100%',
               }}
               type={eyeState ? 'password' : 'text'}
               InputProps={{
@@ -119,45 +142,65 @@ function Home() {
                       onClick={handleEyeClick}
                     ></SvgIcon>
                   </InputAdornment>
+                  
                 ),
-              }}
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SvgIcon
+                      svgName='password'
+                      svgClass="icon"
+                   
+                    ></SvgIcon>
+                  </InputAdornment>
+                ),
+            
+              }
+          
+            }
             />
+         
           </Grid>
-
-          <Grid item xs={12} className="from-item">
-            <Button
-              onClick={handleLogin}
-              loading={loading}
-              sx={{
-                width: '65%',
-                height: '36px',
-                background: '#2E6EDF',
-                borderRadius: '4px',
-                color: '#fff',
-                fontSize: '12px',
-                '&:hover': {
-                  background: '#2E6EDF',
-                },
-              }}
-            >
-              {t('login.btnText')}
-            </Button>
+          <Box className="loginForGPass" >  <a >忘记密码</a></Box>
+        
           </Grid>
-          {/* <Grid item xs={12} className="from-item"> */}
-          <CSSTransition
+          
+          </Box>
+    </Box>
+    <Box className="loginMainBottom">
+    <CSSTransition
             in={Boolean(helperText)}
             //动画时间
             timeout={1000}
             // 前缀名注意S
             classNames="DeclineIn"
           >
-            <span className="error">{helperText}</span>
+        
+            <span className="error"
+             style={{ color:' #DF2E2E',
+          fontSize: '12px',
+         
+        }}>{helperText}</span>
           </CSSTransition>
-
-          {/* </Grid> */}
-        </Grid>
-      </Box>
+    <Grid container xs={12} className="from-item">
+            <Button
+            className="loginButton"
+              onClick={handleLogin}
+              loading={loading}
+              disabled={(params.name===''||params.password===''|| butBol===true?true:false) }
+              style={{background:`${params.name===''||params.password===''|| butBol===true?'#B9CEFF':'#165DFF'}`}}
+            >
+              {/* {t('login.btnText')} */}
+              登录
+            </Button>
+          </Grid>
+          {/* <Grid item xs={12} className="from-item"> */}
+          
     </Box>
+      </Box>
+     
+    </Box>
+
+   
   )
 }
 

@@ -1,0 +1,111 @@
+.noticeKindsBox {
+  padding: 17px 20px;
+  background-color: red;
+
+  
+  .noticeBreadBox {
+    font-size: 14px;
+    font-family: PingFang SC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #4E5969;
+    line-height: 22px;
+  }
+
+  .noticeKinds-container {
+    color: #333333;
+    @include containerBox;
+    padding-top: 20px;
+    position: relative;
+    overflow-x: hidden;
+    // table盒子
+    .noticeKindsTableBox{
+
+   
+      th{
+     
+        padding: 9px 16px !important;
+      }
+      td{
+        padding: 9px 16px !important;
+      }
+    }
+  }
+
+  .title {
+
+    height: 24px;
+    font-size: 16px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 600;
+    color: #333333;
+    line-height: 24px;
+  }
+
+  .noticeKindsSearchBox {
+    margin-top: 20px;
+  }
+
+  .noticeKindsAddBox {
+
+    margin-top: 20px;
+
+    .noticeKindsAddBut {
+      width: 138px;
+      height: 32px;
+      background: #165DFF;
+      border-radius: 2px 2px 2px 2px;
+      opacity: 1;
+      font-size: 14px;
+      font-family: PingFang SC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 22px;
+      margin-bottom: 20px;
+
+
+    }
+  }
+
+  .noticeKindsPage {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+align-items: center;
+    .noticeKindsDelBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      font-family: PingFang SC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #333333;
+
+      .noticeTableButtonSelLength {
+        color: #165DFF;
+        margin: 0 2px;
+      }
+      .noticeKindsDelBut{
+        margin-left: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: #FFFFFF;
+border-radius: 2px 2px 2px 2px;
+opacity: 1;
+border: 1px solid #E0E2E4;
+font-size: 14px;
+font-family: PingFang SC-Regular, PingFang SC;
+font-weight: 400;
+color: #666666;
+height: 30px;
+      }
+    }
+  }
+
+
+  // table
+
+}
+
+
+

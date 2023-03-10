@@ -6,14 +6,14 @@ const userInfo = 'User-Info-order-manage'
 export function getToken() {
   return Cookies.get(TokenKey)
 }
-
+// 存储token
 export function setToken(token: string) {
   console.log(token)
-  return Cookies.set(TokenKey, token)
+  return localStorage.setItem('Token', token)
 }
 
 export function removeToken() {
-  return Cookies.remove(TokenKey)
+  return localStorage.remove('Token')
 }
 
 export function getUserInfo() {
@@ -27,5 +27,6 @@ export function setUserInfo(info: { avatarUrl: string, nick: string }) {
 }
 
 export function removeUserInfo() {
-  return Cookies.remove(userInfo)
+  return Cookies.remove(userInfo) ,localStorage.clear()
+ 
 }

@@ -1,0 +1,46 @@
+.addNoticeKindsBox{
+background-color: red;
+height: 90vh;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: 16px 20px 20px 20px;
+// 面包屑
+.addNoticeKindsBra{
+
+    background-color: blue;
+}
+// 中间内容区
+.addNoticeKindsMain{
+    flex: 1;
+    padding: 20px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    // 表题
+    .addNoticeKindsTitle{
+
+        background-color: blanchedalmond;
+    }
+    // 输入框区域
+    .addNoticeKindsStateBox{
+flex: 1;
+background-color: blue;
+margin-top: 16px;
+
+
+    
+    }
+}
+
+// 底部
+.addNoticeKindsFooter{
+background-color: pink;
+height: 66px;
+border-top: 1px solid #E5E6EB; ;
+padding:10px 20px 0px 20px;
+display: flex;
+justify-content: end;
+align-items: center;
+}
+}

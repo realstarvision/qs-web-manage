@@ -1,0 +1,17 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="weather">
+<g id="Group 427318796">
+<path id="Union" fill-rule="evenodd" clip-rule="evenodd" d="M17.6988 9.06524C17.7199 8.89514 17.7308 8.72186 17.7308 8.54603C17.7308 6.24304 15.8639 4.3761 13.5609 4.3761C11.6365 4.3761 10.0166 5.67966 9.53596 7.45193C9.13314 7.1395 8.62733 6.95351 8.07808 6.95351C6.84264 6.95351 5.82698 7.8945 5.70874 9.09887C4.45646 9.30065 3.5 10.3865 3.5 11.6957C3.5 13.1484 4.67768 14.3261 6.13042 14.3261H17.8696C19.3223 14.3261 20.5 13.1484 20.5 11.6957C20.5 10.2429 19.3223 9.06524 17.8696 9.06524H17.6988Z" fill="url(#paint0_linear_687_71974)"/>
+</g>
+<path id="Vector 308" d="M7.74121 16.326L7.22357 18.2579" stroke="#CED3D7" stroke-width="1.5" stroke-linecap="round"/>
+<path id="Vector 309" d="M12.2588 16.326L11.7412 18.2579" stroke="#CED3D7" stroke-width="1.5" stroke-linecap="round"/>
+<path id="Vector 310" d="M16.7764 16.326L16.2587 18.2579" stroke="#CED3D7" stroke-width="1.5" stroke-linecap="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_687_71974" x1="12" y1="4.3761" x2="12" y2="14.3261" gradientUnits="userSpaceOnUse">
+<stop stop-color="#DCE2E4"/>
+<stop offset="0.0001" stop-color="#D9DEE1"/>
+<stop offset="1" stop-color="#CED3D7"/>
+</linearGradient>
+</defs>
+</svg>

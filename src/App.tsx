@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation, useParams, useRoutes, useNavigate
 import { Box, Grid } from '@mui/material'
 import router, { whiteList } from './router'
 import { getUserInfo } from '@/utils/auth'
+import Layout from './components/Layout'
 import './App.scss'
 
 function App() {
@@ -10,17 +11,17 @@ function App() {
   let navigate = useNavigate()
   let [routers, setRouters] = useState(router)
   // 路由守卫
-  useEffect(() => {
-    if (getUserInfo()) {
-      if (location.pathname === '/login') {
-        navigate('/')
-      }
-    } else {
-      if (!whiteList.includes(location.pathname)) {
-        navigate('/login')
-      }
-    }
-  }, [location.pathname])
+  // useEffect(() => {
+  //   if (getUserInfo()) {
+  //     if (location.pathname === '/login') {
+  //       navigate('/')
+  //     }
+  //   } else {
+  //     if (!whiteList.includes(location.pathname)) {
+  //       navigate('/login')
+  //     }
+  //   }
+  // }, [location.pathname])
 
   return <Box className="app">{useRoutes(router)}</Box>
 }

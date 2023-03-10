@@ -4,6 +4,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 // import { api, geo } from './src/configa.js'
 const path = require('path')
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
@@ -21,7 +22,8 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://47.99.134.59:8097',
-        target: "http://192.168.148.33:8097",
+        // target: "http://192.168.148.33:8097",
+        // target: "http://192.168.148.33:8098",
         // target: "http://192.168.152.10:8054",
         // target: "http://192.168.48.241.:8054",
         changeOrigin: true,

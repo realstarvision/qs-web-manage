@@ -28,7 +28,7 @@ export default function Layout({ children }: { children?: any }) {
       {/* <Footer /> */}
       <Box component="main" className="main">
         <DrawerHeader />
-        <Box className={fade ? 'translation-aimation visible' : 'hidden'}>{children ? children : <Outlet />}</Box>
+        <Box className={fade ? 'translation-aimation visible' : 'hidden'}>{ children ? children : <Outlet />}</Box>
         {/* <DrawerFooter /> */}
       </Box>
     </Box>

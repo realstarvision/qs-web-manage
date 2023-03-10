@@ -1,0 +1,238 @@
+// bar的样式
+.configDepartTabBox {
+    display: flex;
+    flex-direction: column;
+    // background-color:blue;
+    flex: 1;
+    height: 100%;
+    margin-left: -8px;
+
+    .aaaa {
+        height: 100%;
+        // background-color: orange;
+        display: flex;
+
+
+    }
+
+    .ant-tabs-top>.ant-tabs-nav::before {
+
+        border-bottom: 0px !important;
+    }
+
+    .ant-tabs-tab,
+    .ant-tabs-tab.ant-tabs-tab .ant-tabs-tab-btn {
+
+        font-size: 16px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #999999;
+    }
+
+    // 鼠标移入，点击被选中时bar的样式
+    .ant-tabs-tab:hover,
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #333333;
+        font-size: 16px;
+    }
+
+    // BAR的下划线
+    .ant-tabs-ink-bar-animated {
+        width: 20% !important;
+        background: #333333;
+        border-radius: 2px 2px 2px 2px;
+        margin-left: 10%;
+        transition: inherit;
+
+    }
+
+
+
+    // 区域划分
+    .configDepartTabsChildren {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+
+
+    }
+
+
+    // 内容区
+    .configDepartTabsPlace {
+        display: flex;
+        flex-direction: column;
+        margin-left: 8px;
+
+        // 搜索区域
+        .configDepartTabsSearch {
+            height: 74px;
+
+           
+            margin-bottom: 10px;
+            // background-color: yellow;
+            display: flex;
+            justify-content: space-between;
+
+            // 搜索区域左边
+            .configDepartTabsSearchLeft {
+
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                // background: pink;
+
+                .searchLeft-top {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                // 搜素区域上部盒子
+                .searchLeft-topText {
+                    margin-right: 15px;
+
+                }
+            }
+
+            // 搜索区域右边盒子
+            .configDepartTabsSearchRight {
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 2px 2px 2px 2px;
+                
+                padding: 0px 7px;
+
+                // 搜索区域上部盒子
+                .SearchRightTop {
+
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+                }
+
+                .SearchRightBottom {
+
+                    font-size: 12px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #C1C1C1;
+
+
+                }
+            }
+
+        }
+
+        // 地图
+        .configDepartTabsMap {
+
+            height: 45vh;
+            // background-color: aqua;
+        }
+
+
+    }
+
+}
+
+// 区域划分底部
+.configDepartFooter {
+    height: 66px;
+    padding-top: 10px;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    border-top: 1px solid #E5E6EB;
+
+    // // 区域划分底部保存按钮
+    // .configDepartButton {
+    //     height: 34px;
+    //     background: #165DFF;
+    //     border-radius: 2px 2px 2px 2px;
+    //     font-size: 14px;
+    //     font-family: PingFang SC-Regular, PingFang SC;
+    //     font-weight: 400;
+    //     color: #FFFFFF;
+       
+    // }
+
+}
+
+
+
+
+
+
+// 角色配置
+
+
+.configDepartTabsRole {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // 输入框外层盒子
+    .departTabsRoleSearch {
+
+        display: flex;
+        flex-wrap: nowrap;
+        // background: yellow; 
+        justify-content: space-between;
+        padding-left: 8px;
+        margin-bottom: 20px;
+
+    }
+
+    // 输入框
+    .departTabsRoleFrom-item {
+
+        display: flex;
+
+    }
+
+    // 输入框文字
+    .departTabsRoleLabel {
+        font-size: 14px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #666666;
+        margin-right: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    // 新增按钮盒子
+    .departTabsRoleButBox {
+
+        // background: 'red';
+
+        // 新增按钮
+        .departTabsRoleBut {
+            height: 100%;
+            background: #165DFF;
+            border-radius: 2px 2px 2px 2px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 100%;
+            text-align: center;
+        }
+    }
+}

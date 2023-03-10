@@ -1,0 +1,122 @@
+// 详情页最外层盒子
+.detailBox {
+    // background:red;
+    height: 90vh;
+    padding: 16px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // 详情页面包屑
+    .detailBraBox {
+        // background-color: blue;
+        margin-bottom: 20px;
+        font-size: 14px;
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 600;
+        color: #1D2129;
+        line-height: 22px;
+    }
+
+    // 详情页中间部分
+    .detailMainBox {
+
+        background: #FFFFFF;
+        padding: 20px;
+        border-radius: 4px 4px 4px 4px;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        justify-content: space-between;
+
+        // 详情页中间文本盒子
+        .detailTopBox {
+
+            // 详情页图片外层盒子
+            .detailTopMainImg {
+                margin-left: 100px;
+                margin-top: 10px;
+                height: 32vh;
+
+                // 详情页图片svg盒子
+                .detailTopMainImgSvg {
+                    position: relative;
+                    width: 32vh;
+                    height: 100%;
+                    background: #D9D9D9;
+
+                    // 详情页图片
+                    .imgBox {
+
+                        width: 32vh;
+                        height: 100%;
+
+                    }
+
+                    .detailImgSvg {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        // background-color: red;
+                        transform: translate(-50%, -50%);
+
+                    }
+                }
+
+            }
+
+            .detailTitle {
+
+                font-size: 16px;
+                font-family: PingFang SC-Medium, PingFang SC;
+                font-weight: 500;
+                color: #333333;
+                // background-color: blue;
+            }
+
+            .detailTopMainBox {
+                margin-left: 8px;
+
+                // background-color: bisque;
+                .detailTopMainTextBox {
+
+                    // background-color: aquamarine;
+                    margin-top: 20px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #333333;
+
+                    .detailTopMainTextLeft {
+                        margin-right: 44px;
+
+
+                    }
+
+                }
+            }
+        }
+    }
+
+    // 详情页底部
+    .detailFooterBox {
+        // background-color: yellow;
+        height: 66px;
+        font-size: 14px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #666666;
+        padding-top: 10px;
+        border-top: 1px solid #E5E6EB;
+        display: flex;
+        align-items: center;
+
+        // 详情页底部左侧文本盒子
+        .detailFooterLeft {
+            // background-color: aqua;
+            margin-right: 20px;
+
+
+        }
+    }
+}

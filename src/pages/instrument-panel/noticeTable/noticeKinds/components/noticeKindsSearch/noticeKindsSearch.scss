@@ -1,0 +1,90 @@
+.noticeKindsSearch {
+    height: 32px;
+    margin: 20px 0px;
+    margin-left: 8px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+
+    // 每个搜索框的盒子
+    .from-item {
+        display: grid;
+        grid-template-columns: auto 1fr;
+
+        .label {
+            display: flex;
+            align-items: center;
+            margin-right: 28px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+
+        }
+    }
+
+    //搜索框旁边按钮
+    .noticeSearchBtn {
+
+        flex: 1;
+        display: flex;
+
+        justify-content: end;
+        align-items: end;
+
+        // 重置按钮
+        .noticeStartButton {
+
+
+            background: #F2F3F5;
+            border-radius: 2px 2px 2px 2px;
+            margin-right: 20px;
+            height: 32px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #666666;
+            line-height: 22px;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+
+            .icon {
+
+                height: 11px;
+
+
+            }
+
+
+        }
+
+        // 搜索按钮
+        .noticeSearchBtnRight {
+
+            background: #165DFF;
+            border-radius: 2px 2px 2px 2px;
+
+            height: 32px;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            line-height: 22px;
+            text-align: center;
+
+            white-space: nowrap;
+
+            .icon {
+
+                height: 11px;
+
+            }
+
+        }
+
+
+
+
+    }
+}

@@ -1,0 +1,75 @@
+
+
+.noticeBoxText{
+
+    min-width: 35px;
+    height: 24px;
+    font-size: 16px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #1D2129;
+    line-height: 24px;
+    margin-bottom: 16px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+.navBox{
+    height: 22px;
+    font-size: 14px;
+    font-family: PingFang SC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #165DFF;
+    line-height: 22px;
+    text-decoration: none;
+}
+}
+
+
+// 自动轮播盒子
+.parent {
+    height: 210px;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    }
+    .parent::-webkit-scrollbar {
+    display: none;
+    }
+    /*设置的子盒子高度大于父盒子，产生溢出效果*/
+    .child {
+    height: auto;
+    .mapBox{
+        display: flex;
+        justify-content: left;
+        height: 22px;
+        margin-bottom: 7px;
+        background-color:#fff;
+        .noticeLink{
+            display:flex;
+            flex:1;
+            color: #4E5969;
+text-decoration: none;
+        .titleBox{
+            width: 40px;
+margin-right: 4px;
+background-color: red;
+font-size: 12px;
+font-family: PingFang SC-Medium, PingFang SC;
+font-weight: 500;
+text-align: center;
+        }
+        .textBox{
+flex: 1;
+            font-size: 14px;
+            font-family: PingFang SC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #4E5969;
+            line-height: 22px;
+            background-color: aquamarine;
+           
+        }
+
+    }
+    }
+}
+    

@@ -1,97 +1,384 @@
-.instrument_panel-container{
-  color:#333333;
-  @include containerBox;
-  .welcome{
-    .icon{
+.instrument_panel-container {
+  color: #333333;
+  // @include containerBox;
+  padding: 20px;
+  
+  .instrumentTopBox{
+display: flex;
+  }
+  .welcome {
+    .icon {
       width: 26px;
       height: 26px;
       margin-right: 2px;
     }
-    font-size: 26px;
-    font-weight: bold;
-    line-height: 22px;
+
+
+    height: 28px;
+    font-size: 20px;
+    font-family: PingFang SC-Medium,
+    PingFang SC;
+    font-weight: 600;
+    color: #1D2129;
+    line-height: 28px;
   }
-  .order_type_list{
-    border-top: 1px solid  #F2F3F5;
-    border-bottom: 1px solid  #F2F3F5;
+
+  .order_type_list {
+    box-sizing: border-box;
+    border-top: 1px solid #F2F3F5;
+    border-bottom: 1px solid #F2F3F5;
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
-    padding: 25px 14px  24px 14px;
-    @media screen and (max-width: 1440px){
-      .emptyBox{
+    margin-top: 20px;
+
+    height: 100px;
+    padding: 3px 3px 23px;
+    background: #FFFFFF;
+    border-radius: 4px 4px 4px 4px;
+    opacity: 1;
+
+    @media screen and (max-width: 1440px) {
+      .emptyBox {
         width: 0px;
       }
     }
-    @media screen and (min-width: 1700px){
-      .emptyBox{
+
+    @media screen and (min-width: 1700px) {
+      .emptyBox {
         width: 100px;
       }
     }
-    @media screen and (min-width: 1820px){
-      .emptyBox{
+
+    @media screen and (min-width: 1820px) {
+      .emptyBox {
         width: 300px;
       }
     }
-    @media screen and (min-width: 1920px){
-      .emptyBox{
+
+    @media screen and (min-width: 1920px) {
+      .emptyBox {
         width: 370px;
       }
     }
-    .order_type_item{
-      min-width: 200px;
+
+    .order_type_item {
+
+      height: 94px;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex: 1;
+
       // padding: 25px 0  24px 34px;
-      .icon{
-        width: 71px;
-        height: 71px;
+      .icon {
+        width: 54px;
+        height: 54px;
+        // background: #F6F7FB;
+        opacity: 1;
         margin-right: 17px;
       }
-      .info{
-        .title{
-          line-height: 22px;
-          font-size: 16px;
+
+      .info {
+        .title {
+
+          height: 20px;
+          font-size: 12px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #1D2129;
+          line-height: 20px;
         }
-        .count{
-          font-size: 28px;
-          font-family: Roboto-Medium, Roboto;
-          font-weight: bold;
+
+        .count {
+          height: 26px;
+          font-size: 22px;
+          font-family: Roboto-Bold, Roboto;
           display: flex;
+          color: #1D2129;
           // justify-content: center;
           align-items: center;
-          line-height: 22px;
-          margin-top: 15px;
+          line-height: 26px;
+          margin-top: 8px;
         }
-        .units{
-          font-size: 16px;
-          color: #666666;
+
+        .units {
+          font-size: 12px;
+          line-height: 20px;
+          font-family: PingFang SC-Regular, PingFang SC;
+          font-weight: 400;
+          color: #4E5969;
           margin-left: 10px;
+          margin-top: 6px;
         }
-        .icon{
+
+        .icon {
           width: 14px;
-          height:10px;
-          margin-left: 10px;
+          height: 10px;
+          margin-left: 6px;
         }
       }
     }
-    .hr{
-      height: 71px;
+
+    .hr {
+      height: 60px;
       width: 1px;
-      background-color: #F2F3F5 ;
+      background-color: #F2F3F5;
+      margin-top: 17px;
     }
   }
 
-  .echart-title{
-    margin-top: 35px;
-    font-size: 22px;
-    font-weight: bold;
-    line-height: 22px;
-    span{
+  // 图表样式
+  .eChart-title {
+    margin-top: 20px;
+    height: 24px;
+    font-size: 16px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 600;
+    color: #1D2129;
+    line-height: 24px;
+    display: flex;
+    justify-content: space-between;
+
+    .eChartButton {
+      padding: 0 3px 0 3px;
+      background-color: #F2F3F5;
+      text-align: center;
+      line-height: 18px;
+
+      button {
+        text-align: center;
+        line-height: 34px;
+        width: 36px;
+        height: 18px;
+        background: #F2F3F5;
+        border-radius: 2px 2px 2px 2px;
+        font-size: 12px;
+        font-family: Nunito Sans-Regular, Nunito Sans;
+        font-weight: 400;
+        color: #4E5969;
+
+      }
+
+      button:hover {
+        color: #165DFF;
+        background: #F7F8FA;
+
+
+      }
+
+      .button-active {
+        color: #165DFF;
+        background: #F7F8FA;
+
+
+      }
+    }
+
+    span {
       color: #666666;
       font-weight: 400;
       font-size: 16px;
     }
+  }
+
+  // 图表底部
+  .eChartBottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+
+    // 底部第一个盒子
+    .eChartBottomFirst {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+
+      .BlueBox {
+        width: 10px;
+        height: 10px;
+        background: #249EFF;
+        opacity: 1;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+
+      .BlueBoxText {
+        height: 20px;
+        font-size: 13px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #4E5969;
+        line-height: 20px;
+      }
+    }
+
+    // 底部第二个盒子
+    .eChartBottomTwo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+
+      .navyBlueBox {
+        width: 10px;
+        height: 10px;
+        background: #313CA9;
+        opacity: 1;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+
+      .BlueBoxText {
+        height: 20px;
+        font-size: 13px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #4E5969;
+        line-height: 20px;
+      }
+    }
+
+    // 底部第三个盒子
+    .eChartBottomThree {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+
+      .skyBlueBox {
+        width: 10px;
+        height: 10px;
+        background: #21CCFF;
+        opacity: 1;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+
+      .BlueBoxText {
+        height: 20px;
+        font-size: 13px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #4E5969;
+        line-height: 20px;
+      }
+    }
+
+    // 底部第四个盒子
+    .eChartBottomFour {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+
+      .fourBlueBox {
+        width: 10px;
+        height: 10px;
+        background: #104AED;
+        opacity: 1;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+
+      .BlueBoxText {
+        height: 20px;
+        font-size: 13px;
+        font-family: PingFang SC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #4E5969;
+        line-height: 20px;
+      }
+    }
+
+  }
+}
+
+
+
+.chartNumBox {
+
+  width: 880px;
+  height: 608px;
+  background: #FFFFFF;
+  border-radius: 4px 4px 4px 4px;
+  opacity: 1;
+  padding: 20px 17px 0 20px;
+  box-sizing: border-box;
+  margin-right: 20px;
+
+}
+
+// 首页右侧最外层盒子
+.managementBox {
+  flex: 1;
+  box-sizing: border-box;
+// 管理面板列表盒子
+  .managementBoxTop {
+    padding: 20px;
+    margin-bottom: 20px;
+
+    // 管理面板标题
+    .managementBoxTopText {
+      min-width: 68px;
+      height: 24px;
+      font-size: 16px;
+      font-family: PingFang SC-Medium, PingFang SC;
+      font-weight: 600;
+      color: #1D2129;
+      line-height: 24px;
+      margin-bottom: 16px;
+    }
+
+    // 管理面板内容区
+    .managementBoxTopMain {
+      min-width: 240px;
+      display: flex;
+      flex-wrap: wrap;
+      // justify-content: center;
+      justify-content: flex-start;
+
+      // 管理面板内容区每个盒子
+      .managementBoxTopEvery {
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        .managementIcon {
+          width: 36px;
+          height: 36px;
+          background: #F2F3F5;
+          border-radius: 6px 6px 6px 6px;
+          opacity: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .managementImg {
+
+            width: 13px;
+            height: 15px;
+
+            opacity: 1;
+
+          }
+        }
+      }
+
+    }
+
+  }
+
+
+
+// 公告栏盒子
+  .noticeBox{
+padding: 20px;
+height: 268px;
   }
 }

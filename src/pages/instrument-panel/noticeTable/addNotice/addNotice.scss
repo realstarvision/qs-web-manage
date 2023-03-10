@@ -1,0 +1,81 @@
+// 最外层盒子
+.addNoticeBox {
+
+    padding: 17px 20px;
+
+    // 面包屑以下盒子
+    .addNotice-container {
+    
+        color: #333333;
+        @include containerBox;
+        padding-top: 20px;
+        position: relative;
+        overflow-x: hidden;
+    height: auto;
+
+        // 标题
+        .title {
+       
+            font-size: 16px;
+            font-family: PingFang SC-Medium, PingFang SC;
+            font-weight: 600;
+            color: #333333;
+            line-height: 24px;
+
+
+        }
+
+        // 搜索框盒子
+        .addNoticeSearch {
+
+            margin-left: 8px;
+            margin-top: 20px;
+
+            // 搜索框第一排 的文本盒子
+            .addSearchGridForBox {
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                font-size: 14px;
+                font-family: PingFang SC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #666666;
+
+                // 搜索框第一排前文字
+                .addSearchLabel {
+                    margin-right: 28px;
+                }
+            }
+
+            // 搜索框第二排
+            .addSearchTwo {
+                margin-top: 23px;
+                
+                font-size: 14px;
+margin-bottom: 29px;
+                // 搜索框第二排每一项的盒子
+                .addSearchTwoBox {
+                    display: flex;
+                    flex-wrap: nowrap;
+
+                    // 搜索框第二排每一项输入框前的文字
+                    .addSearchLabelTwo {
+                        margin-right: 28px;
+                        white-space: nowrap;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center
+                    }
+
+                }
+            }
+
+
+        }
+
+
+
+    }
+}

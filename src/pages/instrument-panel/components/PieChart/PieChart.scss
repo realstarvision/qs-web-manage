@@ -1,0 +1,60 @@
+.instrumentBottomBox{
+
+display: flex;
+
+height: 404px;
+border-radius: 0px 0px 0px 0px;
+margin-top:20px;
+
+.pieChartBox{
+    padding: 20px;
+    width: 400px;
+    height: 404px;
+    // background: #FFFFFF;
+    border-radius: 4px 4px 4px 4px;
+   
+    .TextBox{
+       
+        height: 24px;
+        font-size: 16px;
+        font-family: PingFang SC-Medium, PingFang SC;
+        font-weight: 500;
+        color: #1D2129;
+        line-height: 24px;
+
+    }
+
+}
+
+
+// 表格渲染
+.tableBox{
+   
+flex:1;
+background-color: aqua;
+margin-left: 20px;
+height: 404px;
+background: #FFFFFF;
+border-radius: 4px 4px 4px 4px;
+opacity: 1;
+.tablePaper{
+
+padding:20px;
+
+.titleBox{
+    height: 20px;
+    font-size: 16px;
+    font-family: PingFang SC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #1D2129;
+    line-height: 24px;
+margin-bottom: 15px;
+line-height: 20px;
+
+}
+
+}
+
+
+}
+}
