@@ -23,7 +23,7 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   height: barHeight,
   display: 'flex',
   alignItems: 'center',
-  
+
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
   ...theme.mixins.toolbar,
@@ -73,7 +73,7 @@ export default function Header() {
   const searchFunction = (event: any) => {
     setSearchState(event.target.value)
   }
- 
+
   return (
     <AppBar
       position="fixed"
@@ -92,11 +92,11 @@ export default function Header() {
         {/* <img src={stardust} /> */}
         <SvgIcon svgName="logo" svgClass="logo"></SvgIcon>
         <Box className='titleQiaoSi'>乔司街道智慧护民管理后台</Box>
-<Box className='weatherBigBox'>
-        {/* 天气图标 */}
-        <SvgIcon svgName="weather" svgClass="weatherIcon"></SvgIcon>
-        {/* 天气接口 */}
-        <Box className='weatherBox'>天气</Box>
+        <Box className='weatherBigBox'>
+          {/* 天气图标 */}
+          <SvgIcon svgName="weather" svgClass="weatherIcon"></SvgIcon>
+          {/* 天气接口 */}
+          <Box className='weatherBox'>天气</Box>
         </Box>
         {/* 导航菜单 */}
         {/* <Box className='workAllBox'>
@@ -143,8 +143,8 @@ export default function Header() {
           {/* e 头像 */}
 
           {/* s 弹出框 */}
-         <MenuList anchProps={anchorElUser}    />
-        
+          <MenuList anchProps={anchorElUser} />
+
           {/* <MyMenu
             sx={{ mt: '44px', mr: '20px' }}
             id="menu-appbar"
@@ -160,7 +160,7 @@ export default function Header() {
             }}
             open={Boolean(anchorElUser)}
           > */}
-            {/* <Typography
+          {/* <Typography
               textAlign="center"
               sx={{
                 fontSize: '12px',
@@ -176,9 +176,9 @@ export default function Header() {
             >
               {t('header.logout')} 
               </Typography> */}
-            {/* s 基本信息 */}
+          {/* s 基本信息 */}
 
-            {/* <Box className='userBox'>
+          {/* <Box className='userBox'>
               <Box>
                 <Avatar
                   src={avatar}
@@ -192,7 +192,7 @@ export default function Header() {
                   }}
                 />
               </Box> */}
-              {/* <Box className='userMessage'>
+          {/* <Box className='userMessage'>
                 <Box className="user-info">
                   <Typography className="name">{getUserInfo() ? getUserInfo().userName : '暂无啊'} </Typography>
                   <Typography className="nameRole">{getUserInfo() ? getUserInfo().userName : '暂无啊'} </Typography>
@@ -207,11 +207,11 @@ export default function Header() {
                 </Box>
               </Box>
             </Box> */}
-            {/* <Box className='svgBox'>
+          {/* <Box className='svgBox'>
               {<svg style={{ height: '20px', width: '20px', color: 'red' }}> <use xlinkHref={'#icon-order_menu_icon'} /></svg>}
             </Box> */}
-            {/* e 基本信息 */}
-            {/* <Typography
+          {/* e 基本信息 */}
+          {/* <Typography
               textAlign="left"
               sx={{
                 fontSize: '16px',
@@ -296,10 +296,10 @@ export default function Header() {
           </MyMenu> */}
           {/* e 弹出框 */}
         </Box>
-       
+
       </Toolbar>
       {contextHolder}
-    
+
     </AppBar>
   )
 }

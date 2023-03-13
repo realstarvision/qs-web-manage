@@ -84,12 +84,12 @@ export default function index() {
             record.orderState === 0
               ? '待确认'
               : record.orderState === 1
-              ? '待支付'
-              : record.orderState === 2
-              ? '待交付'
-              : record.orderState === 3
-              ? '已完成'
-              : '已取消'
+                ? '待支付'
+                : record.orderState === 2
+                  ? '待交付'
+                  : record.orderState === 3
+                    ? '已完成'
+                    : '已取消'
           }
         />
       ),
@@ -208,37 +208,40 @@ export default function index() {
   }
   return (
     <>
-      <Box className="order_management-container">
-        {contextHolder}
-        {/* 标题 */}
-        <p className="title">{t('orderManagement.title')}</p>
-        {/* 条件筛选栏 */}
-        <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading}></SearchBar>
-        {/* 分割符 */}
-        <Divider flexItem color="#E5E6EB" />
-
-        {/* 表格 */}
-        <Table
-          style={{
-            marginTop: '20px',
-          }}
-          dataSource={dataList}
-          columns={columns as any}
-          pagination={tableParams.pagination}
-          onChange={handleTableChange}
-          loading={loading}
-        />
-      </Box>
-
-      {/* 弹出框 */}
-      <PopupBox
-        open={openPopupBox}
-        onClose={() => {
-          setOpenPopupBox(false)
-        }}
-        onUploadOrderState={handleUploadOrderState}
-        data={checkedData}
-      />
+      999
     </>
+    // <>
+    //   <Box className="order_management-container">
+    //     {contextHolder}
+    //     {/* 标题 */}
+    //     <p className="title">{t('orderManagement.title')}</p>
+    //     {/* 条件筛选栏 */}
+    //     <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading}></SearchBar>
+    //     {/* 分割符 */}
+    //     <Divider flexItem color="#E5E6EB" />
+
+    //     {/* 表格 */}
+    //     <Table
+    //       style={{
+    //         marginTop: '20px',
+    //       }}
+    //       dataSource={dataList}
+    //       columns={columns as any}
+    //       pagination={tableParams.pagination}
+    //       onChange={handleTableChange}
+    //       loading={loading}
+    //     />
+    //   </Box>
+
+    //   {/* 弹出框 */}
+    //   <PopupBox
+    //     open={openPopupBox}
+    //     onClose={() => {
+    //       setOpenPopupBox(false)
+    //     }}
+    //     onUploadOrderState={handleUploadOrderState}
+    //     data={checkedData}
+    //   />
+    // </>
   )
 }

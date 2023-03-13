@@ -1,11 +1,12 @@
 .instrument_panel-container {
   color: #333333;
   // @include containerBox;
-  padding: 20px;
-  
-  .instrumentTopBox{
-display: flex;
+  // padding: 20px;
+
+  .instrumentTopBox {
+    display: flex;
   }
+
   .welcome {
     .icon {
       width: 26px;
@@ -314,7 +315,8 @@ display: flex;
 .managementBox {
   flex: 1;
   box-sizing: border-box;
-// 管理面板列表盒子
+
+  // 管理面板列表盒子
   .managementBoxTop {
     padding: 20px;
     margin-bottom: 20px;
@@ -376,9 +378,9 @@ display: flex;
 
 
 
-// 公告栏盒子
-  .noticeBox{
-padding: 20px;
-height: 268px;
+  // 公告栏盒子
+  .noticeBox {
+    padding: 20px;
+    height: 268px;
   }
 }

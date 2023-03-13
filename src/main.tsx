@@ -17,15 +17,10 @@ import DateFnsUtils from '@date-io/date-fns'
 
 let theme = responsiveFontSizes(Theme)
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  // <ThemeProvider theme={theme}>
- <Provider store={store}>
-  <MuiPickersUtilsProvider utils={DateFnsUtils}>
-    <HashRouter>
-      <App />
-    </HashRouter>
-  </MuiPickersUtilsProvider>
- </Provider>
-  // </ThemeProvider>
-  // </React.StrictMode>
-)
+  <Provider store={store}>
+    {/* <MuiPickersUtilsProvider utils={DateFnsUtils}> */}
+    {/* <HashRouter> */}
+    <App />
+    {/* </HashRouter> */}
+    {/* </MuiPickersUtilsProvider> */}
+  </Provider>)

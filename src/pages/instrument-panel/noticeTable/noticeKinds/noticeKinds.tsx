@@ -43,7 +43,7 @@ interface TableParams {
 export default function NoticeKinds() {
   // i18n
   const { t } = useTranslation()
-const navigate=useNavigate()
+  const navigate = useNavigate()
   const [recodeIndexLink, setRecodeIndexLink] = useState([{
     key: 1,
     name: 'John Brown',
@@ -104,10 +104,10 @@ const navigate=useNavigate()
 
 
   }
-  
+
   // 表格状态
   const [noticeKindsData, setNoticeKindsData] = useState([])
-  
+
   // 获取数据
   const getNoticeKindsData = () => {
 
@@ -115,18 +115,18 @@ const navigate=useNavigate()
     setTableParams({ pagination: { ...tableParams.pagination, total: recodeIndexLink.length } })
 
   }
-// 分页
-const [tableParams, setTableParams] = useState<TableParams>({
-  pagination: {
-    // 默认显示页码
-    current: 1,
-    // 每页显示条数
-    pageSize: 1,
-    //  页面总条数
-    total: 10,
-    showTotal: showTotal,
-  },
-})
+  // 分页
+  const [tableParams, setTableParams] = useState<TableParams>({
+    pagination: {
+      // 默认显示页码
+      current: 1,
+      // 每页显示条数
+      pageSize: 1,
+      //  页面总条数
+      total: 10,
+      showTotal: showTotal,
+    },
+  })
 
   // 表格列
   const columns = [
@@ -205,7 +205,7 @@ const [tableParams, setTableParams] = useState<TableParams>({
   // 删除按钮
   const noticeKindsSelDel = () => {
 
-  alert('aa')
+    alert('aa')
 
   }
 
@@ -213,7 +213,7 @@ const [tableParams, setTableParams] = useState<TableParams>({
 
   useEffect(() => {
     getNoticeKindsData()
-  },[])
+  }, [])
 
 
   return (
@@ -225,14 +225,14 @@ const [tableParams, setTableParams] = useState<TableParams>({
       <Paper>
         <Box className="noticeKinds-container" >
           {/* 标题 */}
-          <p className="title">公告类型配置</p>
+          <p className="title">公告类型配置2</p>
           {/* {t('orderManagement.title')} */}
           {/* 条件筛选栏 */}
           <NoticeKindsSearch noticeKindsSearchFn={noticeChlidrenSearch}></NoticeKindsSearch>
           {/* 分割符 */}
           <Divider flexItem color="#E5E6EB" />
           <Box className='noticeKindsAddBox'>
-            <Button className='noticeKindsAddBut' onClick={()=>{navigate('/instrument-panel/early-warning/noticeKinds/addNoticeKinds')}}>+  &nbsp; 新增公告</Button>
+            <Button className='noticeKindsAddBut' onClick={() => { navigate('/instrument-panel/early-warning/noticeKinds/addNoticeKinds') }}>+  &nbsp; 新增公告</Button>
           </Box>
           <Table
             className='noticeKindsTableBox'
@@ -256,10 +256,10 @@ const [tableParams, setTableParams] = useState<TableParams>({
                 description="确定删除吗?"
                 okText="确定"
                 cancelText="取消"
-                disabled={selectedRowKeys.length===0?true:false}
-              
+                disabled={selectedRowKeys.length === 0 ? true : false}
+
                 onConfirm={() => noticeKindsSelDel()}
-              > <Button disabled={selectedRowKeys.length===0?true:false} className='noticeKindsDelBut'>删除</Button>
+              > <Button disabled={selectedRowKeys.length === 0 ? true : false} className='noticeKindsDelBut'>删除</Button>
               </Popconfirm>
 
             </Box>

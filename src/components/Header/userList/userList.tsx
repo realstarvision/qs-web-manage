@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { getToken, removeUserInfo, getUserInfo } from '@/utils/auth'
 import { styled } from '@mui/material/styles'
@@ -25,7 +25,7 @@ import SimpleBackdrop from '@/components/Header/userList/components/usermeasge/u
 import PasswordBackdrop from '@/components/Header/userList/components/userPassword/userPassword'
 
 
- function MenuCom({ anchProps,changePasswordFunC }) {
+function MenuCom({ anchProps, changePasswordFunC }) {
   // 个人信息遮罩层状态
   const [openDrop, setOpenDrop] = useState(false);
   //  个人遮罩层子传父修改状态
@@ -60,7 +60,7 @@ import PasswordBackdrop from '@/components/Header/userList/components/userPasswo
     }, 2000)
   };
 
-   // 退出登录事件
+  // 退出登录事件
 
 
   // 退出登录遮罩层取消事件
@@ -278,12 +278,12 @@ import PasswordBackdrop from '@/components/Header/userList/components/userPasswo
 }
 
 // 定义修改全局状态的方法
-const changePasswordKey=(dispatch)=>{
-return{
-changePasswordFunC(){
-  dispatch({type:'changePasswordType'})
-}
-}
+const changePasswordKey = (dispatch) => {
+  return {
+    changePasswordFunC() {
+      dispatch({ type: 'changePasswordType' })
+    }
+  }
 }
 
-export default connect(null,changePasswordKey)(MenuCom)
+export default connect(null, changePasswordKey)(MenuCom)
