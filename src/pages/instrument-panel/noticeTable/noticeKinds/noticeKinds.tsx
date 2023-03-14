@@ -194,7 +194,7 @@ export default function NoticeKinds() {
       <Paper>
         <Box className="noticeKinds-container">
           {/* 标题 */}
-          <p className="title">公告类型配置</p>
+          <p className="title">公告类型配置2</p>
           {/* {t('orderManagement.title')} */}
           {/* 条件筛选栏 */}
           <NoticeKindsSearch noticeKindsSearchFn={noticeChlidrenSearch}></NoticeKindsSearch>

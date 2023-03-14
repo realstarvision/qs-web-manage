@@ -12,7 +12,7 @@ import { Login } from '@/api/user'
 import SvgIcon from '@/components/SvgIcon'
 import './style.scss'
 
-function Home() {
+const Home = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   // 眼睛（密码）
@@ -141,18 +141,13 @@ function Home() {
                 />
               </Grid>
               <Box className="loginForGPass">
+                {' '}
                 <a>忘记密码</a>
               </Box>
             </Grid>
           </Box>
         </Box>
         <Box className="loginMainBottom">
-          {/* <div
-            style={{
-              position: 'absolute',
-              zIndex: 999,
-            }}
-          > */}
           <CSSTransition
             in={Boolean(helperText)}
             //动画时间
@@ -160,11 +155,16 @@ function Home() {
             // 前缀名注意S
             classNames="DeclineIn"
           >
-            <span className="error" style={{ color: ' #DF2E2E', fontSize: '12px' }}>
+            <span
+              className="error"
+              style={{
+                color: ' #DF2E2E',
+                fontSize: '12px',
+              }}
+            >
               {helperText}
             </span>
           </CSSTransition>
-          {/* </div> */}
           <Grid container xs={12} className="from-item">
             <Button
               className="loginButton"

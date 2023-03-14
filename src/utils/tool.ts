@@ -66,3 +66,19 @@ export function saveGeoJSON(data, filename) {
   // 然后移除
   document.body.removeChild(a);
 }
+//分割url
+export function getParams(_url?: any) {
+  if (_url && typeof _url !== 'string') return {};
+  let url = (_url || location.href).split('?')[1] || '';
+
+  url = url.indexOf('#') > -1 ? url.split('#')[0] : url;
+  let ansObj = {};
+  if (url) {
+    let str = url.split("&");//将？去掉 进行&分割  a=1 b=2  进行对象拼装
+    for (let i = 0; i < str.length; i++) {
+      let tempArr = str[i].split("=");
+      tempArr[0] && (ansObj[tempArr[0]] = (tempArr[1]));
+    }
+  }
+  return ansObj;
+}

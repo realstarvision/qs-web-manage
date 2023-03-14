@@ -26,7 +26,7 @@ interface TableParams {
   filters?: Record<string, FilterValue>
 }
 // table组件
-export default function noticeTable() {
+const noticeTable = () => {
   // 拿到首页公告栏传递过来的参数
   const [search, setSearch] = useSearchParams()
   const removeId = search.get('id')
@@ -432,56 +432,43 @@ export default function noticeTable() {
                 查看
               </Link>
             </span>
-          ) : record.orderState === 0 ? (
-            <span>
-              <Link to={`/instrument-panel/early-warning/addNotice?id=${record.key}`}>操作</Link>
-              <Popconfirm
-                title="是否删除该数据"
-                okText="确定"
-                cancelText="取消"
-                onConfirm={() => {
-                  setLoading(true)
-                  setTimeout(() => {
-                    setLoading(false)
-                    message.success('删除成功')
-                  }, 1000)
-                }}
-              >
-                <a style={{ marginLeft: '8px' }} onClick={() => {}}>
-                  删除
-                </a>
-              </Popconfirm>
-            </span>
-          ) : record.orderState === 1 ? (
-            <span>
-              <Link
-                to={`/instrument-panel/early-warning/detail?id=${record.key}`}
-                onClick={(e) => {
-                  console.log(record)
-                }}
-              >
-                查看
-              </Link>
-              <Popconfirm
-                title="是否删除该数据"
-                okText="确定"
-                cancelText="取消"
-                onConfirm={() => {
-                  setLoading(true)
-                  setTimeout(() => {
-                    setLoading(false)
-                    message.success('删除成功')
-                  }, 1000)
-                }}
-              >
-                <a style={{ marginLeft: '8px' }} onClick={() => {}}>
-                  删除
-                </a>
-              </Popconfirm>
-            </span>
-          ) : (
-            <span>-</span>
-          )}
+            : record.orderState === 0 ?
+              <span>
+                <Link to={`/instrument-panel/early-warning/addNotice?id=${record.key}`}>操作</Link >
+                <Popconfirm
+                  title="是否删除该数据"
+                  okText="确定"
+                  cancelText="取消"
+                  onConfirm={() => {
+                    setLoading(true)
+                    setTimeout(() => {
+                      setLoading(false)
+                      message.success('删除成功')
+                    }, 1000)
+                  }}
+                >
+                  <a style={{ marginLeft: '8px' }} onClick={() => { }}>删除</a>
+                </Popconfirm>
+              </span>
+              : record.orderState === 1 ?
+                <span>
+                  <Link to={`/instrument-panel/early-warning/detail?id=${record.key}`} onClick={(e) => { console.log(record) }}>查看</Link>
+                  <Popconfirm
+                    title="是否删除该数据"
+                    okText="确定"
+                    cancelText="取消"
+                    onConfirm={() => {
+                      setLoading(true)
+                      setTimeout(() => {
+                        setLoading(false)
+                        message.success('删除成功')
+                      }, 1000);
+                    }}
+                  >
+                    <a style={{ marginLeft: '8px' }} onClick={() => { }}>删除</a>
+                  </Popconfirm>
+                </span>
+                : <span>-</span>}
         </p>
       ),
       // <p> <a onClick={(e) => handleCheck(e, record)}>{t('customerManagement.table.checkBtn')}</a>{removeId==='removeNoticeCompon'?'':<a >删除</a>}</p>
@@ -687,122 +674,81 @@ export default function noticeTable() {
     toExcel.saveExcel()
   }
   return (
-    <>
-      <Box className="order_management-container">
-        {contextHolder}
-        {/* 标题 */}
-        <p className="title">{t('orderManagement.title')}</p>
-        {/* 条件筛选栏 */}
-        <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading} removeProp={removeId}></SearchBar>
-        {/* 分割符 */}
-        <Divider flexItem color="#E5E6EB" />
-        {/* 新增与配置 */}
-        {removeId === 'removeNoticeCompon' ? null : (
-          <Box className="noticeAdd-Config">
-            <Button
-              className="noticeAdd"
-              onClick={() => {
-                navigator('/instrument-panel/early-warning/addNotice')
-              }}
-            >
-              + &nbsp; 新增公告
-            </Button>
-            <Button
-              className="noticeConfig"
-              onClick={() => {
-                navigator('/instrument-panel/early-warning/noticeKinds')
-              }}
-            >
-              公告类型配置
-            </Button>
-          </Box>
-        )}
+    <>123</>
+    // <>
+    //   <Box className="order_management-container">
+    //     {contextHolder}
+    //     标题
+    //     <p className="title">{t('orderManagement.title')}</p>
+    //     条件筛选栏
+    //     <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading} removeProp={removeId}></SearchBar>
+    //     分割符
+    //     <Divider flexItem color="#E5E6EB" />
+    //     新增与配置
+    //     {removeId === 'removeNoticeCompon' ? null : <Box className='noticeAdd-Config'>
+    //       <Button className='noticeAdd' onClick={() => {
+    //         navigator('/instrument-panel/early-warning/addNotice')
+    //       }}>+  &nbsp; 新增公告</Button>
+    //       <Button className='noticeConfig' onClick={() => { navigator('/instrument-panel/early-warning/noticeKinds') }}>公告类型配置</Button>
+    //     </Box>
+    //     }
 
-        {/* 表格 */}
-        <Table
-          className="noticeTableBox"
-          //识别是否是首页的公告栏跳转过来的如果是则禁止使用选择功能
-          rowSelection={
-            removeId === 'removeNoticeCompon'
-              ? null
-              : {
-                  type: selectionType,
-                  ...rowSelection,
-                }
-          }
-          scroll={{ y: '380px ' }}
-          dataSource={tableRecord.slice(
-            (tableParams.pagination.current - 1) * tableParams.pagination.pageSize,
-            tableParams.pagination.current * tableParams.pagination.pageSize
-          )}
-          columns={columns as any}
-          pagination={removeId === 'removeNoticeCompon' ? tableParams.pagination : false}
-          onChange={removeId === 'removeNoticeCompon' ? handleTableChange : null}
-          loading={loading}
-        />
-        {removeId === 'removeNoticeCompon' ? null : (
-          <Box className="noticeTableOutBox">
-            {/* 自定义分页 */}
-            <Box className="noticeTableButtonBox">
-              <p className="noticeTableButtonSel">
-                已选<span className="noticeTableButtonSelLength">{selectedRowKeys ? selectedRowKeys.length : 0}</span>条
-              </p>
-              <Popconfirm
-                title="是否删除该数据"
-                okText="确定"
-                cancelText="取消"
-                onConfirm={() => {
-                  setLoading(true)
-                  setTimeout(() => {
-                    setLoading(false)
-                    message.success('删除成功')
-                  }, 1000)
-                }}
-              >
-                <Button
-                  className="noticeTableDelBut"
-                  disabled={selectedRowKeys.length === 0 ? true : false}
-                  onClick={() => {
-                    selectButton()
-                  }}
-                >
-                  删除
-                </Button>
-              </Popconfirm>
-              <Button
-                className="noticeTableOutBut"
-                onClick={() => {
-                  downloadExcel(tableRecord)
-                }}
-              >
-                导出
-              </Button>
-            </Box>
-            <Pagination
-              defaultCurrent={1}
-              current={tableParams.pagination.current}
-              pageSize={tableParams.pagination.pageSize}
-              total={tableParams.pagination.total}
-              showTotal={tableParams.pagination.showTotal}
-              onChange={(page, pageSize) => {
-                setTableParams({ pagination: { ...tableParams.pagination, current: page, pageSize } })
-              }}
-              onShowSizeChange={(current, size) => {
-                setTableParams({ pagination: { ...tableParams.pagination, pageSize: size, current } })
-              }}
-            ></Pagination>
-          </Box>
-        )}
-      </Box>
-      {/* 弹出框 */}
-      <PopupBox
-        open={openPopupBox}
-        onClose={() => {
-          setOpenPopupBox(false)
-        }}
-        onUploadOrderState={handleUploadOrderState}
-        data={checkedData}
-      />
-    </>
+    //     表格
+    //     <Table
+    //       className='noticeTableBox'
+    //       //识别是否是首页的公告栏跳转过来的如果是则禁止使用选择功能
+    //       rowSelection={removeId === 'removeNoticeCompon' ? null : {
+    //         type: selectionType,
+    //         ...rowSelection,
+    //       }}
+    //       scroll={{ y: '380px ' }}
+    //       dataSource={tableRecord.slice((tableParams.pagination.current - 1) * tableParams.pagination.pageSize, tableParams.pagination.current * tableParams.pagination.pageSize)}
+    //       columns={columns as any}
+    //       pagination={removeId === 'removeNoticeCompon' ? tableParams.pagination : false}
+    //       onChange={removeId === 'removeNoticeCompon' ? handleTableChange : null}
+    //       loading={loading}
+    //     />
+    //     {removeId === 'removeNoticeCompon' ? null : <Box className='noticeTableOutBox'>
+    //       自定义分页
+    //       <Box className='noticeTableButtonBox' >
+    //         <p className='noticeTableButtonSel'>已选<span className='noticeTableButtonSelLength'>{selectedRowKeys ? selectedRowKeys.length : 0}</span>条</p>
+    //         <Popconfirm
+    //           title="是否删除该数据"
+    //           okText="确定"
+    //           cancelText="取消"
+    //           onConfirm={() => {
+    //             setLoading(true)
+    //             setTimeout(() => {
+    //               setLoading(false)
+    //               message.success('删除成功')
+    //             }, 1000);
+    //           }}
+    //         >
+    //           <Button className='noticeTableDelBut' disabled={selectedRowKeys.length === 0 ? true : false} onClick={() => { selectButton() }}>删除</Button>
+    //         </Popconfirm>
+    //         <Button className='noticeTableOutBut' onClick={() => { downloadExcel(tableRecord) }}>导出</Button>
+    //       </Box>
+    //       <Pagination
+    //         defaultCurrent={1}
+    //         current={tableParams.pagination.current}
+    //         pageSize={tableParams.pagination.pageSize}
+    //         total={tableParams.pagination.total}
+    //         showTotal={tableParams.pagination.showTotal}
+    //         onChange={(page, pageSize) => { setTableParams({ pagination: { ...tableParams.pagination, current: page, pageSize } }) }}
+    //         onShowSizeChange={(current, size) => { setTableParams({ pagination: { ...tableParams.pagination, pageSize: size, current } }) }}
+    //       ></Pagination>
+    //     </Box>}
+    //   </Box>
+    //   弹出框
+    //   <PopupBox
+    //     open={openPopupBox}
+    //     onClose={() => {
+    //       setOpenPopupBox(false)
+    //     }}
+    //     onUploadOrderState={handleUploadOrderState}
+    //     data={checkedData}
+    //   />
+    // </>
   )
 }
+export default noticeTable

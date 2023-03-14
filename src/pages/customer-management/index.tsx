@@ -218,150 +218,142 @@ export default function index() {
   }
   return (
     <>
-      <Box className="customer_management-container">
-        {contextHolder}
-        {/* 标题 */}
-        <p className="title">{t('customerManagement.title')}</p>
-        {/* 条件筛选栏 */}
-        <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading}></SearchBar>
-        {/* 分割符 */}
-        <Divider flexItem color="#E5E6EB" />
-
-        {/* 表格 */}
-        <Table
-          style={{
-            marginTop: '20px',
-          }}
-          dataSource={dataList}
-          columns={columns as any}
-          pagination={tableParams.pagination}
-          onChange={handleTableChange}
-          loading={loading}
-        />
-      </Box>
-
-      {/* 弹出框 */}
-      <PopupBox
-        open={openPopupBox}
-        width="354px"
-        onClose={() => {
-          setOpenPopupBox(false)
-        }}
-        coord={coord}
-      >
-        {/* 启用禁用 */}
-        <Box
-          className="customer-PopupBox-item"
-          style={{
-            marginBottom: '15px',
-          }}
-        >
-          <FormLabel component="span" className="label">
-            {t('customerManagement.popupBox.state')}
-          </FormLabel>
-          <MyInput
-            size="small"
-            select
-            placeholder={t('customerManagement.popupBox.state')}
-            value={checkedData.isLock - 1}
-            onChange={(e) => handleInputChange(e, 'isLock')}
-            autoComplete="off"
-            sx={{
-              width: '235px',
-            }}
-          >
-            {stateList.map((state, index) => (
-              <MenuItem key={index} value={index}>
-                {state}
-              </MenuItem>
-            ))}
-          </MyInput>
-        </Box>
-
-        {/* 编辑信息 */}
-        <Box className="customer-PopupBox-item">
-          <FormLabel
-            component="span"
-            className="label"
-            style={{
-              marginRight: '15px',
-            }}
-          >
-            编辑信息
-          </FormLabel>
-          <Box className="sub-item">
-            <FormLabel component="span" className="label">
-              姓氏
-            </FormLabel>
-            <MyInput
-              size="small"
-              value={checkedData.lastName}
-              onChange={(e) => handleInputChange(e, 'lastName')}
-              autoComplete="off"
-              sx={{
-                width: '195px',
-              }}
-            ></MyInput>
-          </Box>
-        </Box>
-        <Box className="customer-PopupBox-item">
-          <Box className="sub-item">
-            <FormLabel component="span" className="label">
-              名称
-            </FormLabel>
-            <MyInput
-              size="small"
-              value={checkedData.firstName}
-              onChange={(e) => handleInputChange(e, 'firstName')}
-              autoComplete="off"
-              sx={{
-                width: '195px',
-              }}
-            ></MyInput>
-          </Box>
-        </Box>
-        <Box className="customer-PopupBox-item">
-          <Box className="sub-item">
-            <FormLabel component="span" className="label">
-              公司
-            </FormLabel>
-            <MyInput
-              size="small"
-              value={checkedData.company}
-              onChange={(e) => handleInputChange(e, 'company')}
-              autoComplete="off"
-              sx={{
-                width: '195px',
-              }}
-            ></MyInput>
-          </Box>
-        </Box>
-        <Box
-          className="customer-PopupBox-item"
-          sx={{
-            mt: '20px',
-          }}
-        >
-          <LoadingButton
-            onClick={handlePopupBtnClick}
-            loading={editUserLoading}
-            className="loadingButton"
-            // sx={{
-            //   height: '25px',
-            //   padding: '9px 16px ',
-            //   background: '#2E6EDF ',
-            //   borderRadius: '2px ',
-            //   color: '#fff ',
-            //   fontSize: '14px ',
-            //   '&:hover': {
-            //     background: '#2E6EDF ',
-            //   },
-            // }}
-          >
-            确认
-          </LoadingButton>
-        </Box>
-      </PopupBox>
+      666
     </>
+    // <>
+    //   <Box className="customer_management-container">
+    //     {contextHolder}
+    //     {/* 标题 */}
+    //     <p className="title">{t('customerManagement.title')}</p>
+    //     {/* 条件筛选栏 */}
+    //     <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading}></SearchBar>
+    //     {/* 分割符 */}
+    //     <Divider flexItem color="#E5E6EB" />
+
+    //     {/* 表格 */}
+    //     <Table
+    //       style={{
+    //         marginTop: '20px',
+    //       }}
+    //       dataSource={dataList}
+    //       columns={columns as any}
+    //       pagination={tableParams.pagination}
+    //       onChange={handleTableChange}
+    //       loading={loading}
+    //     />
+    //   </Box>
+
+    //   弹出框
+    //   <PopupBox
+    //     open={openPopupBox}
+    //     width="354px"
+    //     onClose={() => {
+    //       setOpenPopupBox(false)
+    //     }}
+    //     coord={coord}
+    //   >
+    //     启用禁用
+    //     <Box
+    //       className="customer-PopupBox-item"
+    //       style={{
+    //         marginBottom: '15px',
+    //       }}
+    //     >
+    //       <FormLabel component="span" className="label">
+    //         {t('customerManagement.popupBox.state')}
+    //       </FormLabel>
+    //       <MyInput
+    //         size="small"
+    //         select
+    //         placeholder={t('customerManagement.popupBox.state')}
+    //         value={checkedData.isLock - 1}
+    //         onChange={(e) => handleInputChange(e, 'isLock')}
+    //         autoComplete="off"
+    //         sx={{
+    //           width: '235px',
+    //         }}
+    //       >
+    //         {stateList.map((state, index) => (
+    //           <MenuItem key={index} value={index}>
+    //             {state}
+    //           </MenuItem>
+    //         ))}
+    //       </MyInput>
+    //     </Box>
+
+    //     编辑信息
+    //     <Box className="customer-PopupBox-item">
+    //       <FormLabel
+    //         component="span"
+    //         className="label"
+    //         style={{
+    //           marginRight: '15px',
+    //         }}
+    //       >
+    //         编辑信息
+    //       </FormLabel>
+    //       <Box className="sub-item">
+    //         <FormLabel component="span" className="label">
+    //           姓氏
+    //         </FormLabel>
+    //         <MyInput
+    //           size="small"
+    //           value={checkedData.lastName}
+    //           onChange={(e) => handleInputChange(e, 'lastName')}
+    //           autoComplete="off"
+    //           sx={{
+    //             width: '195px',
+    //           }}
+    //         ></MyInput>
+    //       </Box>
+    //     </Box>
+    //     <Box className="customer-PopupBox-item">
+    //       <Box className="sub-item">
+    //         <FormLabel component="span" className="label">
+    //           名称
+    //         </FormLabel>
+    //         <MyInput
+    //           size="small"
+    //           value={checkedData.firstName}
+    //           onChange={(e) => handleInputChange(e, 'firstName')}
+    //           autoComplete="off"
+    //           sx={{
+    //             width: '195px',
+    //           }}
+    //         ></MyInput>
+    //       </Box>
+    //     </Box>
+    //     <Box className="customer-PopupBox-item">
+    //       <Box className="sub-item">
+    //         <FormLabel component="span" className="label">
+    //           公司
+    //         </FormLabel>
+    //         <MyInput
+    //           size="small"
+    //           value={checkedData.company}
+    //           onChange={(e) => handleInputChange(e, 'company')}
+    //           autoComplete="off"
+    //           sx={{
+    //             width: '195px',
+    //           }}
+    //         ></MyInput>
+    //       </Box>
+    //     </Box>
+    //     <Box
+    //       className="customer-PopupBox-item"
+    //       sx={{
+    //         mt: '20px',
+    //       }}
+    //     >
+    //       <LoadingButton
+    //         onClick={handlePopupBtnClick}
+    //         loading={editUserLoading}
+    //         className="loadingButton"
+    //       >
+    //         确认
+    //       </LoadingButton>
+    //     </Box>
+    //   </PopupBox>
+    // </>
   )
 }

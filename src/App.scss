@@ -1,8 +1,9 @@
-.app{
+.app {
   width: 100%;
   height: 100%;
 
 }
+
 html {
   overflow-y: scroll;
 }
@@ -22,4 +23,81 @@ body {
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
+}
+
+/* Menu */
+// 管理中心Menu 样式覆盖
+.sidebar-menu,
+.policy-menu {
+
+  .ant-menu-inline .ant-menu-item:after,
+  .ant-menu-vertical-left .ant-menu-item:after,
+  .ant-menu-vertical-right .ant-menu-item:after,
+  .ant-menu-vertical .ant-menu-item:after {
+    border-width: 6px;
+  }
+
+  .sidebar-img {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 14px;
+    height: 50px;
+    margin-top: -25px;
+    cursor: pointer;
+    transition: all .3s;
+    z-index: 1;
+
+    &.close {
+      right: -14px;
+      transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      /* IE 9 */
+      -moz-transform: rotate(180deg);
+      /* Firefox */
+      -webkit-transform: rotate(180deg);
+      /* Safari 和 Chrome */
+      -o-transform: rotate(180deg);
+      /* Opera */
+    }
+  }
+
+  .head-bar {
+    width: 100%;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 10;
+    transition: width .3s;
+    overflow: hidden;
+
+    .head-img {
+      width: 20px;
+      height: 20px;
+      filter: drop-shadow(#000 100px 0);
+      transform: translateX(-100px);
+    }
+
+    .head-title {
+      font-family: PingFangSC-Medium;
+      font-size: 16px;
+      color: #1A2E42;
+      line-height: 24px;
+      margin-left: 9px;
+    }
+  }
+
+  .empty-box {
+    display: inline-block;
+    width: 25px;
+  }
+}
+
+.css-1ibti34-MuiPaper-root-MuiAppBar-root {
+  position: relative !important;
 }
