@@ -314,179 +314,166 @@ const noticeTable = () => {
   }
 
   // 表格列
-  const columns = [
-    {
-      title: '编号',
-      dataIndex: 'orderNo',
-      key: 'orderNo',
-      align: 'center',
-      // 设置文本过长用省略号代替并关闭提示的title
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (_, record) => (
-        <span title="复制" onClick={(e) => handleCopy(e, record)}>
-          {record.key}
-          <SvgIcon svgName="copy" svgClass="copyIcon"></SvgIcon>
-        </span>
-      ),
-    },
-    {
-      title: '公告标题',
-      dataIndex: 'orderNo',
-      key: 'orderNo',
-      align: 'center',
-      // 设置文本过长用省略号代替并关闭提示的title
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (_, record) => <span onClick={(e) => handleCopy(e, record)}>{record.dd}</span>,
-    },
-    {
-      title: '创建时间',
-      dataIndex: 'createTime',
-      key: 'createTime',
-      align: 'center',
-      sorter: (a, b) => a.age - b.age,
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (_, record) => <span>{record.age}</span>,
-    },
-    {
-      title: '发布人',
-      dataIndex: 'orderNo',
-      key: 'orderNo',
-      align: 'center',
-      // 设置文本过长用省略号代替并关闭提示的title
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (_, record) => <span onClick={(e) => handleCopy(e, record)}>{record.cc}</span>,
-    },
-    {
-      title: '公告状态',
-      dataIndex: 'orderState',
-      key: 'orderState',
-      align: 'center',
-      ellipsis: {
-        showTitle: false,
-      },
-      // filters: [
-      //   {
-      //     text: '已发布',
-      //     value: '已发布',
-      //   },
-      //   {
-      //     text: '未发布',
-      //     value: '未发布',
-      //   },
-      //   {
-      //     text: '已删除',
-      //     value: '已删除',
-      //   },
-      // ],
-      render: (_, record) => (
-        <Badge
-          // 根据状态码判定显示颜色
-          status={record.orderState === 0 ? 'warning' : record.orderState === 1 ? 'success' : 'error'}
-          text={record.orderState === 0 ? '未发布' : record.orderState === 1 ? '已发布' : '已删除'}
-        />
-      ),
-    },
-    {
-      title: '公告类型',
-      dataIndex: 'orderType',
-      key: 'orderType',
-      align: 'center',
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (_, record) => <Badge text={record.orderType == 0 ? '库存订单' : '定制订单'} />,
-    },
-    {
-      title: '发布板块',
-      dataIndex: 'email',
-      key: 'email',
-      align: 'center',
-      ellipsis: {
-        showTitle: false,
-      },
-      render: (_, record) => <span>{record.name}</span>,
-    },
-    {
-      title: '操作',
-      key: 'action',
-      align: 'center',
-      //根据状态判定操作功能
-      // 看后端配置  如果有对查看更多跳转后的页面设置接口，那么前面已判断table用哪个数据渲染列表，则对应的查看更多跳过去一定是已发布的内容那么就不需要判断路由的参数
-      // 如果没有配置接口则请求数据后，判断参数，有参数说明查看更多调过来，这里就需要修改先判断参数再判断状态码
-      render: (_, record) => (
-        <p>
-          {removeId === 'removeNoticeCompon' ? (
-            <span>
-              <Link
-                to={`/instrument-panel/early-warning/detail?id=${record.key}`}
-                onClick={(e) => handleCheck(e, record)}
-              >
-                查看
-              </Link>
-            </span>
-          ) : record.orderState === 0 ? (
-            <span>
-              <Link to={`/instrument-panel/early-warning/addNotice?id=${record.key}`}>操作</Link>
-              <Popconfirm
-                title="是否删除该数据"
-                okText="确定"
-                cancelText="取消"
-                onConfirm={() => {
-                  setLoading(true)
-                  setTimeout(() => {
-                    setLoading(false)
-                    message.success('删除成功')
-                  }, 1000)
-                }}
-              >
-                <a style={{ marginLeft: '8px' }} onClick={() => {}}>
-                  删除
-                </a>
-              </Popconfirm>
-            </span>
-          ) : record.orderState === 1 ? (
-            <span>
-              <Link
-                to={`/instrument-panel/early-warning/detail?id=${record.key}`}
-                onClick={(e) => {
-                  console.log(record)
-                }}
-              >
-                查看
-              </Link>
-              <Popconfirm
-                title="是否删除该数据"
-                okText="确定"
-                cancelText="取消"
-                onConfirm={() => {
-                  setLoading(true)
-                  setTimeout(() => {
-                    setLoading(false)
-                    message.success('删除成功')
-                  }, 1000)
-                }}
-              >
-                <a style={{ marginLeft: '8px' }} onClick={() => {}}>
-                  删除
-                </a>
-              </Popconfirm>
-            </span>
-          ) : (
-            <span>-</span>
-          )}
-        </p>
-      ),
-      // <p> <a onClick={(e) => handleCheck(e, record)}>{t('customerManagement.table.checkBtn')}</a>{removeId==='removeNoticeCompon'?'':<a >删除</a>}</p>
-    },
-  ]
+  // const columns = [
+  //   {
+  //     title: '编号',
+  //     dataIndex: 'orderNo',
+  //     key: 'orderNo',
+  //     align: 'center',
+  //     // 设置文本过长用省略号代替并关闭提示的title
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     render: (_, record) => (
+  //       <span title="复制" onClick={(e) => handleCopy(e, record)}>
+  //         {record.key}
+  //         <SvgIcon svgName="copy" svgClass="copyIcon"></SvgIcon>
+  //       </span>
+  //     ),
+  //   },
+  //   {
+  //     title: '公告标题',
+  //     dataIndex: 'orderNo',
+  //     key: 'orderNo',
+  //     align: 'center',
+  //     // 设置文本过长用省略号代替并关闭提示的title
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     render: (_, record) => <span onClick={(e) => handleCopy(e, record)}>{record.dd}</span>,
+  //   },
+  //   {
+  //     title: '创建时间',
+  //     dataIndex: 'createTime',
+  //     key: 'createTime',
+  //     align: 'center',
+  //     sorter: (a, b) => a.age - b.age,
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     render: (_, record) => <span>{record.age}</span>,
+  //   },
+  //   {
+  //     title: '发布人',
+  //     dataIndex: 'orderNo',
+  //     key: 'orderNo',
+  //     align: 'center',
+  //     // 设置文本过长用省略号代替并关闭提示的title
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     render: (_, record) => <span onClick={(e) => handleCopy(e, record)}>{record.cc}</span>,
+  //   },
+  //   {
+  //     title: '公告状态',
+  //     dataIndex: 'orderState',
+  //     key: 'orderState',
+  //     align: 'center',
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     // filters: [
+  //     //   {
+  //     //     text: '已发布',
+  //     //     value: '已发布',
+  //     //   },
+  //     //   {
+  //     //     text: '未发布',
+  //     //     value: '未发布',
+  //     //   },
+  //     //   {
+  //     //     text: '已删除',
+  //     //     value: '已删除',
+  //     //   },
+  //     // ],
+  //     render: (_, record) => (
+  //       <Badge
+  //         // 根据状态码判定显示颜色
+  //         status={record.orderState === 0 ? 'warning' : record.orderState === 1 ? 'success' : 'error'}
+  //         text={record.orderState === 0 ? '未发布' : record.orderState === 1 ? '已发布' : '已删除'}
+  //       />
+  //     ),
+  //   },
+  //   {
+  //     title: '公告类型',
+  //     dataIndex: 'orderType',
+  //     key: 'orderType',
+  //     align: 'center',
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     render: (_, record) => <Badge text={record.orderType == 0 ? '库存订单' : '定制订单'} />,
+  //   },
+  //   {
+  //     title: '发布板块',
+  //     dataIndex: 'email',
+  //     key: 'email',
+  //     align: 'center',
+  //     ellipsis: {
+  //       showTitle: false,
+  //     },
+  //     render: (_, record) => <span>{record.name}</span>,
+  //   },
+  //   {
+  //     title: '操作',
+  //     key: 'action',
+  //     align: 'center',
+  //     //根据状态判定操作功能
+  //     // 看后端配置  如果有对查看更多跳转后的页面设置接口，那么前面已判断table用哪个数据渲染列表，则对应的查看更多跳过去一定是已发布的内容那么就不需要判断路由的参数
+  //     // 如果没有配置接口则请求数据后，判断参数，有参数说明查看更多调过来，这里就需要修改先判断参数再判断状态码
+  //     render: (_, record) => (
+  //       <p>
+  //         {removeId === 'removeNoticeCompon' ? (
+  //           <span>
+  //             <Link
+  //               to={`/instrument-panel/early-warning/detail?id=${record.key}`}
+  //               onClick={(e) => handleCheck(e, record)}
+  //             >
+  //               查看
+  //             </Link>
+  //           </span>
+  //           : record.orderState === 0 ?
+  //             <span>
+  //               <Link to={`/instrument-panel/early-warning/addNotice?id=${record.key}`}>操作</Link >
+  //               <Popconfirm
+  //                 title="是否删除该数据"
+  //                 okText="确定"
+  //                 cancelText="取消"
+  //                 onConfirm={() => {
+  //                   setLoading(true)
+  //                   setTimeout(() => {
+  //                     setLoading(false)
+  //                     message.success('删除成功')
+  //                   }, 1000)
+  //                 }}
+  //               >
+  //                 <a style={{ marginLeft: '8px' }} onClick={() => { }}>删除</a>
+  //               </Popconfirm>
+  //             </span>
+  //             : record.orderState === 1 ?
+  //               <span>
+  //                 <Link to={`/instrument-panel/early-warning/detail?id=${record.key}`} onClick={(e) => { console.log(record) }}>查看</Link>
+  //                 <Popconfirm
+  //                   title="是否删除该数据"
+  //                   okText="确定"
+  //                   cancelText="取消"
+  //                   onConfirm={() => {
+  //                     setLoading(true)
+  //                     setTimeout(() => {
+  //                       setLoading(false)
+  //                       message.success('删除成功')
+  //                     }, 1000);
+  //                   }}
+  //                 >
+  //                   <a style={{ marginLeft: '8px' }} onClick={() => { }}>删除</a>
+  //                 </Popconfirm>
+  //               </span>
+  //               : <span>-</span>}
+  //       </p>
+  //     ),
+  //     // <p> <a onClick={(e) => handleCheck(e, record)}>{t('customerManagement.table.checkBtn')}</a>{removeId==='removeNoticeCompon'?'':<a >删除</a>}</p>
+  //   },
+  // ]
 
   // 提示信息
   const [messageApi, contextHolder] = message.useMessage()

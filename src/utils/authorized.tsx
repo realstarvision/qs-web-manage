@@ -18,7 +18,7 @@ const Authorized = (props: any) => {
   }, [])
 
   const { children } = props;
-  console.log('children', children);
+  // console.log('children', children);
 
   // const dom = accountInfo ? children : <Login />;
   // const dom = children

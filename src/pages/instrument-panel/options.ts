@@ -6,10 +6,10 @@ export default function orderDataOptions(listData) {
   const { t } = useTranslation()
   // 横坐标数据
   let XName = ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
- 
+
   // 内容数据
   let data1 = ['3', "4", '4.3', '3', "4", '4.3']
-  let dataQ = ['4', "3", '2.3', '1', '10','12']
+  let dataQ = ['4', "3", '2.3', '1', '10', '12']
   let dataW = ['6', "7", '8', '6', "4", '2']
   // 纵轴数据
   let data2 = []
@@ -50,10 +50,10 @@ export default function orderDataOptions(listData) {
         },
         // 鼠标移动到节点时显示的内容
         formatter: function (params, ticket, callback) {
-          console.log(params)
+          // console.log(params)
           // 这里可以修改以下遍历params 后期在做调整
           return (
-            
+
             `<div
             style='fontWeight:500 !important;margin-left:12px;line-height: 20px;color:color: #1D2129;height:20px;font-size: 12px;font-family: PingFang SC-Medium, PingFang SC'> 
             ${params[0]["axisValueLabel"]}
@@ -67,7 +67,7 @@ export default function orderDataOptions(listData) {
             font-weight: bold;
             color: #1D2129;
             line-height: 15px;'>
-            ${params[0]?params[0]["data"]:0}
+            ${params[0] ? params[0]["data"] : 0}
            
             </span>
             </div>`
@@ -81,7 +81,7 @@ export default function orderDataOptions(listData) {
             font-weight: bold;
             color: #1D2129;
             line-height: 15px;'>
-            ${params[1]?params[1]["data"]:0}
+            ${params[1] ? params[1]["data"] : 0}
             </span>
             </div>`
             + `<div style='display:flex;justify-content: space-between;align-items: center;line-height: 20px;height: 32px;background:rgba(255,255,255,0.9);padding:2px 5px;border-radius:10px;margin-top:4px'>
@@ -93,7 +93,7 @@ export default function orderDataOptions(listData) {
             font-weight: bold;
             color: #1D2129;
             line-height: 15px;'>
-            ${params[2]?params[2]["data"]:0}
+            ${params[2] ? params[2]["data"] : 0}
             </span>
             </div>`
           );
@@ -133,7 +133,7 @@ export default function orderDataOptions(listData) {
       type: 'value'
     },
 
-    
+
 
     // 表内数据及样式  数组内对象格式  
     series: [
@@ -150,7 +150,7 @@ export default function orderDataOptions(listData) {
         symbolSize: 1,
         // 每个坐标是否给节点图标
         showSymbol: false,
-        symbolBackgroundColor:'red',
+        symbolBackgroundColor: 'red',
         lineStyle: {
           normal: {
             // 折线的宽度
@@ -409,7 +409,7 @@ export default function orderDataOptions(listData) {
       //   data: dataQ,
       // },
 
-// 第三天数据
+      // 第三天数据
       {
         // 数据线的形状
         type: "line",

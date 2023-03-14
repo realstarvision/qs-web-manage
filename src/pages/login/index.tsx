@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import QRCodeCanvas from 'qrcode.react'
 import { useTranslation } from 'react-i18next'
 import { CSSTransition } from 'react-transition-group'
-import { setUserInfo, setToken } from '@/utils/auth'
+import { setUserInfo, setToken, getUserInfo } from '@/utils/auth'
 import { useNavigate } from 'react-router-dom'
 import { Box, Typography, Grid, FormLabel, InputAdornment } from '@mui/material'
 import { LoadingButton as Button } from '@/components/Button'
@@ -26,7 +26,6 @@ const Home = () => {
   const [params, setParams] = useState({
     account: '',
     password: '',
-    name: '',
   })
 
   /* 登录 */
@@ -34,17 +33,16 @@ const Home = () => {
     setHelperText('')
     setLoading(true)
     // setHelperText('密码错误')
-    console.log(params)
     Login(params)
-      .then(({ data, code }: any) => {
-        console.log(data)
+      .then(({ data, code, msg }: any) => {
         if (code === 200) {
           setUserInfo(data)
           setToken(data.token)
-          console.log(data)
           navigate('/')
+          console.log(getUserInfo());
+
         } else {
-          setHelperText('密码错误')
+          setHelperText(msg)
         }
       })
       .finally(() => {
@@ -59,6 +57,7 @@ const Home = () => {
   }
   /* 设置账户密码 */
   const handleUsernameChange = (e) => {
+
     params.account = e.target.value
     setParams({ ...params })
   }
@@ -72,6 +71,11 @@ const Home = () => {
     eyeState = !eyeState
     setEyeState(eyeState)
   }
+  useEffect(() => {
+    if (params?.account && params?.password) {
+      setButBol(false)
+    }
+  }, [params])
   return (
     <Box className="login-container">
       <Box className="loginMain">
@@ -170,11 +174,10 @@ const Home = () => {
               className="loginButton"
               onClick={handleLogin}
               loading={loading}
-              disabled={params.name === '' || params.password === '' || butBol === true ? true : false}
+              disabled={butBol}
               style={{
-                background: `${
-                  params.name === '' || params.password === '' || butBol === true ? '#B9CEFF' : '#165DFF'
-                }`,
+                background: `${params.account === '' || params.password === '' || butBol === true ? '#B9CEFF' : '#165DFF'
+                  }`,
               }}
             >
               {/* {t('login.btnText')} */}

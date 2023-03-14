@@ -76,7 +76,7 @@ function MenuCom({ anchProps, changePasswordFunC }) {
   // 修改密码弹窗在layout的header里面 是父组件而首次登录后提示用户修改密码弹窗在主体部分的index里面因此修改密码弹窗的useEffect执行速度要早于此处的
 
   useEffect(() => {
-    console.log('aaaa')
+    // console.log('aaaa')
   })
 
   // 自定义menu
@@ -149,15 +149,15 @@ function MenuCom({ anchProps, changePasswordFunC }) {
       </Box>
       <Box className='userMessage'>
         <Box className="user-info">
-          <Typography className="name">{getUserInfo() ? getUserInfo().userName : '暂无啊'} </Typography>
-          <Typography className="nameRole">{getUserInfo() ? getUserInfo().userName : '暂无啊'} </Typography>
+          <Typography className="name">{getUserInfo() ? getUserInfo().name : '暂无啊'} </Typography>
+          <Typography className="nameRole">{getUserInfo() ? getUserInfo()?.roleEntity?.roleDescr : '暂无啊'} </Typography>
         </Box>
         <Box className="user-info">
           <Typography className="department">
-            {getUserInfo() && getUserInfo().roleEntitie ? getUserInfo().roleEntitie.roleName + ',' : 'XX职位' + `\u00A0\u00A0`}
+            {getUserInfo() && getUserInfo().roleEntity ? getUserInfo()?.roleEntity?.roleDescr + ',' : 'XX职位' + `\u00A0\u00A0`}
           </Typography>
           <Typography className="department">
-            {getUserInfo() && getUserInfo().roleEntitie ? getUserInfo().roleEntitie.roleName : 'XX职务'}
+            {getUserInfo() && getUserInfo().roleEntity ? getUserInfo()?.roleEntity?.roleDescr : 'XX职务'}
           </Typography>
         </Box>
       </Box>

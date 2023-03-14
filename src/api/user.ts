@@ -4,7 +4,7 @@ const api = {
   userList: '/star-store/background/findUserListByPage',
   login: '/star-qiaosi/user/login',
   updateUser: '/star-store/background/updateUser',
-
+  updateUserInfo: '/star-qiaosi/user/updateById',
 }
 
 
@@ -41,5 +41,12 @@ export function updateUser(data) {
   })
 }
 
-
+/* 根据用户id更新用户信息 */
+export function updateUserInfo(data) {
+  return request({
+    url: api.updateUserInfo,
+    method: 'post',
+    data
+  })
+}
 

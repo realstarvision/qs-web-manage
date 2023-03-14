@@ -18,7 +18,7 @@ const GlobalHeader = (props: any) => {
   // console.log('pathname=============', pathname)
   // 消息列表 切换页面
   const onNewsClick = (key) => {
-    console.log('key');
+    // console.log('key');
   };
   const userInfo = (
     <div style={{ padding: "8px" }} className="FBH FBAC FBJC">
@@ -70,16 +70,13 @@ const GlobalHeader = (props: any) => {
       setSelectedItem('/')
       return
     }
-    console.log('context.menu??????', context.menu);
 
     if (context?.menu?.length > 0) {
       // 如果pathname等于目录路径重定向到目录下的第一个
-      console.log('context.menu.', context.menu);
 
       const result = context.menu.filter(p => {
         return p.uri == pathname
       })
-      console.log('result=====', result);
 
       if (result.length > 0) {
         // props.handleMcMenu();

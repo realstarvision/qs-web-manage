@@ -1,32 +1,33 @@
-import Cookies from 'js-cookie'
-
 const TokenKey = 'Admin-Token'
 const userInfo = 'User-Info-order-manage'
 
 export function getToken() {
-  return Cookies.get(TokenKey)
+  return sessionStorage.get(TokenKey)
 }
 // 存储token
 export function setToken(token: string) {
   console.log(token)
-  return localStorage.setItem('Token', token)
+  return sessionStorage.setItem('Token', token)
 }
 
 export function removeToken() {
-  return localStorage.remove('Token')
+  return sessionStorage.remove('Token')
 }
 
 export function getUserInfo() {
-  const info = Cookies.get(userInfo)
-  return info ? JSON.parse(info as string) : ''
+
+  const info = JSON.parse(sessionStorage.getItem(userInfo))
+  return info
 }
 
-export function setUserInfo(info: { avatarUrl: string, nick: string }) {
-  const user = JSON.stringify(info)
-  return Cookies.set(userInfo, user)
+export function setUserInfo(info: any) {
+
+  const user = sessionStorage.setItem(userInfo, JSON.stringify(info))
+
+  return user
 }
 
 export function removeUserInfo() {
-  return Cookies.remove(userInfo) ,localStorage.clear()
- 
+  return sessionStorage.clear(), localStorage.clear()
+
 }
