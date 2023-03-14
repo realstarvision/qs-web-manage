@@ -25,8 +25,6 @@ export default function index() {
   const { t } = useTranslation()
   // 提示信息
   const [messageApi, contextHolder] = message.useMessage()
-  // 启用禁用
-  const stateList = [t('customerManagement.stateList.start'), t('customerManagement.stateList.disable')]
   // 分页总数
   const showTotal: PaginationProps['showTotal'] = (total) =>
     `${t('customerManagement.paginationProps.count')} ${total} ${t('customerManagement.paginationProps.units')}`
@@ -163,7 +161,7 @@ export default function index() {
 
   /* 表格中复制按钮 */
   const handleCopy = (e, record) => {
-    copyToClip(record.orderNo)
+    // copyToClip(record.orderNo)
     messageApi.success(t('customerManagement.copyMessage'))
   }
 
@@ -207,16 +205,19 @@ export default function index() {
             marginBottom: '20px',
           }}
         />
-        <Button
-          style={{
-            marginBottom: '20px',
-          }}
-          className="add_btn"
-          startIcon={<SvgIcon svgName="add" svgClass="btn_icon"></SvgIcon>}
-          onClick={handleAdd}
-        >
-          新增工单
-        </Button>
+        <div>
+          <Button
+            style={{
+              marginBottom: '20px',
+            }}
+            className="add_btn"
+            startIcon={<SvgIcon svgName="add" svgClass="btn_icon"></SvgIcon>}
+            onClick={handleAdd}
+          >
+            新增工单
+          </Button>
+        </div>
+
         {/* 表格 */}
         <Table
           dataSource={dataList}
@@ -242,38 +243,5 @@ export default function index() {
         data={checkedData}
       />
     </>
-    // <>
-    //   <Box className="order_management-container">
-    //     {contextHolder}
-    //     {/* 标题 */}
-    //     <p className="title">{t('orderManagement.title')}</p>
-    //     {/* 条件筛选栏 */}
-    //     <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading}></SearchBar>
-    //     {/* 分割符 */}
-    //     <Divider flexItem color="#E5E6EB" />
-
-    //     {/* 表格 */}
-    //     <Table
-    //       style={{
-    //         marginTop: '20px',
-    //       }}
-    //       dataSource={dataList}
-    //       columns={columns as any}
-    //       pagination={tableParams.pagination}
-    //       onChange={handleTableChange}
-    //       loading={loading}
-    //     />
-    //   </Box>
-
-    //   {/* 弹出框 */}
-    //   <PopupBox
-    //     open={openPopupBox}
-    //     onClose={() => {
-    //       setOpenPopupBox(false)
-    //     }}
-    //     onUploadOrderState={handleUploadOrderState}
-    //     data={checkedData}
-    //   />
-    // </>
   )
 }

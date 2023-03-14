@@ -1,8 +1,8 @@
-import React, { Component, useState, useEffect, Children } from 'react';
-import { MenuContext, FrameContext } from "../utils/context";
+import React, { Component, useState, useEffect, Children } from 'react'
+import { MenuContext, FrameContext } from '../utils/context'
 // 配置政策
-import GlobalHeader from "./global-header";
-import Sidebar from "./sidebar";
+import GlobalHeader from './global-header'
+import Sidebar from './sidebar'
 import './framework.scss'
 const Framework = (props) => {
   // 全部菜单
@@ -15,97 +15,134 @@ const Framework = (props) => {
   const [newsCount, setNewsCount] = useState<any>(undefined)
   const [menuVisible, setMenuVisible] = useState<any>(true)
   const onLogout = () => {
-    sessionStorage.removeItem("accountInfo-qqzx");
-    window.location.reload();
+    sessionStorage.removeItem('accountInfo-qqzx')
+    window.location.reload()
   }
   // 调接口获取菜单栏的menus权限
   const getPageMenus = () => {
-    setPageMenus([{
-      "name": "工作台",
-      "uri": "/instrument-panel/notice-order",
-      "id": 50,
-      "type": 0,
-      "iconUrl": null,
-      "childNodes": [{
-        "name": "工单处理中心",
-        "uri": "/instrument-panel/notice-order",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }, {
-        "name": "公告管理",
-        "uri": "/instrument-panel/early-warning",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }, {
-        "name": "部门管理",
-        "uri": "/instrument-panel/department",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }, {
-        "name": "账号管理",
-        "uri": "/instrument-panel/accountManagement",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }]
-    },
-    {
-      "name": "部门",
-      "uri": null,
-      "id": 50,
-      "type": 0,
-      "iconUrl": null,
-      "childNodes": [{
-        "name": "部门管理",
-        "uri": "/customer-management/customerIndex",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }, {
-        "name": "预警管理",
-        "uri": "/customer-management/early",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }]
-    },
-    {
-      "name": "政务",
-      "uri": null,
-      "id": 50,
-      "type": 0,
-      "iconUrl": null,
-      "childNodes": [{
-        "name": "政务大屏",
-        "uri": "/customer-man/custIndex",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }, {
-        "name": "预警管理",
-        "uri": "/customer-man/ear",
-        "id": 38,
-        "type": 1,
-        "iconUrl": null,
-        "childNodes": null,
-      }]
-    }
+    setPageMenus([
+      {
+        name: '工作台',
+        uri: '/instrument-panel/notice-order',
+        id: 50,
+        type: 0,
+        iconUrl: null,
+        childNodes: [
+          {
+            name: '工单处理中心',
+            uri: '/instrument-panel/notice-order',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+          {
+            name: '公告管理',
+            uri: '/instrument-panel/early-warning',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+          {
+            name: '部门管理',
+            uri: '/instrument-panel/department',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+          {
+            name: '账号管理',
+            uri: '/instrument-panel/accountManagement',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+        ],
+      },
+      {
+        name: '工单管理',
+        uri: '/instrument-panel/work-order',
+        id: 38,
+        type: 1,
+        iconUrl: null,
+        childNodes: [
+          {
+            name: '工单管理',
+            uri: '/instrument-panel/work-order',
+            id: 39,
+            type: 2,
+            iconUrl: null,
+            childNodes: null,
+          },
+          {
+            name: '自动派单',
+            uri: '/instrument-panel/automatic-order-delivery',
+            id: 40,
+            type: 2,
+            iconUrl: null,
+            childNodes: null,
+          },
+        ],
+      },
+      {
+        name: '部门',
+        uri: null,
+        id: 50,
+        type: 0,
+        iconUrl: null,
+        childNodes: [
+          {
+            name: '部门管理',
+            uri: '/customer-management/customerIndex',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+          {
+            name: '预警管理',
+            uri: '/customer-management/early',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+        ],
+      },
+      {
+        name: '政务',
+        uri: null,
+        id: 50,
+        type: 0,
+        iconUrl: null,
+        childNodes: [
+          {
+            name: '政务大屏',
+            uri: '/customer-man/custIndex',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+          {
+            name: '预警管理',
+            uri: '/customer-man/ear',
+            id: 38,
+            type: 1,
+            iconUrl: null,
+            childNodes: null,
+          },
+        ],
+      },
     ])
-  };
+  }
   // 打开 左侧目录 弹窗
   const showDrawer = () => {
     setVisible(!visible)
-  };
+  }
   // 获取消息的未读数量
   const getUnReadCount = () => {
     // getUnreadMessageNumberApi({}).then((res) => {
@@ -119,7 +156,7 @@ const Framework = (props) => {
     //     });
     //   }
     // });
-  };
+  }
   useEffect(() => {
     // pageMenus(
     //   [
@@ -227,25 +264,24 @@ const Framework = (props) => {
   const userInfo = (
     <div>
       <div className="header-right">
-        <a style={{ marginLeft: 20 }} href='http://10.0.251.88:30051/table-list?setToken=true' target='_blank'>直达直达</a>
+        <a style={{ marginLeft: 20 }} href="http://10.0.251.88:30051/table-list?setToken=true" target="_blank">
+          直达直达
+        </a>
       </div>
-    </div >
+    </div>
   )
   const RenderSider = () => {
     return (
       <>
-        <div
-          className="sidebar-menu"
-          style={{ height: document.body.scrollHeight - 56, position: "relative" }}
-        >
+        <div className="sidebar-menu" style={{ height: document.body.scrollHeight - 56, position: 'relative' }}>
           <Sidebar />
         </div>
         <div
           className="FB1 FBV FLVH100"
           style={{
-            backgroundColor: "#f6f6f6",
-            overflow: "auto",
-            padding: "16px",
+            backgroundColor: '#f6f6f6',
+            overflow: 'auto',
+            padding: '16px',
             height: window.innerHeight - 56,
           }}
         >
@@ -253,45 +289,38 @@ const Framework = (props) => {
         </div>
       </>
     )
-
   }
-  return <>
-    <MenuContext.Provider
-      value={{
-        menu: pageMenus,
-        selectmenu: selectmenu,
-        toggleMenu: (selectmenu) => {
-          setSelectmenu({ selectmenu });
-        },
-      }}
-    >
-      {/* 左侧目录栏 id是给Drawer定位用的，请勿修改和删除 */}
-      <div className="cbd-framework cbd-gov-framework FBV">
-        <GlobalHeader
-          onListClick={showDrawer}
-          newsCount={newsCount}
-          // showQuestions={hasQuestions}
-          handleHideMenu={() => setMenuVisible(false)} // 隐藏全部菜单
-          handlePyMenu={() =>
-            setMenuVisible(true)
-          } // isVisbIframe=true显示政策菜单false显示业务菜单
-          handleMcMenu={() =>
-            setMenuVisible(true)
-          }
-        />
-        <div className="FBH FB1" id="qinqing-framework">
-          {/* 左侧政策目录栏 */}
-          <FrameContext.Consumer>
-            {RenderSider}
-          </FrameContext.Consumer>
+  return (
+    <>
+      <MenuContext.Provider
+        value={{
+          menu: pageMenus,
+          selectmenu: selectmenu,
+          toggleMenu: (selectmenu) => {
+            setSelectmenu({ selectmenu })
+          },
+        }}
+      >
+        {/* 左侧目录栏 id是给Drawer定位用的，请勿修改和删除 */}
+        <div className="cbd-framework cbd-gov-framework FBV">
+          <GlobalHeader
+            onListClick={showDrawer}
+            newsCount={newsCount}
+            // showQuestions={hasQuestions}
+            handleHideMenu={() => setMenuVisible(false)} // 隐藏全部菜单
+            handlePyMenu={() => setMenuVisible(true)} // isVisbIframe=true显示政策菜单false显示业务菜单
+            handleMcMenu={() => setMenuVisible(true)}
+          />
+          <div className="FBH FB1" id="qinqing-framework">
+            {/* 左侧政策目录栏 */}
+            <FrameContext.Consumer>{RenderSider}</FrameContext.Consumer>
 
-          {/* {this.renderContent()} */}
+            {/* {this.renderContent()} */}
+          </div>
         </div>
-      </div>
-    </MenuContext.Provider>
-  </>
+      </MenuContext.Provider>
+    </>
+  )
 }
 
-
 export default Framework
-

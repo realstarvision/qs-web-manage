@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
-import {
-  HashRouter as Router,
-  Routes,
-  Route,
-  Navigate
-} from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 
 // import Framework from './layouts/framework'
 import FrameLayout from './layouts/frame-layout'
@@ -18,9 +13,12 @@ import EarlyWarning from './pages/instrument-panel'
 import CustIndex from './pages/order-management'
 import Ear from './pages/instrument-panel/deparment'
 import Login from './pages/login'
+// 工单
+import WorkOrderManagement from './pages/order-management'
+import AddWorkOrder from './pages/order-management/Add'
+import AutomaticOrderDelivery from './pages/order-management/AutomaticOrderDelivery'
 import './App.scss'
 const App = () => {
-
   return (
     <Router>
       <FrameLayout>
@@ -36,16 +34,25 @@ const App = () => {
           <Route path={'/customer-management/early'} element={<EarlyWarning />} />
           <Route path={'/customer-man/custIndex'} element={<CustIndex />} />
           <Route path={'/customer-man/ear'} element={<Ear />} />
-          <Route path={'/login'} element={< Login />} />
+          <Route path={'/login'} element={<Login />} />
+          <Route path={'/instrument-panel/work-order'} element={<WorkOrderManagement />} />
+          <Route path={'/instrument-panel/work-order/add'} element={<AddWorkOrder />} />
+          <Route path={'/instrument-panel/automatic-order-delivery'} element={<AutomaticOrderDelivery />} />
           {/* <Route exact path={'/treeselect'} component={TreeSelect} />
             <Route exact path={'/iszmage'} component={ZISmage} />
             <Route exact path={'/user-permission'} component={OperUserManage} />
             <Route exact path={'/swiper-lunbo'} component={SwiperLunbo} /> */}
-          <Route element={<div className="FBV FBAC FBJC" style={{ fontSize: 100 }}>404</div>} />
+          <Route
+            element={
+              <div className="FBV FBAC FBJC" style={{ fontSize: 100 }}>
+                404
+              </div>
+            }
+          />
         </Routes>
       </FrameLayout>
     </Router>
   )
 }
 
-export default App;
+export default App

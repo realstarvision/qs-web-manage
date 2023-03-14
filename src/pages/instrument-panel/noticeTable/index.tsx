@@ -432,43 +432,56 @@ const noticeTable = () => {
                 查看
               </Link>
             </span>
-            : record.orderState === 0 ?
-              <span>
-                <Link to={`/instrument-panel/early-warning/addNotice?id=${record.key}`}>操作</Link >
-                <Popconfirm
-                  title="是否删除该数据"
-                  okText="确定"
-                  cancelText="取消"
-                  onConfirm={() => {
-                    setLoading(true)
-                    setTimeout(() => {
-                      setLoading(false)
-                      message.success('删除成功')
-                    }, 1000)
-                  }}
-                >
-                  <a style={{ marginLeft: '8px' }} onClick={() => { }}>删除</a>
-                </Popconfirm>
-              </span>
-              : record.orderState === 1 ?
-                <span>
-                  <Link to={`/instrument-panel/early-warning/detail?id=${record.key}`} onClick={(e) => { console.log(record) }}>查看</Link>
-                  <Popconfirm
-                    title="是否删除该数据"
-                    okText="确定"
-                    cancelText="取消"
-                    onConfirm={() => {
-                      setLoading(true)
-                      setTimeout(() => {
-                        setLoading(false)
-                        message.success('删除成功')
-                      }, 1000);
-                    }}
-                  >
-                    <a style={{ marginLeft: '8px' }} onClick={() => { }}>删除</a>
-                  </Popconfirm>
-                </span>
-                : <span>-</span>}
+          ) : record.orderState === 0 ? (
+            <span>
+              <Link to={`/instrument-panel/early-warning/addNotice?id=${record.key}`}>操作</Link>
+              <Popconfirm
+                title="是否删除该数据"
+                okText="确定"
+                cancelText="取消"
+                onConfirm={() => {
+                  setLoading(true)
+                  setTimeout(() => {
+                    setLoading(false)
+                    message.success('删除成功')
+                  }, 1000)
+                }}
+              >
+                <a style={{ marginLeft: '8px' }} onClick={() => {}}>
+                  删除
+                </a>
+              </Popconfirm>
+            </span>
+          ) : record.orderState === 1 ? (
+            <span>
+              <Link
+                to={`/instrument-panel/early-warning/detail?id=${record.key}`}
+                onClick={(e) => {
+                  console.log(record)
+                }}
+              >
+                查看
+              </Link>
+              <Popconfirm
+                title="是否删除该数据"
+                okText="确定"
+                cancelText="取消"
+                onConfirm={() => {
+                  setLoading(true)
+                  setTimeout(() => {
+                    setLoading(false)
+                    message.success('删除成功')
+                  }, 1000)
+                }}
+              >
+                <a style={{ marginLeft: '8px' }} onClick={() => {}}>
+                  删除
+                </a>
+              </Popconfirm>
+            </span>
+          ) : (
+            <span>-</span>
+          )}
         </p>
       ),
       // <p> <a onClick={(e) => handleCheck(e, record)}>{t('customerManagement.table.checkBtn')}</a>{removeId==='removeNoticeCompon'?'':<a >删除</a>}</p>
