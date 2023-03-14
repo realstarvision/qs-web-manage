@@ -20,7 +20,7 @@ const MyMenuItem = styled(MenuItem)({
 })
 
 // 公告状态
-let orderTypeList = ['全部', '已发布', '未发布', '已删除',]
+let orderTypeList = ['全部', '已发布', '未发布', '已删除']
 
 // 公告类型
 let orderStateList = ['全部', '库存订单', '定制订单']
@@ -39,7 +39,6 @@ export default function SearchBar({
   onBack,
   searchBtnLoading,
   removeProp,
-
 }: {
   onSubmit?: Function
   onBack?: Function
@@ -58,7 +57,7 @@ export default function SearchBar({
   const keyboardDatePickerGroupRef = useRef(null)
   const [open, setOpen] = useState<{ start: boolean; end: boolean }>({ start: false, end: false })
   // 初始化
-  useEffect(() => { }, [])
+  useEffect(() => {}, [])
 
   const handleInputChange = (e, type) => {
     formParams[type] = e.target.value
@@ -70,7 +69,7 @@ export default function SearchBar({
     let date = keyboardDatePickerGroupRef.current.getDate()
     formParams.startTime = new Date(date.startTime).getTime()
     formParams.endTime = new Date(date.endTime).getTime()
-      ; (onSubmit as Function)(formParams)
+    ;(onSubmit as Function)(formParams)
   }
 
   // 返回按钮
@@ -136,29 +135,30 @@ export default function SearchBar({
             />
           </Grid>
           {/* 公告类型 */}
-          {removeProp ? null : <Grid item xs={4} className="from-item">
-            <FormLabel component="span" className="label">
-              {/* {t('orderManagement.searchBar.orderType')} */}
-              公告状态
-            </FormLabel>
-            <MyInput
-              size="small"
-              select
-              value={formParams.orderType}
-             
-              onChange={(e) => handleInputChange(e, 'orderType')}
-              autoComplete="off"
-              sx={{
-                width: '100%',
-              }}
-            >
-              {orderTypeList.map((type, index) => (
-                <MenuItem key={index} value={index}>
-                  {type}
-                </MenuItem>
-              ))}
-            </MyInput>
-          </Grid>}
+          {removeProp ? null : (
+            <Grid item xs={4} className="from-item">
+              <FormLabel component="span" className="label">
+                {/* {t('orderManagement.searchBar.orderType')} */}
+                公告状态
+              </FormLabel>
+              <MyInput
+                size="small"
+                select
+                value={formParams.orderType}
+                onChange={(e) => handleInputChange(e, 'orderType')}
+                autoComplete="off"
+                sx={{
+                  width: '100%',
+                }}
+              >
+                {orderTypeList.map((type, index) => (
+                  <MenuItem key={index} value={index}>
+                    {type}
+                  </MenuItem>
+                ))}
+              </MyInput>
+            </Grid>
+          )}
 
           {/* 公告类型 */}
           <Grid
@@ -189,7 +189,6 @@ export default function SearchBar({
                 </MenuItem>
               ))}
             </MyInput>
-
           </Grid>
           {/* 提交日期 */}
 
@@ -200,53 +199,51 @@ export default function SearchBar({
             className="from-item"
             style={{
               paddingTop: '16px',
-
             }}
           >
             <FormLabel component="span" className="label">
               {t('orderManagement.searchBar.submitTime')}
             </FormLabel>
 
-
             <KeyboardDatePickerGroup ref={keyboardDatePickerGroupRef}></KeyboardDatePickerGroup>
-
-          </Grid  >
-          <Grid className='from-item'
+          </Grid>
+          <Grid
+            className="from-item"
             xs={1}
             lg={0.7}
             style={{
-
               textAlign: 'center',
               marginLeft: '8px',
               marginRight: '8px',
               marginTop: '16px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}
-
           >
             <Button
               style={{
-
                 background: '#F2F3F5',
                 borderRadius: '2px 2px 2px 2px',
                 fontSize: '14px',
                 color: '#666666',
 
                 textAlign: 'center',
-
               }}
-              className='weekNum'>近7天</Button>
+              className="weekNum"
+            >
+              近7天
+            </Button>
           </Grid>
-          <Grid xs={1}
+          <Grid
+            xs={1}
             lg={0.7}
             style={{
               marginTop: '16px',
 
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
             }}
           >
             <Button
@@ -256,11 +253,12 @@ export default function SearchBar({
                 background: '#F2F3F5',
                 borderRadius: '2px 2px 2px 2px',
                 textAlign: 'center',
-
               }}
-              className='monthNum'>近30天</Button>
+              className="monthNum"
+            >
+              近30天
+            </Button>
           </Grid>
-
         </Grid>
 
         {/* 按钮组 */}
@@ -275,20 +273,19 @@ export default function SearchBar({
           />
           <Stack spacing={2}>
             <LoadingButton
-           
               onClick={() => handleSubmit()}
-              startIcon={ <SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}
+              startIcon={<SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}
               className="search_btn"
-            // sx={{
-            //   height: '32px',
-            //   padding: '9px 16px',
-            //   background: '#2E6EDF',
-            //   borderRadius: '2px',
-            //   color: '#fff',
-            //   '&:hover': {
-            //     background: '#2E6EDF',
-            //   },
-            // }}
+              // sx={{
+              //   height: '32px',
+              //   padding: '9px 16px',
+              //   background: '#2E6EDF',
+              //   borderRadius: '2px',
+              //   color: '#fff',
+              //   '&:hover': {
+              //     background: '#2E6EDF',
+              //   },
+              // }}
             >
               {t('customerManagement.searchBar.searchBtnText')}
             </LoadingButton>
@@ -300,11 +297,8 @@ export default function SearchBar({
             >
               {t('customerManagement.searchBar.resetBtnText')}
             </Button>
-
           </Stack>
-
         </Box>
-
       </Box>
     </>
   )

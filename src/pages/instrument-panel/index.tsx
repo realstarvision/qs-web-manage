@@ -5,13 +5,13 @@ import SvgIcon from '@/components/SvgIcon'
 import { useTranslation } from 'react-i18next'
 import EChart from '@/components/Echarts'
 import orderDataOptions from './options'
-import { getOrderAmount, getOrderCharList } from '@/api/order'
+// import { getOrderAmount, getOrderCharList } from '@/api/workOrder'
 import { getUserInfo } from '@/utils/auth'
 import { Button } from '@mui/material'
 import Notice from './components/Notice/Notice'
 import PieChart from './components/PieChart/PieChart'
 import FirstModal from './components/firstModal/firstModal'
-import Modal from '@material-ui/core/Modal';
+import Modal from '@material-ui/core/Modal'
 import './style.scss'
 // 图片
 import itemPurple from '@/assets/image/itemPurple.png'
@@ -27,8 +27,6 @@ export default function index() {
   const navigate = useNavigate()
   const { t } = useTranslation()
 
-
-  
   // 图标按钮组点击时切换样式
   const [buttonYearClass, setButtonYearClass] = useState('')
   const [buttonWeekClass, setButtonWeekClass] = useState('')
@@ -111,7 +109,6 @@ export default function index() {
     },
   ])
 
-
   // 折线图数据列表
   const [orderCharList, setOrderCharList] = useState([])
 
@@ -123,7 +120,6 @@ export default function index() {
 
     // 请求数据
     //修改eChart状态（父传子）
-
   }
   const buttonWeekClick = function () {
     setButtonWeekClass('button-active')
@@ -144,42 +140,40 @@ export default function index() {
   /* 初始化数据 */
   useEffect(() => {
     // 获取订单系统信息
-    console.log('我是父组件')
-    getOrderAmount().then(({ data, code }: any) => {
-      if (code === 200) {
-        orderTypeList.forEach((item, index) => {
-          switch (index) {
-            case 0:
-              item.count = data.unconfirmedCount
-              break
-            case 1:
-              item.count = data.nonDeliveryCount
-              break
-            default:
-              item.count = data.addedToday
-              break
-          }
-        })
-        setOrderTypeList([...orderTypeList])
-      }
-    })
-
+    // getOrderAmount().then(({ data, code }: any) => {
+    //   if (code === 200) {
+    //     orderTypeList.forEach((item, index) => {
+    //       switch (index) {
+    //         case 0:
+    //           item.count = data.unconfirmedCount
+    //           break
+    //         case 1:
+    //           item.count = data.nonDeliveryCount
+    //           break
+    //         default:
+    //           item.count = data.addedToday
+    //           break
+    //       }
+    //     })
+    //     setOrderTypeList([...orderTypeList])
+    //   }
+    // })
     // 获取折线图数据
-    getOrderCharList().then(({ data, code }: any) => {
-      if (code === 200) {
-        setOrderCharList(data)
-      }
-    })
+    // getOrderCharList().then(({ data, code }: any) => {
+    //   if (code === 200) {
+    //     setOrderCharList(data)
+    //   }
+    // })
   }, [])
 
   return (
     <Box className="instrument_panel-container">
       {/* 首次登录弹窗提示用户修改密码 */}
       <FirstModal></FirstModal>
-       {/* 首页上部分盒子 */}
-      <Box className='instrumentTopBox'>
+      {/* 首页上部分盒子 */}
+      <Box className="instrumentTopBox">
         {/* 工单处理中心 */}
-        <Paper className='chartNumBox'>
+        <Paper className="chartNumBox">
           <p className="welcome">
             {/* <SvgIcon svgName="palm" svgClass="icon"></SvgIcon> */}
             <span>
@@ -193,7 +187,6 @@ export default function index() {
               return (
                 <>
                   <Box className="order_type_item">
-
                     <img src={item.icon} className="icon"></img>
                     <Box className="info">
                       <p className="title">{item.orderTypeName}</p>
@@ -213,10 +206,31 @@ export default function index() {
           <Box className="eChart-title">
             <Box>工单统计</Box>
             {/* {t('instrumentPanel.echartTitle.title')} */}
-            <Box className='eChartButton'>
-              <Button className={buttonWeekClass} onClick={() => { buttonWeekClick() }}>周</Button>
-              <Button className={buttonMathClass} onClick={() => { buttonMathClick() }}>月</Button>
-              <Button className={buttonYearClass} onClick={() => { buttonYearClick() }}>年</Button>
+            <Box className="eChartButton">
+              <Button
+                className={buttonWeekClass}
+                onClick={() => {
+                  buttonWeekClick()
+                }}
+              >
+                周
+              </Button>
+              <Button
+                className={buttonMathClass}
+                onClick={() => {
+                  buttonMathClick()
+                }}
+              >
+                月
+              </Button>
+              <Button
+                className={buttonYearClass}
+                onClick={() => {
+                  buttonYearClick()
+                }}
+              >
+                年
+              </Button>
             </Box>
             {/* <span> {t('instrumentPanel.echartTitle.subTitle')}</span> */}
             {/* <span> {t('instrumentPanel.echartTitle.subTitle')}</span> */}
@@ -224,42 +238,46 @@ export default function index() {
           <Box style={{ height: '316px', paddingRight: '4px', marginBottom: '50px' }}>
             <EChart options={orderDataOptions(orderCharList)}></EChart>
           </Box>
-          <Box className='eChartBottom'>
-            <Box className='eChartBottomFirst'>
-              <Box className='BlueBox'></Box>
-              <Box className='BlueBoxText'>低电量</Box>
+          <Box className="eChartBottom">
+            <Box className="eChartBottomFirst">
+              <Box className="BlueBox"></Box>
+              <Box className="BlueBoxText">低电量</Box>
             </Box>
-            <Box className='eChartBottomTwo'>
-              <Box className='navyBlueBox'></Box>
-              <Box className='BlueBoxText'>倾斜</Box>
+            <Box className="eChartBottomTwo">
+              <Box className="navyBlueBox"></Box>
+              <Box className="BlueBoxText">倾斜</Box>
             </Box>
-            <Box className='eChartBottomThree'>
-              <Box className='skyBlueBox'></Box>
-              <Box className='BlueBoxText'>离线</Box>
+            <Box className="eChartBottomThree">
+              <Box className="skyBlueBox"></Box>
+              <Box className="BlueBoxText">离线</Box>
             </Box>
-            <Box className='eChartBottomFour'>
-              <Box className='fourBlueBox'></Box>
-              <Box className='BlueBoxText'>漫水</Box>
+            <Box className="eChartBottomFour">
+              <Box className="fourBlueBox"></Box>
+              <Box className="BlueBoxText">漫水</Box>
             </Box>
           </Box>
         </Paper>
         {/* 主页右侧部分 */}
-        <Box className='managementBox'>
+        <Box className="managementBox">
           {/* 管理面板 */}
-          <Paper className='managementBoxTop'>
+          <Paper className="managementBoxTop">
             <Box>
               <p className="managementBoxTopText">
-                <span>
-                  管理面板
-                </span>
+                <span>管理面板</span>
               </p>
               {/* 管理面板内容区 */}
-              <Box className="managementBoxTopMain" >
+              <Box className="managementBoxTopMain">
                 {manageTypeList.map((item, index) => {
                   return (
                     <>
-                      <Box onClick={() => { navigate(`item.path`) }} className="managementBoxTopEvery" style={{ flex: ' 0 0 33%' }} >
-                        <Box className="managementIcon" >
+                      <Box
+                        onClick={() => {
+                          navigate(`item.path`)
+                        }}
+                        className="managementBoxTopEvery"
+                        style={{ flex: ' 0 0 33%' }}
+                      >
+                        <Box className="managementIcon">
                           <SvgIcon svgName={item.icon} svgClass="managementImg"></SvgIcon>
                         </Box>
                         <Box className="managementInfo">
@@ -273,10 +291,9 @@ export default function index() {
             </Box>
           </Paper>
 
-
           {/* 公告栏 */}
           <Paper>
-            <Box className='noticeBox'>
+            <Box className="noticeBox">
               <Notice></Notice>
             </Box>
           </Paper>
@@ -286,6 +303,5 @@ export default function index() {
       {/* {饼状图部分} */}
       <PieChart></PieChart>
     </Box>
-
   )
 }

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Divider, Typography, FormLabel, MenuItem } from '@mui/material'
+import { useTranslation } from 'react-i18next'
+import { Box, Divider } from '@mui/material'
+import { message, Table, TablePaginationConfig, PaginationProps, Space, Modal } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import SearchBar from './SearchBar'
-import { Table, TablePaginationConfig, PaginationProps } from 'antd'
+import Button, { LoadingButton } from '@/components/Button'
 import type { FilterValue, SorterResult } from 'antd/es/table/interface'
 import PopupBox from './PopupBox'
-import { useTranslation } from 'react-i18next'
 import SvgIcon from '@/components/SvgIcon'
-import { message, Badge } from 'antd'
-import { findOrderListByPage } from '@/api/order'
+import { findWorkOrderListByPage } from '@/api/workOrder'
 import { copyToClip } from '@/utils/tool'
 import './style.scss'
 
@@ -19,6 +20,7 @@ interface TableParams {
 }
 
 export default function index() {
+  const navigate = useNavigate()
   // i18n
   const { t } = useTranslation()
   // 提示信息
@@ -31,9 +33,9 @@ export default function index() {
   // 表格列
   const columns = [
     {
-      title: '订单编号',
-      dataIndex: 'orderNo',
-      key: 'orderNo',
+      title: '编号',
+      dataIndex: 'id',
+      key: 'id',
       align: 'center',
       render: (_, record) => (
         <span onClick={(e) => handleCopy(e, record)}>
@@ -43,17 +45,17 @@ export default function index() {
       ),
     },
     {
-      title: '订单类型',
-      dataIndex: 'orderType',
-      key: 'orderType',
+      title: '工单事件',
+      dataIndex: 'orderTitle',
+      key: 'orderTitle',
       align: 'center',
-      render: (_, record) => <Badge status="success" text={record.orderType == 0 ? '库存订单' : '定制订单'} />,
     },
     {
-      title: '客户邮箱',
-      dataIndex: 'email',
-      key: 'email',
+      title: '工单状态',
+      dataIndex: 'orderStatus',
+      key: 'orderStatus',
       align: 'center',
+      // render: (_, record) => <Badge status="success" text={record.orderType == 0 ? '库存订单' : '定制订单'} />,
     },
     {
       title: '创建时间',
@@ -63,42 +65,22 @@ export default function index() {
       sorter: true,
     },
     {
-      title: '订单状态',
-      dataIndex: 'orderState',
-      key: 'orderState',
+      title: '事件处理区域',
+      dataIndex: 'orderRegion',
+      key: 'orderRegion',
       align: 'center',
-      // filters: [
-      //   {
-      //     text: '已完成',
-      //     value: '已完成',
-      //   },
-      //   {
-      //     text: '未完成',
-      //     value: '未完成',
-      //   },
-      // ],
-      render: (_, record) => (
-        <Badge
-          status="success"
-          text={
-            record.orderState === 0
-              ? '待确认'
-              : record.orderState === 1
-              ? '待支付'
-              : record.orderState === 2
-              ? '待交付'
-              : record.orderState === 3
-              ? '已完成'
-              : '已取消'
-          }
-        />
-      ),
     },
     {
-      title: t('customerManagement.table.action'),
+      title: '工单来源',
+      dataIndex: 'orderSource',
+      key: 'orderSource',
+      align: 'center',
+    },
+    {
+      title: '操作',
       key: 'action',
       align: 'center',
-      render: (_, record) => <a onClick={(e) => handleCheck(e, record)}>{t('customerManagement.table.checkBtn')}</a>,
+      render: (_, record) => <a onClick={(e) => handleCheck(e, record)}>查看处理</a>,
     },
   ]
   // 分页
@@ -122,7 +104,6 @@ export default function index() {
     name: '',
     company: '',
   })
-
   // 筛选参数
   const [formParams, setFormParams] = useState({ dateSort: null })
   // 查询按钮加载状态
@@ -131,13 +112,12 @@ export default function index() {
   /* 获取列表数据 */
   const getList = (params) => {
     setLoading(true)
-    findOrderListByPage({
-      endTime: params.endTime,
-      email: params.email,
-      orderState: params.orderState - 1 === -1 ? '' : params.orderState - 1,
-      startTime: params.startTime,
-      orderNo: params.orderNo,
-      orderType: params.orderType - 1 === -1 ? '' : params.orderType - 1,
+    findWorkOrderListByPage({
+      id: params.id,
+      endDate: params.endDate,
+      startDate: params.startDate,
+      orderStatus: params.orderStatus === 0 ? '' : params.orderStatus,
+      orderBoard: params.orderBoard === 0 ? '' : params.orderBoard,
       pageNumber: tableParams.pagination.current,
       pageSize: tableParams.pagination.pageSize,
       dateSort: params.dateSort,
@@ -206,6 +186,11 @@ export default function index() {
   const handleUploadOrderState = () => {
     getList(formParams)
   }
+
+  /* 新增工单 */
+  const handleAdd = () => {
+    navigate('/instrument-panel/workOrder/add')
+  }
   return (
     <>
       <Box className="order_management-container">
@@ -215,19 +200,36 @@ export default function index() {
         {/* 条件筛选栏 */}
         <SearchBar onSubmit={handleSearch} searchBtnLoading={searchBtnLoading}></SearchBar>
         {/* 分割符 */}
-        <Divider flexItem color="#E5E6EB" />
-
+        <Divider
+          flexItem
+          color="#E5E6EB"
+          style={{
+            marginBottom: '20px',
+          }}
+        />
+        <Button
+          style={{
+            marginBottom: '20px',
+          }}
+          className="add_btn"
+          startIcon={<SvgIcon svgName="add" svgClass="btn_icon"></SvgIcon>}
+          onClick={handleAdd}
+        >
+          新增工单
+        </Button>
         {/* 表格 */}
         <Table
-          style={{
-            marginTop: '20px',
-          }}
           dataSource={dataList}
           columns={columns as any}
           pagination={tableParams.pagination}
           onChange={handleTableChange}
           loading={loading}
         />
+        {/* 导出 */}
+        <Space size="middle" className="export-box">
+          <div>已选1条</div>
+          <Button className="export_btn">导出</Button>
+        </Space>
       </Box>
 
       {/* 弹出框 */}

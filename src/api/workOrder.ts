@@ -1,13 +1,24 @@
 import request from '@/utils/request'
 
 const api = {
-  getOrderAmount: '/star-store/background/getOrderAmount',
-  getOrderCharList: '/star-store/background/getOrderCharList',
-  findOrderListByPage: '/star-store/background/findOrderListByPage',
-  updateOrder: '/star-store/order/update',
-  saveDelivery: '/star-store/order/saveDelivery',
-  findDelivery: '/star-store/order/findDelivery'
+  findListByParameter: '/star-qiaosi/order/findListByParameter'
 }
+
+
+/* 根据查询参数分页获取工单列表 */
+export function findWorkOrderListByPage(data) {
+  return request({
+    url: api.findListByParameter,
+    method: 'POST',
+    data
+  })
+}
+
+
+
+
+
+
 
 /* 查询订单统计信息(待确认订单数-待交付订单数-当日新增订单数) */
 export function getOrderAmount() {

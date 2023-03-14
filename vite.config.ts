@@ -22,7 +22,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://47.99.134.59:8097',
-        // target: "http://192.168.148.33:8097",
+        target: "http://192.168.148.60:8098",
         // target: "http://192.168.148.33:8098",
         // target: "http://192.168.152.10:8054",
         // target: "http://192.168.48.241.:8054",

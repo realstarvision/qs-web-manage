@@ -1,103 +1,113 @@
 // 最外侧盒子
-.editDepartment{
-    height: 90vh;
-    padding: 16px 20px 0px 20px;
+.editDepartment {
+    min-height: 90vh;
+    // min-height: 500px;
+    padding: 16px 20px 0 20px;
     // background-color: red;
     display: flex;
     flex-direction: column;
     background: #F7F8FA;
+
     // 面包屑
-    .editDepartmentBra{
-    margin-bottom: 20px ;
-    // background-color: aqua;
-    
+    .editDepartmentBra {
+        margin-bottom: 20px;
+        // background-color: aqua;
+
     }
+
     // 内容区
-    .editDepartmentMain{
-        background-color:#FFFFFF;
-    border-radius: 4px 4px 4px 4px;
+    .editDepartmentMain {
+        background-color: #FFFFFF;
+        border-radius: 4px 4px 4px 4px;
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-    
-    // background-color: yellow;
-    padding: 20px 20px 0px 20px;
-    // 内容区 标题
-    .editDepartmentTitle{
-        font-size: 16px;
-        font-family: PingFang SC-Medium, PingFang SC;
-        font-weight: 600;
-        color: #333333;
-        // background-color: aqua;
-    
-    
-    }
-    // 内容区输入框组
-    .editDepartmentInputGroup{
-     
-    margin-left: 8px;
-    // background-color:pink;
-    .editDepartmentFrom-item{
-    display: flex;
-    align-items: center;
-    // 单个输入框盒子
-    .editDepartmentLabel{
-    width:60px;
-    margin-right: 16px;
-    font-size: 14px;
-    font-family: PingFang SC-Regular, PingFang SC;
-    font-weight: 400;
-    color: #666666;
-    }
-    // 所在地址
-    .editDepartmentFromInput{
-    
-    flex: 1;
-    height: 100%;
-    
-    // 所在地址文本域的边距
-    .MuiInputBase-input{
-        padding-left: 0px !important;
-    
-    }
-    
-    }
-    }
-    // 所在地址文本位置
-    .editDepartmentPlace{
-        align-items:start;
-    }
-// 管理账户的盒子
-    .editDepartUserName{
-margin-left: 14px;
-font-size: 14px;
-font-family: PingFang SC-Regular, PingFang SC;
-font-weight: 400;
-color: #666666;
-    }
-    }
-    
-    
-    
-    
-    
-    // 内容区底部
-    .editDepartmentFooter{
-    padding-top: 10px;
-    height:66px;
-    // background-color: blue;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    border-top: 1px solid #E5E6EB;
-    
-    .editDepartmentButton{
-        height: 34px;
-        background: #165DFF;
-        border-radius: 2px 2px 2px 2px;
 
+        // background-color: yellow;
+        padding: 20px 20px 0px 20px;
+
+        // 内容区 标题
+        .editDepartmentTitle {
+            font-size: 16px;
+            font-family: PingFang SC-Medium, PingFang SC;
+            font-weight: 600;
+            color: #333333;
+            // background-color: aqua;
+
+
+        }
+
+        // 内容区输入框组
+        .editDepartmentInputGroup {
+
+            margin-left: 8px;
+
+            // background-color:pink;
+            .editDepartmentFrom-item {
+                display: flex;
+                align-items: center;
+
+                // 单个输入框盒子
+                .editDepartmentLabel {
+                    width: 60px;
+                    margin-right: 16px;
+                    font-size: 14px;
+                    font-family: PingFang SC-Regular, PingFang SC;
+                    font-weight: 400;
+                    color: #666666;
+                }
+
+                // 所在地址
+                .editDepartmentFromInput {
+
+                    flex: 1;
+                    height: 100%;
+
+                    // 所在地址文本域的边距
+                    .MuiInputBase-input {
+                        padding-left: 0px !important;
+
+                    }
+
+                }
+            }
+
+            // 所在地址文本位置
+            .editDepartmentPlace {
+                align-items: start;
+            }
+
+            // 管理账户的盒子
+            .editDepartUserName {
+                margin-left: 14px;
+                font-size: 14px;
+                font-family: PingFang SC-Regular, PingFang SC;
+                font-weight: 400;
+                color: #666666;
+            }
+        }
+
+
+
+
+
+        // 内容区底部
+        .editDepartmentFooter {
+            margin-top: 20px;
+            height: 66px;
+            // background-color: blue;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            border-top: 1px solid #E5E6EB;
+
+            .editDepartmentButton {
+                height: 34px;
+                background: #165DFF;
+                border-radius: 2px 2px 2px 2px;
+
+            }
+        }
     }
-    }
-    }
-    }
+}

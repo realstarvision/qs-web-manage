@@ -1,21 +1,15 @@
-.editDepartRoleTableBox{
+.editDepartRoleTableBox {
+  padding: 0px;
+  height: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
 
-    padding: 0px;
-   height: 100%;
-    font-size: 14px;
-    box-sizing: border-box;
-   
-    td {
+  td {
+    padding: 9px 16px !important;
+  }
 
-        padding: 9px 16px !important;
-      
-      }
-      th {
-
-        padding: 9px 16px !important;
-        margin-bottom: 0px !important;
-      
-      }
-   
-
+  th {
+    padding: 9px 16px !important;
+    margin-bottom: 0px !important;
+  }
 }

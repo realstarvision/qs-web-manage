@@ -1,14 +1,11 @@
 // 最外层盒子
 .EditDepartRole {
-
     @include container;
+
     // background-color: red;
-
-
-
     // 内容区
     .EditDepartRoleMain {
-        background: #FFFFFF;
+        background: #ffffff;
         // background-color: yellow;
         border-radius: 4px 4px 4px 4px;
         flex: 1;
@@ -76,7 +73,7 @@
                         font-size: 14px;
                         font-family: PingFang SC-Regular, PingFang SC;
                         font-weight: 400;
-                        color: #165DFF;
+                        color: #165dff;
                     }
                 }
 
@@ -88,27 +85,20 @@
                     height: 56px;
                     margin-bottom: 20px;
 
-
-
                     .EditDepRolLefFotBut {
-
-
-                        background: #165DFF;
+                        background: #165dff;
 
                         font-size: 14px;
                         font-family: PingFang SC-Regular, PingFang SC;
                         font-weight: 400;
-                        color: #FFFFFF;
-
+                        color: #ffffff;
                     }
                 }
-
             }
         }
 
         // 中间分割区域
         .EditDepRolContainer {
-
             height: 100%;
             // background: blue;
             display: flex;
@@ -118,7 +108,7 @@
             // 中间分割线
             .EditDepRolContainerDivider {
                 height: 100%;
-                background-color: #E5E6EB;
+                background-color: #e5e6eb;
             }
         }
 
@@ -130,7 +120,6 @@
 
             // 右侧第一行盒子
             .EditDepartRoleRightTitle {
-
                 // background: red;
                 display: flex;
                 justify-content: space-between;
@@ -146,30 +135,23 @@
                     font-family: PingFang SC-Regular, PingFang SC;
                     font-weight: 400;
                     color: #666666;
-                    .EditDepartRoleAllNum {
 
-                        color: #165DFF;
+                    .EditDepartRoleAllNum {
+                        color: #165dff;
                     }
                 }
+
                 // 角色管理按钮
-                .EditDepartRoleToManageBut{
+                .EditDepartRoleToManageBut {
                     font-size: 14px;
                     font-family: PingFang SC-Regular, PingFang SC;
                     font-weight: 400;
-                    color: #FFFFFF;
-                    background: #165DFF;
+                    color: #ffffff;
+                    background: #165dff;
                     height: 32px;
-border-radius: 2px 2px 2px 2px;
-
-
+                    border-radius: 2px 2px 2px 2px;
                 }
             }
-
         }
-
-
-
-
-
     }
 }

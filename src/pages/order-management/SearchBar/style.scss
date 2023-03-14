@@ -1,13 +1,15 @@
-
-.order_search-container{
+.order_search-container {
   display: grid;
   grid-template-columns: 1fr auto;
-  .from-item{
+  padding: 20px 0 20px 20px;
+
+  .from-item {
     // display: flex;
     // align-items: center;
     display: grid;
     grid-template-columns: auto 1fr;
-    .label{
+
+    .label {
       margin-right: 16px;
       display: flex;
       align-items: center;
@@ -15,52 +17,46 @@
       font-weight: 400;
       line-height: 22px;
       overflow: hidden;
-      white-space:nowrap;
-      color:#666666;
-      .icon{
+      white-space: nowrap;
+      color: #666666;
+
+      .icon {
         width: 16px;
         height: 16px;
         margin-right: 10px;
       }
     }
-    .data-box{
+
+    .data-box {
       border-radius: 2px;
       background: #232734;
       opacity: 0.6;
       display: flex;
       align-items: center;
     }
+
+    .btn {
+      height: 32px;
+      padding: 9px 16px !important;
+      background: #f2f3f5 !important;
+      border-radius: 2px !important;
+      color: #666666 !important;
+
+      &:hover {
+        background: #f2f3f5 !important
+      }
+    }
   }
-  .btn-bar{
+
+  .btn-bar {
     display: flex;
     justify-content: flex-end;
     width: 100%;
+
     // max-width: 270px;
-    .icon{
+    .icon {
       width: 14px;
       height: 14px;
     }
-    .search_btn{
-      height: 32px;
-      padding:9px 16px !important;
-      background:#2E6EDF !important;
-      border-radius: 2px !important; 
-      color:#fff !important;
-      &:hover{
-        background:#2E6EDF !important
-      }
-    }
-    .reset_btn{
-      height: 32px;
-      padding:9px 16px !important;
-      border-radius: 2px !important;
-      background:#F2F3F5 !important;
-      color:#666666 !important;
-      &:hover{
-        background:#F2F3F5 !important;
-      }
-    }
   }
 }
-
-

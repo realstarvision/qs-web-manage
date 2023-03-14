@@ -1,8 +1,6 @@
-
-
-.MuiPickersModal-dialogRoot{
-  .MuiPickersToolbar-toolbar{
-    background-color:#2E6EDF
+.MuiPickersModal-dialogRoot {
+  .MuiPickersToolbar-toolbar {
+    background-color: #2E6EDF
   }
 
   // /* 左右截图背景 */
@@ -13,14 +11,15 @@
   //   }
   // }
   /* 选中日期背景色 */
-  .MuiPickersDay-daySelected{
-    background-color:#2E6EDF;
+  .MuiPickersDay-daySelected {
+    background-color: #2E6EDF;
     // color:#333333 !important;
     // border-radius: 2px;
     // &:hover{
-      // background-color:#829fd3;
+    // background-color:#829fd3;
     // }
   }
+
   // /* 星期栏样式 */
   // .MuiPickersCalendarHeader-dayLabel{
   //   color: #FFFFFF;
@@ -31,10 +30,11 @@
   //   opacity: 0.25;
   // }
   /* 日的基本样式 */
-  .MuiPickersDay-day{
+  .MuiPickersDay-day {
     // color: #FFFFFF;
     border-radius: 2px;
   }
+
   // /* 日选中的日期样式 */
   // .MuiPickersDay-current{
   //   color: #AEBDD8;
@@ -46,7 +46,7 @@
 }
 
 /* 按钮 */
-.date_btn{
+.date_btn {
   color: #fff !important;
   background: #2E6EDF !important;
   padding: 0 30px !important;
@@ -55,10 +55,12 @@
   letter-spacing: 2px !important;
 }
 
-.date_cancel_btn{
+
+.date_cancel_btn {
   color: #2E6EDF;
   letter-spacing: 2px;
-  &:hover{
+
+  &:hover {
     opacity: 0.8;
   }
 }

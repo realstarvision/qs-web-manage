@@ -1,30 +1,120 @@
-.system-container{
+.system-container {
   padding: 0 56px;
   min-width: 800px;
   height: 100%;
   min-height: 800px;
-  .divider{
+
+  .divider {
     margin-top: 16px;
-    margin-bottom:20px;
-    border-color: rgba(174,189,216,0.2)
+    margin-bottom: 20px;
+    border-color: rgba(174, 189, 216, 0.2)
   }
 }
 
+// 搜索按钮样式
+.search_btn {
+  height: 32px;
+  padding: 9px 16px !important;
+  background: #2E6EDF !important;
+  border-radius: 2px !important;
+  color: #fff !important;
+
+  &:hover {
+    background: #2E6EDF !important
+  }
+}
+
+// 重置按钮样式
+.reset_btn {
+  height: 32px;
+  padding: 9px 16px !important;
+  border-radius: 2px !important;
+  background: #F2F3F5 !important;
+  color: #666666 !important;
+
+  &:hover {
+    background: #F2F3F5 !important;
+  }
+}
+
+// 新增按钮样式
+.add_btn {
+  height: 32px !important;
+  padding: 9px 16px !important;
+  background: #2E6EDF !important;
+  border-radius: 2px !important;
+  color: #fff !important;
+
+  &:hover {
+    background: #2E6EDF !important
+  }
+}
+
+// 导出按钮样式
+.export_btn {
+  height: 32px !important;
+  padding: 9px 16px !important;
+  background: #2E6EDF !important;
+  border-radius: 2px !important;
+  color: #fff !important;
+
+  &:hover {
+    background: #2E6EDF !important
+  }
+}
+
+// 取消按钮样式
+.cancel_btn {
+  height: 32px;
+  padding: 9px 16px !important;
+  background: #F53F3F !important;
+  border-radius: 2px !important;
+  color: #fff !important;
+
+  &:hover {
+    background: #F53F3F !important
+  }
+}
+
+// 按钮icon
+.btn_icon {
+  width: 16px;
+  height: 16px;
+}
 
 /* 内容框 */
-@mixin  containerBox(){
-  margin:  20px;
+@mixin containerBox() {
+  margin: 20px;
   padding: 30px 20px;
   background-color: #fff;
   border-radius: 4px;
 }
 
 
-@mixin  container(){
+@mixin container() {
   height: 90vh;
-// background-color: red;
-background: #F7F8FA;
-padding:16px 20px 0px 20px;
-display: flex;
-flex-direction: column;
+  // background-color: red;
+  background: #F7F8FA;
+  padding: 16px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 表单 */
+.form {
+  .formItem {
+    display: flex;
+    align-items: center;
+    padding-top: 0 !important;
+    padding-bottom: 20px;
+
+    .label {
+      flex: auto;
+      text-align: right;
+      width: 80px;
+      margin-right: 10px;
+
+    }
+  }
 }

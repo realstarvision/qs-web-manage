@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import Button, { LoadingButton } from '@/components/Button'
 import { MyInput } from '@/components/Input'
 import SvgIcon from '@/components/SvgIcon'
-import KeyboardDatePicker from '@/components/KeyboardDatePicker'
 import KeyboardDatePickerGroup from '@/components/DatePickerGroup'
 import { styled } from '@mui/material/styles'
 import moment from 'moment'
@@ -19,19 +18,18 @@ const MyMenuItem = styled(MenuItem)({
   },
 })
 
-// 订单状态
-let orderStateList = ['全部', '待确认', '待支付', '待交付', '已完成', '已取消']
+// 工单状态
+let workOrderStateList = ['全部', '待派发', '待处理', '处理中', '已完结', '被驳回']
 
-// 订单类型
-let orderTypeList = ['全部', '库存订单', '定制订单']
+// 工单类型
+let workOrderTypeList = ['全部', '沉降', '内涝', '智能垃圾柜']
 
 export interface FormParams {
-  orderNo: string
-  orderType: number
-  email: string
-  orderState: number
-  startTime: null | Date | string | number
-  endTime: null | Date | string | number
+  id: string
+  orderBoard: number
+  orderStatus: number
+  startDate: null | Date | string | number
+  endDate: null | Date | string | number
 }
 
 export default function SearchBar({
@@ -44,12 +42,11 @@ export default function SearchBar({
   searchBtnLoading: boolean
 }) {
   const [formParams, setFormParams] = useState<FormParams>({
-    orderNo: '',
-    email: '',
-    orderType: 0,
-    orderState: 0,
-    startTime: null,
-    endTime: null,
+    id: '',
+    orderBoard: 0,
+    orderStatus: 0,
+    startDate: null,
+    endDate: null,
   })
   const { t } = useTranslation()
   const keyboardDatePickerGroupRef = useRef(null)
@@ -62,141 +59,111 @@ export default function SearchBar({
     setFormParams({ ...formParams })
   }
 
-  // 提交按钮
+  // 提交按钮 moment(date.startTime).format('YYYY/MM/DD')   moment(date.endTime).format('YYYY/MM/DD')
   const handleSubmit = () => {
     let date = keyboardDatePickerGroupRef.current.getDate()
-    formParams.startTime = new Date(date.startTime).getTime()
-    formParams.endTime = new Date(date.endTime).getTime()
+    formParams.startDate = date.startTime ? date.startTime : null
+    formParams.endDate = date.endTime ? date.endTime : null
     ;(onSubmit as Function)(formParams)
-  }
-
-  // 返回按钮
-  const handleBack = () => {
-    onBack()
   }
 
   //重置按钮
   const handleReset = () => {
     setFormParams({
-      orderNo: '',
-      email: '',
-      orderType: 0,
-      orderState: 0,
-      startTime: null,
-      endTime: null,
+      id: '',
+      orderBoard: 0,
+      orderStatus: 0,
+      startDate: null,
+      endDate: null,
     })
     keyboardDatePickerGroupRef.current.reset()
   }
 
-  /* 时间选择器时间 */
-
+  /* 近7天，近30天按钮 */
+  const handleSetDate = (intervalTime) => {
+    let start = new Date(new Date().getTime() - intervalTime * 24 * 60 * 60 * 1000)
+    let end = new Date()
+    keyboardDatePickerGroupRef.current.setDate({ startTime: start, endTime: end })
+  }
   return (
     <>
-      <Box
-        sx={{
-          padding: '20px 0 20px 20px',
-        }}
-        className="order_search-container"
-      >
+      <Box className="order_search-container">
         <Grid container spacing={{ xs: 3 }}>
-          {/* 订单编号 */}
+          {/* 事件编号 */}
           <Grid item xs={4} className="from-item">
             <FormLabel component="span" className="label">
-              {t('orderManagement.searchBar.orderCode')}
+              事件编号
             </FormLabel>
             <MyInput
               size="small"
               placeholder={t('orderManagement.searchBar.orderCodePlaceholder')}
-              value={formParams.orderNo}
-              onChange={(e) => handleInputChange(e, 'orderNo')}
+              value={formParams.id}
+              onChange={(e) => handleInputChange(e, 'id')}
               autoComplete="off"
               sx={{
                 width: '100%',
               }}
             />
           </Grid>
-          {/* 订单类型 */}
+          {/* 工单类型 */}
           <Grid item xs={4} className="from-item">
             <FormLabel component="span" className="label">
-              {t('orderManagement.searchBar.orderType')}
+              工单类型
             </FormLabel>
             <MyInput
               size="small"
               select
-              value={formParams.orderType}
+              value={formParams.orderBoard}
               placeholder={t('orderManagement.searchBar.orderTypePlaceholder')}
-              onChange={(e) => handleInputChange(e, 'orderType')}
+              onChange={(e) => handleInputChange(e, 'orderBoard')}
               autoComplete="off"
               sx={{
                 width: '100%',
               }}
             >
-              {orderTypeList.map((type, index) => (
+              {workOrderTypeList.map((type, index) => (
                 <MenuItem key={index} value={index}>
                   {type}
                 </MenuItem>
               ))}
             </MyInput>
           </Grid>
-          {/* 用户邮箱 */}
+          {/* 事件状态 */}
           <Grid item xs={4} className="from-item">
             <FormLabel component="span" className="label">
-              {t('orderManagement.searchBar.email')}
-            </FormLabel>
-            <MyInput
-              size="small"
-              placeholder={t('orderManagement.searchBar.emailPlaceholder')}
-              value={formParams.email}
-              onChange={(e) => handleInputChange(e, 'email')}
-              autoComplete="off"
-              sx={{
-                width: '100%',
-              }}
-            />
-          </Grid>
-          {/* 订单状态 */}
-          <Grid
-            item
-            xs={4}
-            className="from-item"
-            style={{
-              paddingTop: '16px',
-            }}
-          >
-            <FormLabel component="span" className="label">
-              {t('orderManagement.searchBar.orderState')}
+              事件状态
             </FormLabel>
             <MyInput
               size="small"
               select
-              value={formParams.orderState}
-              onChange={(e) => handleInputChange(e, 'orderState')}
+              value={formParams.orderStatus}
+              onChange={(e) => handleInputChange(e, 'orderStatus')}
               autoComplete="off"
               sx={{
                 width: '100%',
               }}
             >
-              {orderStateList.map((state, index) => (
+              {workOrderStateList.map((state, index) => (
                 <MenuItem key={index} value={index}>
                   {state}
                 </MenuItem>
               ))}
             </MyInput>
           </Grid>
-          {/* 提交日期 */}
-          <Grid
-            item
-            xs={5.5}
-            lg={4}
-            className="from-item"
-            style={{
-              paddingTop: '16px',
-            }}
-          >
+          {/* 创建时间 */}
+          <Grid item xs={8} className="from-item">
             <FormLabel component="span" className="label">
-              {t('orderManagement.searchBar.submitTime')}
+              创建时间
             </FormLabel>
-            <KeyboardDatePickerGroup ref={keyboardDatePickerGroupRef}></KeyboardDatePickerGroup>
+            <Stack spacing={2} direction="row">
+              <KeyboardDatePickerGroup ref={keyboardDatePickerGroupRef}></KeyboardDatePickerGroup>
+              <Button className="btn" onClick={() => handleSetDate(7)}>
+                近7天
+              </Button>
+              <Button className="btn" onClick={() => handleSetDate(30)}>
+                近30天
+              </Button>
+            </Stack>
           </Grid>
         </Grid>
         {/* 按钮组 */}
@@ -209,22 +176,12 @@ export default function SearchBar({
               margin: '0 20px',
             }}
           />
-          <Stack spacing={2}>
+          <Stack spacing={3}>
             <LoadingButton
               loading={searchBtnLoading}
               onClick={() => handleSubmit()}
               startIcon={searchBtnLoading ? '' : <SvgIcon svgName="search_icon" svgClass="icon"></SvgIcon>}
               className="search_btn"
-              // sx={{
-              //   height: '32px',
-              //   padding: '9px 16px',
-              //   background: '#2E6EDF',
-              //   borderRadius: '2px',
-              //   color: '#fff',
-              //   '&:hover': {
-              //     background: '#2E6EDF',
-              //   },
-              // }}
             >
               {t('customerManagement.searchBar.searchBtnText')}
             </LoadingButton>
